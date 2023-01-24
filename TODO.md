@@ -1,0 +1,3 @@
+- add user 
+- add tasks
+- multiplier for rooms (bathroom at 1.1 for example)
