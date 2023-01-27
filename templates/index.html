@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to Tasks for Flats {% endblock %}</h1> <!-- replaces the Title as well, in the head of the page -->
+    {% for tasks in tasks %}
+        <h4>The following task is worth {{ tasks["points"]}} and will be completed in the 
+        {{ tasks["room"]}}. To complete it, please... <br></h4>
+        <p> {{ tasks["content"]}}<br><br></p>
+    {% endfor %}
+{% endblock %}
