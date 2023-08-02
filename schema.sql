@@ -3,19 +3,25 @@ DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS rooms;
 DROP TABLE IF EXISTS flatmates; 
 
-CREATE TABLE tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    points INTEGER NOT NULL DEFAULT 10,
-    room TEXT NOT NULL,
-    content TEXT NOT NULL
+CREATE TABLE room (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
 );
 
-CREATE TABLE room (
-    name TEXT NOT NULL,
-    difficulty REAL NOT NULL
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY,
+    description TEXT NOT NULL,
+    points INTEGER NOT NULL,
+    room_id INTEGER
 );
 
 CREATE TABLE flatmates (
-    name TEXT NOT NULL, 
-    multiplier REAL NOT NULL
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE task_assignment (
+    id INTEGER PRIMARY KEY,
+    task_id INTEGER,
+    flatmate_id INTEGER
 );

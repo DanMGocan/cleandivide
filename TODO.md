@@ -1,3 +1,5 @@
 - add user 
 - add tasks
 - multiplier for rooms (bathroom at 1.1 for example)
+- option to Add User, Add Task, Add Room
+- download the standard task mater for 2, 3, 4 flatmates in a standard apartment
