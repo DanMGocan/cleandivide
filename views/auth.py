@@ -58,6 +58,8 @@ def authorized():
     session['google_token'] = (response['access_token'], '')
     user_info = google.get('https://www.googleapis.com/oauth2/v1/userinfo')
     user_email = user_info.data["email"]
+    if user_email in ["gocandan@gmail.com"]:
+        session["is_admin"] = True
     user = User(user_email)
     login_user(user)
     session["user_id"] = user_email

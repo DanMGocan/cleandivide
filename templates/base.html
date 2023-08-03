@@ -40,13 +40,20 @@
                     <a class="nav-link" href="/login">Login</a>
                 </li>
                 {% endif %}
+                {% if current_user.is_authenticated and session["is_admin"] %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+
     <div class="container">
         {% for message in get_flashed_messages() %}
         <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
+        
         {% block content %} {% endblock %}
     </div>
 

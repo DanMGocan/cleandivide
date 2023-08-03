@@ -23,5 +23,6 @@ CREATE TABLE flatmates (
 CREATE TABLE task_assignment (
     id INTEGER PRIMARY KEY,
     task_id INTEGER,
-    flatmate_id INTEGER
+    flatmate_id INTEGER,
+    flatmate_email TEXT
 );
