@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{ url_for('about')}}">About</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('add')}}">Add task</a>
+                    <a class="nav-link" href="{{ url_for('additems_bp.add')}}">Add task</a>
                 </li>
                 <!-- Conditional to show login or logout, depending if the user is logged in -->
                 {% if current_user.is_authenticated %}
