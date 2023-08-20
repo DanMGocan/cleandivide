@@ -1,10 +1,30 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
-from models import User
+from models import User, get_db_connection
 
 google = None
 auth_bp = Blueprint('auth_bp', __name__)
+
+def add_or_get_user(user_email):
+   
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Check if user already exists
+    user = cursor.execute('SELECT * FROM users WHERE email = ?', (user_email,)).fetchone()
+
+    if user:
+        # User exists, optionally update user data if needed
+        pass
+    else:
+        # User doesn't exist, add to database
+        cursor.execute('INSERT INTO users (email) VALUES (?)', 
+                       (user_email,))
+        conn.commit()
+
+    conn.close()
+    return user
 
 def setup_google(app):
     global google
@@ -22,7 +42,7 @@ def setup_google(app):
     access_token_method='POST',
     access_token_url='https://accounts.google.com/o/oauth2/token',
     authorize_url='https://accounts.google.com/o/oauth2/auth',
-)
+    )
     
     @google.tokengetter
     def get_google_oauth_token():
@@ -63,7 +83,11 @@ def authorized():
     user = User(user_email)
     login_user(user)
     session["user_id"] = user_email
-    return render_template("dashboard.html", user_email=user_email)
+    add_or_get_user(user_email)
+    return redirect(url_for("main"))
+    # return render_template("dashboard.html", user_email=user_email)
+
+
 
 
 
