@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, sessio
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
 from models import User, get_db_connection
+from datetime import datetime
 
 google = None
 auth_bp = Blueprint('auth_bp', __name__)
@@ -12,17 +13,19 @@ def add_or_get_user(user_email):
     cursor = conn.cursor()
 
     # Check if user already exists
-    user = cursor.execute('SELECT * FROM users WHERE email = ?', (user_email,)).fetchone()
+    user = cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,)).fetchone()
 
     if user:
-        # User exists, optionally update user data if needed
-        pass
+        cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email, ))
+        conn.commit()
     else:
         # User doesn't exist, add to database
-        cursor.execute('INSERT INTO users (email) VALUES (?)', 
-                       (user_email,))
+        cursor.execute('INSERT INTO users (user_id) VALUES (?)', (user_email,))
         conn.commit()
 
+    cursor.execute("UPDATE users SET last_login = ? WHERE user_id = ?", (datetime.now(), user_email))
+    conn.commit()
+    
     conn.close()
     return user
 

@@ -27,22 +27,33 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('about')}}">About</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('additems_bp.add')}}">Add task</a>
-                </li>
+
                 <!-- Conditional to show login or logout, depending if the user is logged in -->
                 {% if current_user.is_authenticated %}
                 <li class="nav-item active">
                     <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('additems_bp.add_task')}}">Add task</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('additems_bp.add_room')}}">Add room</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('additems_bp.add_flatmate')}}">Add flatmate</a>
                 </li>
                 {%else %}
                 <li class="nav-item active">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
                 {% endif %}
+
                 {% if current_user.is_authenticated and session["is_admin"] %}
                 <li class="nav-item active">
                     <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin">Database</a>
                 </li>
                 {% endif %}
             </ul>

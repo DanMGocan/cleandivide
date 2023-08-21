@@ -6,12 +6,18 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL
+    user_id TEXT NOT NULL UNIQUE,
+    last_login DATETIME,
+    times_logged INTEGER DEFAULT 1
 );
 
 CREATE TABLE rooms (
     id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL
+    user_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    modifier INTEGER NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(email)
+ 
 );
 
 CREATE TABLE tasks (
@@ -26,7 +32,10 @@ CREATE TABLE tasks (
 
 CREATE TABLE flatmates (
     id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL
+    user_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    modifier INTEGER NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(email)
 );
 
 -- CREATE TABLE task_assignment (
