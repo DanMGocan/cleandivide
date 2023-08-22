@@ -4,3 +4,4 @@
 - option to Add User, Add Task, Add Room
 - download the standard task mater for 2, 3, 4 flatmates in a standard apartment
 - database sanitizing
+- load essential DB or start from scratch option? 

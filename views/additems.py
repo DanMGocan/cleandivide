@@ -12,6 +12,7 @@ def add_task():
         description = request.form['description']
         points = request.form["points"]
         room = request.form["room"]
+        frequency = request.form["frequency"]
         user_id = session.get('user_id')  # Assuming you stored user's ID in session upon login
 
         if not user_id:
@@ -20,7 +21,7 @@ def add_task():
         
         # Add task to database
         conn = get_db_connection()
-        conn.execute('INSERT INTO tasks (user_id, description, points, room) VALUES (?, ?, ?, ?)', (user_id, description, points, room))
+        conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', (user_id, description, points, room, frequency))
         conn.commit()
         conn.close()
 
@@ -28,6 +29,7 @@ def add_task():
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
     return render_template('add_task.html')
+
 
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required

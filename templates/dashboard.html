@@ -1,9 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to CleanDivide, {{ user_email }} {% endblock %}</h1> <!-- replaces the Title as well, in the head of the page -->
+    <h1>{% block title %} Welcome to CleanDivide, {{ template_data.user_email }} {% endblock %}</h1> <!-- replaces the Title as well, in the head of the page -->
+    
+    {% if template_data.rooms|length <= 0 %}
+        <p>You have not added any rooms yet! You need rooms before adding tasks :(</p>
+        <p>Please add rooms here: <a href={{ url_for("additems_bp.add_room") }}>HERE!</a></p> 
+    {% endif %}
+
+    {% if template_data.flatmates|length <= 0 %}
+    <p>You have not added any flatmates yet! You need flatmates, as you cannot do this by yourself!</p>
+    <p>Please add flatmates here: <a href={{ url_for("additems_bp.add_flatmate") }}>HERE!</a></p> 
+    {% endif %}
+    
+    {% if template_data.rooms|length > 0 and template_data.flatmates|length > 0 %}
+
+    <p>Last tasks added:</p>
+    <ul>
+        {% for element in template_data.tasks %}
+            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>Last rooms added:</p>
+    <ul>
+        {% for element in template_data.rooms %}
+            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>And these are your best friends!</p>
+    <ul>
+        {% for element in template_data.flatmates %}
+            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
+        {% endfor %}
+    </ul>
+
     <button class="btn btn-black">Add Task</button>
-    <button class="btn btn-black">Add Room</button>
-    <button class="btn btn-black">Add Flastmate</button>
     <button class="btn btn-black">Generate schedule!</button>
+    {% endif %}
+    <br><br>
+
+
 {% endblock %}

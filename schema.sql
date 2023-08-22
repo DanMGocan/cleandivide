@@ -26,6 +26,7 @@ CREATE TABLE tasks (
     description TEXT NOT NULL,
     points INTEGER NOT NULL,
     room TEXT,
+    frequency TEXT NOT NULL DEFAULT "Daily",
     FOREIGN KEY(user_id) REFERENCES users(email)
 
 );

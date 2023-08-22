@@ -14,10 +14,18 @@
         <label for="points">Points allocated:</label><br>
         <input type="number" name="points" required /><br><br>
 
-        <label for="room">Task Description:</label><br>
+        <label for="room">Room:</label><br>
         <input type="text" name="room" required /><br><br>
 
-        
+        <label for="frequency">Choose frequency of the task:</label>
+        <input class="form-control" list="frequencies" id="frequency" name="frequency">
+        <datalist id="frequencies">
+            <option value="Daily">
+            <option value="Twice weekly">
+            <option value="Weekly">
+            <option value="Twice monthly">
+            <option value="Monthly">
+        </datalist>
 
         <input type="submit" value="Add Task">
     </form>

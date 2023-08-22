@@ -4,6 +4,7 @@ from flask import Blueprint, Flask, render_template, request, url_for, flash, re
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from views.auth import auth_bp, setup_google, add_or_get_user
 from views.additems import additems_bp
+from models import get_db_connection
 
 # Creating the instance of the Flask application with the name app
 app = Flask(__name__)
@@ -20,10 +21,24 @@ def main():
     # conn = get_db_connection()
     # tasks = conn.execute("SELECT * FROM tasks").fetchall()
     # conn.close()
-    
     user_email = session.get('user_id')
     if current_user.is_authenticated:
-        return render_template('dashboard.html', user_email = user_email) # For logged-in users
+
+        conn = get_db_connection()
+
+        tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC LIMIT 10;").fetchall()
+        rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC LIMIT 10;").fetchall()
+        flatmates = conn.execute("SELECT * FROM flatmates ORDER BY id DESC LIMIT 10;").fetchall()
+        
+
+        template_data = {
+            "tasks": tasks,
+            "rooms": rooms,
+            "flatmates": flatmates,
+            "user_email": user_email
+        }
+
+        return render_template('dashboard.html', template_data = template_data) # For logged-in users
     else:
         return render_template('index.html') # For guests
 
