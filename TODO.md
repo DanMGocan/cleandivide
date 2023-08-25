@@ -5,3 +5,7 @@
 - download the standard task mater for 2, 3, 4 flatmates in a standard apartment
 - database sanitizing
 - load essential DB or start from scratch option? 
+- last login for users
+- add date to tasks and such, to have them deleted yearly
+- add incremental variable to tasks
+- ULTRA RANDOM MODE

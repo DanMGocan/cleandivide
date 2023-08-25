@@ -1,0 +1,61 @@
+{%extends "base.html" %}
+
+{% block content %}
+<h1>Rooms</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Modifier</th>
+    </tr>
+    {% for room in rooms %}
+    <tr>
+        <td>{{ room.id }}</td>
+        <td>{{ room.user_id }}</td>
+        <td>{{ room.name }}</td>
+        <td>{{ room.modifier }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Tasks</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Description</th>
+        <th>Points</th>
+        <th>Room</th>
+        <th>Frequency</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.id }}</td>
+        <td>{{ task.user_id }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.points }}</td>
+        <td>{{ task.room }}</td>
+        <td>{{ task.frequency }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Flatmates</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Modifier</th>
+    </tr>
+    {% for flatmate in flatmates %}
+    <tr>
+        <td>{{ flatmate.id }}</td>
+        <td>{{ flatmate.user_id }}</td>
+        <td>{{ flatmate.name }}</td>
+        <td>{{ flatmate.modifier }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

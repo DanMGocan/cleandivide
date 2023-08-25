@@ -4,6 +4,7 @@ from flask import Blueprint, Flask, render_template, request, url_for, flash, re
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from views.auth import auth_bp, setup_google, add_or_get_user
 from views.additems import additems_bp
+from views.helpers import helpers_bp
 from models import get_db_connection
 
 # Creating the instance of the Flask application with the name app
@@ -14,6 +15,7 @@ app.config.from_object('config')
 setup_google(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(additems_bp)
+app.register_blueprint(helpers_bp)
 
 # Using the app instance to handle incoming requests and send answers
 @app.route("/") # decorator -> transforms functions' return value in an HTTP response. This function will respond to the "/" URL requests 
@@ -25,17 +27,22 @@ def main():
     if current_user.is_authenticated:
 
         conn = get_db_connection()
+        cursor = conn.cursor()
 
         tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC LIMIT 10;").fetchall()
         rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC LIMIT 10;").fetchall()
         flatmates = conn.execute("SELECT * FROM flatmates ORDER BY id DESC LIMIT 10;").fetchall()
         
+        cursor.execute("SELECT default_database FROM users WHERE user_id=?", (user_email, ))
+        row = cursor.fetchone()
+        default_database_bool = row[0]
 
         template_data = {
             "tasks": tasks,
             "rooms": rooms,
             "flatmates": flatmates,
-            "user_email": user_email
+            "user_email": user_email,
+            "default_database_bool": default_database_bool
         }
 
         return render_template('dashboard.html', template_data = template_data) # For logged-in users

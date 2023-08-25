@@ -9,13 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css') }}">
     <!-- Will look inside the static folder, for the static file -->
-
     <title>{% block title %} {% endblock %}</title>
+    {% block scripts %} {% endblock %}
 </head>
 
-<body class="container col-10">
+<body class="">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="{{ url_for('main')}}">CleanDivide</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -34,13 +35,7 @@
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('additems_bp.add_task')}}">Add task</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('additems_bp.add_room')}}">Add room</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('additems_bp.add_flatmate')}}">Add flatmate</a>
+                    <a class="nav-link" href="/viewdata">View Data</a>
                 </li>
                 {%else %}
                 <li class="nav-item active">

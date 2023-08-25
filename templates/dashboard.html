@@ -3,42 +3,87 @@
 {% block content %}
     <h1>{% block title %} Welcome to CleanDivide, {{ template_data.user_email }} {% endblock %}</h1> <!-- replaces the Title as well, in the head of the page -->
     
-    {% if template_data.rooms|length <= 0 %}
-        <p>You have not added any rooms yet! You need rooms before adding tasks :(</p>
-        <p>Please add rooms here: <a href={{ url_for("additems_bp.add_room") }}>HERE!</a></p> 
+    {%if template_data.default_database_bool == 0 %}
+        <form action="/populate_db" method="post">
+            <input type="submit" value="Yes, populate the database">
+        </form>
     {% endif %}
 
-    {% if template_data.flatmates|length <= 0 %}
-    <p>You have not added any flatmates yet! You need flatmates, as you cannot do this by yourself!</p>
-    <p>Please add flatmates here: <a href={{ url_for("additems_bp.add_flatmate") }}>HERE!</a></p> 
-    {% endif %}
+    <form action="/clear_db" method="post">
+        <input type="submit" value="Yes, delete everything">
+    </form>
     
+    {% if template_data.rooms|length <= 0 %}
+        <p>You have not added any rooms yet! Before you can add any tasks or any
+            flatmates, you have to add a few rooms. Of course, you can just use
+            our <a href="/populate_db">default database!</a></p>
+        
+        <form action="{{ url_for('additems_bp.add_room') }}" method="post">
+    
+            <label for="name">Name of the room:</label><br>
+            <input type="text" name="name" required /><br><br>
+    
+            <label for="points">Modifier value:</label><br>
+            <input type="number" name="modifier" required /><br><br>
+    
+            <input type="submit" value="Add Room">
+        </form>
+    
+    {% endif %}
+
+    {% if template_data.flatmates|length <= 0 and template_data.rooms|length >= 1 %}
+        <p>Now you have the rooms, but before you add the tasks, you need to add
+        some flatmates. It is a fact, you cannot do this alone!
+        You have not added any flatmates yet! You need flatmates, as you cannot do this by yourself!</p>
+    
+        <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post">
+    
+            <label for="name">Name of the flatmate:</label><br>
+            <input type="text" name="name" required /><br><br>
+    
+            <label for="points">Modifier value:</label><br>
+            <input type="number" name="modifier" required /><br><br>
+    
+            <input type="submit" value="Add flatmate">
+        </form>
+
+    {% endif %}
+
     {% if template_data.rooms|length > 0 and template_data.flatmates|length > 0 %}
 
-    <p>Last tasks added:</p>
-    <ul>
-        {% for element in template_data.tasks %}
-            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
-        {% endfor %}
-    </ul>
+        <p> You are now ready to add some tasks! </p>
+    
+        <form action="{{ url_for('additems_bp.add_task') }}" method="post">
+    
+            <label for="description">Task Description:</label><br>
+            <textarea name="description" required></textarea><br><br>
+    
+            <label for="points">Points allocated:</label><br>
+            <input type="number" name="points" required /><br><br>
+    
+            <label for="room">Room:</label><br>
+            <input type="text" name="room" required /><br><br>
+    
+            <label for="frequency">Choose frequency of the task:</label>
+            <input class="form-control" list="frequencies" id="frequency" name="frequency">
+                <datalist id="frequencies">
+                    <option value="Daily">
+                    <option value="Twice weekly">
+                    <option value="Weekly">
+                    <option value="Twice monthly">
+                    <option value="Monthly">
+                    <option value="Yearly">
+                </datalist>
+    
+            <input type="submit" value="Add Task">
+        </form>
+    
+        <script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
 
-    <p>Last rooms added:</p>
-    <ul>
-        {% for element in template_data.rooms %}
-            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
-        {% endfor %}
-    </ul>
-
-    <p>And these are your best friends!</p>
-    <ul>
-        {% for element in template_data.flatmates %}
-            <li>ID:{{ element[0]  }} | {{ element[2] }}</li>
-        {% endfor %}
-    </ul>
+    {% endif %}
 
     <button class="btn btn-black">Add Task</button>
     <button class="btn btn-black">Generate schedule!</button>
-    {% endif %}
     <br><br>
 
 
