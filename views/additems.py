@@ -9,11 +9,22 @@ additems_bp = Blueprint('additems_bp', __name__)
 @login_required
 def add_task():
     if request.method == 'POST':
-        description = request.form['description']
+        description = request.form['description'].lower()
         points = request.form["points"]
         room = request.form["room"]
         frequency = request.form["frequency"]
-        user_id = session.get('user_id')  # Assuming you stored user's ID in session upon login
+        user_id = session.get('user_id')  
+
+        # Switch cases, to modify the points value in accordance with frequency #
+        frequency_multiplier = {
+            "Daily": 3,
+            "Twice Weekly": 2,
+            "Weekly": 1,
+            "Twice Monthly": 0.75,
+            "Monthly": 0.5
+        }
+
+        points *= frequency_multiplier.get(frequency, 1)
 
         if not user_id:
             flash('Please login first!', 'error')

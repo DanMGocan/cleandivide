@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to CleanDivide, {{ template_data.user_email }} {% endblock %}</h1> <!-- replaces the Title as well, in the head of the page -->
-    
-    {%if template_data.default_database_bool == 0 %}
-        <form action="/populate_db" method="post">
-            <input type="submit" value="Yes, populate the database">
-        </form>
-    {% endif %}
 
-    <form action="/clear_db" method="post">
-        <input type="submit" value="Yes, delete everything">
-    </form>
-    
+<div class="container mt-4">
+    <h1 class="mb-4">{% block title %} Welcome to CleanDivide, {{ template_data.user_email }} {% endblock %}</h1>
+
+    <div class="row mb-3">
+        <div class="col">
+            <form action="/populate_db" method="post">
+                <button type="submit" class="btn btn-primary">Populate the Database</button>
+            </form>
+            <form action="/clear_db" method="post">
+                <button type="submit" class="btn btn-danger mt-2">Delete Everything</button>
+            </form>
+        </div>
+    </div>
+
     {% if template_data.rooms|length <= 0 %}
-        <p>You have not added any rooms yet! Before you can add any tasks or any
-            flatmates, you have to add a few rooms. Of course, you can just use
-            our <a href="/populate_db">default database!</a></p>
-        
+        <div class="alert alert-info">
+            You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
+        </div>
         <form action="{{ url_for('additems_bp.add_room') }}" method="post">
     
             <label for="name">Name of the room:</label><br>
@@ -28,31 +30,25 @@
     
             <input type="submit" value="Add Room">
         </form>
-    
     {% endif %}
 
     {% if template_data.flatmates|length <= 0 and template_data.rooms|length >= 1 %}
-        <p>Now you have the rooms, but before you add the tasks, you need to add
-        some flatmates. It is a fact, you cannot do this alone!
-        You have not added any flatmates yet! You need flatmates, as you cannot do this by yourself!</p>
-    
+        <div class="alert alert-info">
+            Now that you have rooms, it's time to add some flatmates! You can't manage tasks alone.
+        </div>
+
         <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post">
     
             <label for="name">Name of the flatmate:</label><br>
             <input type="text" name="name" required /><br><br>
-    
-            <label for="points">Modifier value:</label><br>
-            <input type="number" name="modifier" required /><br><br>
-    
-            <input type="submit" value="Add flatmate">
+            <input type="submit" value="Add room">
         </form>
-
     {% endif %}
 
     {% if template_data.rooms|length > 0 and template_data.flatmates|length > 0 %}
-
-        <p> You are now ready to add some tasks! </p>
-    
+        <div class="alert alert-success">
+            You're all set! Feel free to add tasks now.
+        </div>
         <form action="{{ url_for('additems_bp.add_task') }}" method="post">
     
             <label for="description">Task Description:</label><br>
@@ -77,14 +73,15 @@
     
             <input type="submit" value="Add Task">
         </form>
-    
-        <script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
-
     {% endif %}
 
-    <button class="btn btn-black">Add Task</button>
-    <button class="btn btn-black">Generate schedule!</button>
-    <br><br>
+    <div class="row">
+        <div class="col">
+            <a href="#" class="btn btn-success">Add Task</a>
+            <a href="#" class="btn btn-primary mt-2">Generate Schedule</a>
+        </div>
+    </div>
 
-
+</div>
+<script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
 {% endblock %}
