@@ -12,6 +12,7 @@ from models import get_db_connection
 app = Flask(__name__)
 app.config.from_object('config')
 
+
 # Creates the authentication
 setup_google(app)
 app.register_blueprint(auth_bp)
@@ -34,7 +35,8 @@ def main():
         tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
         rooms = conn.execute("SELECT * FROM rooms WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
         flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
-        
+        popular_tasks = conn.execute("SELECT description FROM tasks GROUP BY description ORDER BY COUNT(description) DESC LIMIT 100").fetchall()
+
         cursor.execute("SELECT default_database FROM users WHERE user_id=?", (user_id, ))
         row = cursor.fetchone()
         default_database_bool = row[0]
@@ -44,7 +46,8 @@ def main():
             "rooms": rooms,
             "flatmates": flatmates,
             "user_email": user_id,
-            "default_database_bool": default_database_bool
+            "default_database_bool": default_database_bool,
+            "popular_tasks": popular_tasks
         }
 
         return render_template('dashboard.html', template_data = template_data) # For logged-in users
@@ -54,6 +57,11 @@ def main():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.context_processor
+def inject_user_email():
+    user_id = session.get('user_id')
+    return dict(user_id=user_id)
 
 
 

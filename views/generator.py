@@ -6,8 +6,9 @@ import random
 from itertools import groupby
 
 calendar = {}
-
 generator_bp = Blueprint('generator_bp', __name__)
+
+
 
 @generator_bp.route("/generate", methods=["GET", "POST"])
 @login_required
@@ -25,6 +26,11 @@ def generate():
 
     tasks = [dict(id=row[0], description=row[2], points=row[3], room=row[4], frequency=row[5]) for row in tasks_db]
     flatmates = [dict(id=row[0], name=row[2]) for row in flatmates_db]
+
+    # Control point, if it's only one task, the program will error #
+    if len(tasks_db) == 1:
+        flash("You have added only one task, you don't need us. Plus, the algorithm is literally incapable of solving for one task", "warning")
+        return redirect(url_for("main"))
 
     average_points = sum(task["points"] for task in tasks) / len(flatmates)
     sorted_tasks = sorted(tasks, key=lambda x: x['room'])
@@ -44,6 +50,7 @@ def generate():
                 return name
         
         return candidates[0]  # If no one is in the same room, return the flatmate with the least points
+
 
     # Distribute the tasks among the flatmates
     for task in sorted_tasks:

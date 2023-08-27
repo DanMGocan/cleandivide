@@ -1,87 +1,259 @@
 {% extends 'base.html' %}
+{% block title %}CleanDivide{% endblock %}
 
 {% block content %}
 
-<div class="container mt-4">
-    <h1 class="mb-4">{% block title %} Welcome to CleanDivide, {{ template_data.user_email }} {% endblock %}</h1>
-
-    <div class="row mb-3">
-        <div class="col">
-            <form action="/populate_db" method="post">
-                <button type="submit" class="btn btn-primary">Populate the Database</button>
-            </form>
-            <form action="/clear_db" method="post">
-                <button type="submit" class="btn btn-danger mt-2">Delete Everything</button>
-            </form>
+    <div class="row mt-4">
+        <div class="col-12">
+            <p class=""><strong>CleanDivide</strong> is a passion project and will let you create a fair cleaning schedule
+                for you and  your flat mates. First, you will need to add the rooms you want cleaned,
+                add your flatmates and then your task. You will need to give every task a "difficulty"
+                rating, from 1 to 20. The harder it is and the more often it needs to be done, the more 
+                it will weight in the schedule. The algorithm will then divide the tasks and give everyone
+                an (almost...) equal share of work! 
+                
+                <small>Pssst, why not, use our <a href="{{ url_for('helpers_bp.populate_db') }}">
+                predefined database?</a>.</small>
+            </p>
         </div>
     </div>
 
-    {% if template_data.rooms|length <= 0 %}
-        <div class="alert alert-info">
-            You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
+    <!-- Adding rooms into the DB -->
+    <div class="row mt-4">
+
+        <div class="col-12 col-lg-8 mx-auto my-auto">
+            <!-- Text row -->
+            <div class="row col-12 justify-content-center">
+                <h5>Adding rooms:</h5>
+            </div>
+            <div class="row d-flex align-items-center justify-content-center">
+                <small>(We recommend you only add the common areas, at least 4 or 5!)</small>
+            </div> 
+        
+            <!-- Form row -->
+            <div class="row">
+                <div class="col-12 col-lg-10 mx-auto my-auto">
+                    <form action="{{ url_for('additems_bp.add_room') }}" method="post">
+                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
+                            <input type="text" class="form-control col-12 col-lg-10" placeholder="Name of the room" name="name" required>
+                            <!-- Note row -->
+                       
+                            <input type="submit" value="Add!" class="btn btn-info col-12 col-lg-10 mt-2">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+
         </div>
-        <form action="{{ url_for('additems_bp.add_room') }}" method="post">
-    
-            <label for="name">Name of the room:</label><br>
-            <input type="text" name="name" required /><br><br>
-    
-            <label for="points">Modifier value:</label><br>
-            <input type="number" name="modifier" required /><br><br>
-    
-            <input type="submit" value="Add Room">
-        </form>
-    {% endif %}
+        
 
-    {% if template_data.flatmates|length <= 0 and template_data.rooms|length >= 1 %}
-        <div class="alert alert-info">
-            Now that you have rooms, it's time to add some flatmates! You can't manage tasks alone.
+        <!-- Show a table with the last rooms instead of the alert -->
+        {% if template_data.rooms|length > 0 %}
+        <div class="col-12 col-lg-4 my-auto mx-auto">
+            <h6 class="text-center">Last 3 rooms added</h6>
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Displaying only the last 6 tasks -->
+                    {% for room in template_data.rooms[:3] %}
+                        <tr>
+                            <td>{{ room.name }}</td>
+                            <td>
+                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                    <input type="hidden" name="table_name" value="rooms">
+                                    <input type="hidden" name="id" value="{{ room.id }}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
-        <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post">
-    
-            <label for="name">Name of the flatmate:</label><br>
-            <input type="text" name="name" required /><br><br>
-            <input type="submit" value="Add room">
-        </form>
-    {% endif %}
-
-    {% if template_data.rooms|length > 0 and template_data.flatmates|length > 0 %}
-        <div class="alert alert-success">
-            You're all set! Feel free to add tasks now.
+        <!-- Will show an alert about no rooms added -->
+        {% else %}
+        <div class="col-12 col-lg-4">
+            <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
+            </div>
         </div>
-        <form action="{{ url_for('additems_bp.add_task') }}" method="post">
-    
-            <label for="description">Task Description:</label><br>
-            <textarea name="description" required></textarea><br><br>
-    
-            <label for="points">Points allocated:</label><br>
-            <input type="number" name="points" required /><br><br>
-    
-            <label for="room">Room:</label><br>
-            <input type="text" name="room" required /><br><br>
-    
-            <label for="frequency">Choose frequency of the task:</label>
-            <input class="form-control" list="frequencies" id="frequency" name="frequency">
-                <datalist id="frequencies">
-                    <option value="Daily">
-                    <option value="Twice weekly">
-                    <option value="Weekly">
-                    <option value="Twice monthly">
-                    <option value="Monthly">
-                    <option value="Yearly">
-                </datalist>
-    
-            <input type="submit" value="Add Task">
-        </form>
-    {% endif %}
+        {% endif %}
+    </div>
+ 
+    <!-- Adding flatmates into the DB -->
+    <div class="row mt-5">
 
-    <div class="row">
-        <div class="col">
-            <a href="#" class="btn btn-success">Add Task</a>
-            <a href="#" class="btn btn-primary mt-2">Generate Schedule</a>
+        <div class="col-12 col-lg-8 mx-auto my-auto">
+            <!-- Text row -->
+            <div class="row col-12 justify-content-center">
+                <h5>Adding flatmates:</h5>
+            </div>
+            <div class="row justify-content-center">
+                <small>(Remember, they don't have to be your friends, just to do the tasks!)</small>
+            </div>
+        
+            <!-- Form row -->
+            <div class="row">
+                <div class="col-12 col-lg-10 mx-auto my-auto">
+                    <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post">
+                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
+                            <input type="text" class="form-control col-10" placeholder="Name of the flatmate" name="name" required>
+                            <input type="text" class="form-control col-10" placeholder="Email of the flatmate" name="email" required>
+                            <!-- Note row -->
+
+                            <input type="submit" value="Add!" class="btn btn-info col-10 col-lg-10 mt-2">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+
+        </div>
+        
+
+        <!-- Show a table with the last tasks instead of the alert -->
+        {% if template_data.flatmates|length > 0 %}
+        <div class="col-12 col-lg-4 my-auto mx-auto">
+            <h6 class="text-center">Flatmates added so far:</h6>
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Displaying only the last 6 flatmates -->
+                    {% for flatmate in template_data.flatmates[:12] %}
+                        <tr>
+                            <td>{{ flatmate.name }}</td>
+                            <td>
+                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                    <input type="hidden" name="table_name" value="flatmates">
+                                    <input type="hidden" name="id" value="{{ flatmate.id }}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Will show an alert about no rooms added -->
+        {% else %}
+        <div class="col-12 col-lg-4">
+            <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                You have not added any flatmates yet! Please note that probably, YOU CANNOT DO THIS ALONE!.
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- Adding tasks into the DB -->
+    <div class="row mt-5">
+
+        <div class="col-12 col-lg-8 mx-auto my-auto">
+            <!-- Text row -->
+            <div class="row col-12 justify-content-center">
+                <h5>Adding tasks:</h5>
+            </div>
+            <div class="row justify-content-center">
+                <small>(The most added 100 tasks are added as suggestions)</small>
+            </div>
+
+            <!-- Form row -->
+            <div class="row">
+                <div class="col-12 col-lg-10 mx-auto my-auto">
+                    <form action="{{ url_for('additems_bp.add_task') }}" method="post">
+                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
+                            <input list="popularTasks" type="text" name="description" maxlength="80" placeholder="Description of the task (max. 80 characters)" class="form-control col-10" required>
+                                <datalist id="popularTasks">
+                                    {% for task in template_data.popular_tasks %}
+                                        <option value="{{ task.description }}">
+                                    {% endfor %}
+                                </datalist>
+                            <input type="number" name="points" min="1" max="20" placeholder="Points assigned to task (1 - 20)" class="form-control col-10" required />
+                            <input name="room" placeholder="In what room is this task?" class="form-control col-10" list="roomList" required />
+                                <datalist id="roomList">
+                                    {% for room in template_data.rooms %}
+                                        <option value="{{ room.name }}">
+                                    {% endfor %}
+                                </datalist>
+                    
+                            <input class="form-control col-10" list="frequencies" id="frequency" name="frequency" placeholder="Frequency of this task" />
+                                <datalist id="frequencies">
+                                    <option value="Daily">
+                                    <option value="Twice weekly">
+                                    <option value="Weekly">
+                                    <option value="Twice monthly">
+                                    <option value="Monthly">
+                                    <option value="Yearly">
+                                </datalist>
+
+                                {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 %}
+                                <small class="mt-2">Before adding tasks, rooms and flatmates must be added</small>
+                                {% else %}
+                                <input type="submit" value="Add!" class="btn btn-info col-10 col-lg-10 mt-2" >
+                                {% endif %} 
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
+
+            <!-- Show a table with the last tasks instead of the alert -->
+            {% if template_data.tasks|length > 0 %}
+            <div class="col-12 col-lg-4 my-auto mx-auto">
+                <h6 class="text-center">Tasks added so far (last 6): </h6>
+                <table class="table table-striped">
+                    <tbody>
+                        <!-- Displaying only the last 6 tasks -->
+                        {% for task in template_data.tasks[:6] %}
+                            <tr>
+                                <td>{{ task.description }}</td>
+                                <td>{{ task.points }}</td>
+                                <td>
+                                    <form action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                        <input type="hidden" name="table_name" value="tasks">
+                                        <input type="hidden" name="id" value="{{ task.id }}">
+                                        <input type="submit" value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Will show an alert about no flatmates added -->
+            {% else %}
+            <div class="col-12 col-lg-4">
+                <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                    There are no tasks added yet. But that's no problem, mold and cockroaches never killed anyone (allegedly)!
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+        <p>If all the tasks are added, all the rooms are build and the gang is together, you can generate your personalized schedule now.
+            And if you are stuck cleaning the toilet, just generate again! This website is not legally binding</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-10 col-lg-8 d-flex justify-content-center mx-auto">
+        {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
+            <a href="#" class="btn btn-secondary mt-2 text-center col-10" disabled>Cannot generate, data missing :(</a>
+        {% else %}
+            <a href="{{ url_for('generator_bp.generate') }}" class="btn btn-primary mt-2 text-center col-10">Generate schedule</a>
+        {% endif %}          
         </div>
     </div>
 
 </div>
-<script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
+
+{%block scripts %}
+<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+<script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
+{% endblock %}
+
 {% endblock %}

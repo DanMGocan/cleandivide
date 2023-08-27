@@ -1,6 +1,8 @@
-from flask import Blueprint, redirect, url_for, session, render_template, flash
+from flask import Blueprint, redirect, url_for, session, render_template, flash, request, jsonify
 from flask_login import login_required
 from models import get_db_connection
+
+
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
@@ -96,15 +98,10 @@ boilerplate_tasks = [
 ]
 
 boilerplate_rooms = [
-    ("Kitchen", 2),
-    ("Bedroom_1", 1),
-    ("Bedroom_2", 1),
-    ("Bathroom", 4),
-    ("Garage", 1),
-    ("Garden", 1),
-    ("Upstairs Bathroom", 3),
-    ("Terrace", 2),
-    ("Atic", 4)
+    ("Kitchen",),
+    ("Bedroom_1",),
+    ("Bedroom_2",),
+    ("Bathroom",)
 ]
 
 # Populate DB button, with the standard items
@@ -119,7 +116,7 @@ def populate_db():
 
     # Your function to populate the database
     cursor.executemany('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', tasks_with_email)
-    cursor.executemany('INSERT INTO rooms (user_id, name, modifier) VALUES (?, ?, ?)', rooms_with_email)
+    cursor.executemany('INSERT INTO rooms (user_id, name) VALUES (?, ?)', rooms_with_email)
     cursor.execute("UPDATE users SET default_database=? WHERE user_id=?", (1, user_id))
     conn.commit()
     conn.close()
@@ -155,3 +152,33 @@ def viewdata():
     rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC ;").fetchall()
     flatmates = conn.execute("SELECT * FROM flatmates ORDER BY id DESC ").fetchall()
     return render_template('viewdata.html', rooms=rooms, tasks=tasks, flatmates=flatmates)
+
+
+
+
+@helpers_bp.route('/delete', methods=['POST'])
+@login_required
+def delete_entry():
+    table_name = request.form.get('table_name')
+    id_to_delete = int(request.form.get('id'))  # Cast to int
+    print(f"Deleting id {id_to_delete} from table {table_name}")  # Debugging
+    conn = get_db_connection()
+
+    # Safeguard against SQL Injection for table_name
+    if table_name not in ['tasks', 'flatmates', 'rooms']:
+        flash("Invalid table name", "danger")
+        return redirect(url_for("main"))
+
+    cursor = conn.cursor()
+    cursor.execute(f"DELETE FROM {table_name} WHERE id=?", (id_to_delete,))
+    conn.commit()
+    conn.close()
+
+    if cursor.rowcount:
+        flash("Entry successfully deleted", "success")
+    else:
+        flash("No such entry", "warning")
+  
+    return_url = request.referrer or url_for("main")
+    print(return_url)
+    return redirect(return_url)

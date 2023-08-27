@@ -5,6 +5,7 @@ from models import User, get_db_connection
 
 additems_bp = Blueprint('additems_bp', __name__)
 
+
 @additems_bp.route("/addtask", methods=("GET", "POST"))
 @login_required
 def add_task():
@@ -25,38 +26,37 @@ def add_task():
         }
 
         points *= frequency_multiplier.get(frequency, 1)
-
-        if not user_id:
-            flash('Please login first!', 'error')
-            return redirect(url_for('main'))  # Redirect to a login page
         
-        # Add task to database
+        # Check if the task description already exists
         conn = get_db_connection()
-        conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', (user_id, description, points, room, frequency))
+        cursor = conn.cursor()
+        cursor.execute('SELECT id FROM tasks WHERE user_id = ? AND description = ?', (user_id, description))
+        task_exists = cursor.fetchone()
+
+        if task_exists:
+            # Increment the used_count for the task
+            conn.execute('UPDATE tasks SET used_count = used_count + 1 WHERE id = ?', (task_exists[0],))
+        else:
+            # Insert new task
+            conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', 
+                         (user_id, description, points, room, frequency))
+
         conn.commit()
         conn.close()
 
         flash('Task added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
-    return render_template('add_task.html')
-
-
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
 def add_room():
     if request.method == 'POST':
         name = request.form['name']
-        modifier = request.form["modifier"]
         user_id = session.get('user_id')  # Assuming you stored user's ID in session upon login
-
-        if not user_id:
-            flash('Please login first!', 'error')
-            return redirect(url_for('main'))  # Redirect to a login page
         
         # Add task to database
         conn = get_db_connection()
-        conn.execute('INSERT INTO rooms (user_id, name, modifier) VALUES (?, ?, ?)', (user_id, name, modifier))
+        conn.execute('INSERT INTO rooms (user_id, name) VALUES (?, ?)', (user_id, name))
         conn.commit()
         conn.close()
 
@@ -70,20 +70,16 @@ def add_room():
 def add_flatmate():
     if request.method == 'POST':
         name = request.form['name']
-        modifier = request.form["modifier"]
-        user_id = session.get('user_id')  # Assuming you stored user's ID in session upon login
-
-        if not user_id:
-            flash('Please login first!', 'error')
-            return redirect(url_for('main'))  # Redirect to a login page
+        user_id = session.get('user_id')
+        flatmate_email = request.form["email"]  
         
         # Add task to database
         conn = get_db_connection()
-        conn.execute('INSERT INTO flatmates (user_id, name, modifier) VALUES (?, ?, ?)', (user_id, name, modifier))
+        conn.execute('INSERT INTO flatmates (user_id, name, email) VALUES (?, ?, ?)', (user_id, name, flatmate_email))
         conn.commit()
         conn.close()
 
         flash('Flatmate added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
-    return render_template('add_flatmate.html')
+    return redirect(url_for("main"))

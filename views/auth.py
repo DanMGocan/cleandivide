@@ -29,6 +29,7 @@ def add_or_get_user(user_email):
     conn.close()
     return user
 
+
 def setup_google(app):
     global google
     from flask_oauthlib.client import OAuth

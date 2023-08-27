@@ -3,28 +3,29 @@
 {% block content %}
     <table style="width:100%">
         <thead>
-            <tr style="background-color: #4CAF50;">
+            <tr> 
                 <th>Task</th>
-                <th style="text-align: center;">Date</th>
-                <th style="text-align: center;">Checkbox</th>
+                <th>Date</th>
+                <th>Owner</th>
+                <th>Checkbox</th>
             </tr>
         </thead>
         <tbody>
             {% for day, owners in calendar.items() %}
-                <tr style="height: 20px;">
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="text-align:center; 
-                        {% if loop.index is odd %}background-color:#f2f2f2{% else %}background-color:#e6e6e6{% endif %};">
-                        {{ day }}
-                    </td>
+                <tr style="height: 20px;"> <!-- Adding extra space between different dates -->
+                    <td colspan="4"></td>
                 </tr>
                 {% for owner, tasks in owners.items() %}
+                    <tr>
+                        <td colspan="4" style="text-align:center; background-color:lightgray;">
+                            {{ owner }}'s Tasks on {{ day }}
+                        </td>
+                    </tr>
                     {% for task_data in tasks %}
                         <tr>
                             <td>{{ task_data['task'] }}</td>
                             <td style="text-align: center;">{{ day }}</td>
+                            <td>{{ task_data['owner'] }}</td>
                             <td style="text-align: center;">
                                 <input type="checkbox">
                             </td>
