@@ -1,0 +1,23 @@
+.svg1, .svg2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+}
+
+.svg1 {
+    opacity: 1;
+}
+
+.svg2 {
+    opacity: 0;
+    fill: var(--secondary-color);
+}
+
+.svg-container:hover .svg1 {
+    opacity: 0;
+}
+
+.svg-container:hover .svg2 {
+    opacity: 1;
+}

@@ -16,7 +16,6 @@ CREATE TABLE rooms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,
     name TEXT NOT NULL,
-    modifier INTEGER NOT NULL,
 
     FOREIGN KEY(user_id) REFERENCES users(email)
 );
@@ -28,6 +27,7 @@ CREATE TABLE tasks (
     points INTEGER NOT NULL,
     room TEXT,
     frequency TEXT NOT NULL,
+    used_count INTEGER DEFAULT 1,
 
     FOREIGN KEY(user_id) REFERENCES users(email),
     FOREIGN KEY(room) REFERENCES rooms(name)
@@ -37,12 +37,9 @@ CREATE TABLE flatmates (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,
     name TEXT NOT NULL,
-    favourite_room TEXT NOT NULL,
-    disfavourite_room TEXT NOT NULL,
+    email TEXT NOT NULL,
 
-    FOREIGN KEY(user_id) REFERENCES users(email),
-    FOREIGN KEY(favourite_room) REFERENCES rooms(name),
-    FOREIGN KEY(disfavourite_room) REFERENCES rooms(name)
+    FOREIGN KEY(user_id) REFERENCES users(email)
 );
 
 -- CREATE TABLE task_assignment (

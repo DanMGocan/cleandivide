@@ -9,3 +9,6 @@
 - add date to tasks and such, to have them deleted yearly
 - add incremental variable to tasks
 - ULTRA RANDOM MODE
+- backup?
+- platform for updates
+- in the About file, explain the software process and cycle of life
