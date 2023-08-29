@@ -12,3 +12,4 @@
 - backup?
 - platform for updates
 - in the About file, explain the software process and cycle of life
+- Generate function should invite all flatmates to it, increment all tasks by 1, assign tables to users 

@@ -42,9 +42,9 @@ CREATE TABLE flatmates (
     FOREIGN KEY(user_id) REFERENCES users(email)
 );
 
--- CREATE TABLE task_assignment (
---     id INTEGER PRIMARY KEY,
---     task_id INTEGER,
---     flatmate_id INTEGER,
---     flatmate_email TEXT
--- );
+CREATE TABLE task_table (
+    id INTEGER PRIMARY KEY,
+    user_id TEXT, --also the table owner
+    task_id INTEGER,
+    flatmate_email TEXT
+);
