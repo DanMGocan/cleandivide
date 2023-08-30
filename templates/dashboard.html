@@ -8,8 +8,9 @@
 {% block content %}
 
     <div class="row d-flex justify-content-end my-5">
-            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn" id="default-values-button">
-                Load default values</a>
+            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn default-dashboard-button">
+                Load default values
+            </a>
             <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button mx-2">
                 <i class="fa-solid fa-question"></i>
             </a>
@@ -17,35 +18,42 @@
 
     <!-- Adding rooms into the DB -->
     <hr>
-    <div class="row my-5 p-5" id="add-room-section">
+    <div class="row p-5 d-flex align-items-center justify-content-center" >
+
+        <div class="col-11 px-0 mx-0">
+            <h1 class="">Add rooms</h1>
+        </div>
         <!-- Left Side - Form Section -->
-        <div class="col-12 col-lg-6 mx-auto my-auto">
-            <!-- Text row -->
-            <div class="row justify-content-center">
-                <h5>Adding rooms:</h5>
-            </div>
+        <div class="col-12 col-lg-7 mt-2 p-5 add-room-section">
             <!-- Note row -->
             <div class="row d-flex align-items-center justify-content-center">
                 <small>(We recommend you only add the common areas, at least 4 or 5!)</small>
             </div>
             <!-- Form row -->
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto my-auto">
-                    <form action="{{ url_for('additems_bp.add_room') }}" method="post">
-                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
-                            <input type="text" class="form-control col-12 col-lg-10" placeholder="Name of the room" name="name" required>
-                            <input type="submit" value="Add!" class="btn btn-info col-12 col-lg-10 mt-2">
+                <form action="{{ url_for('additems_bp.add_room') }}" method="post" class="col-12">
+                    <!-- Text Input -->
+                    <div class="form-row d-flex align-items-center justify-content-center">
+                        <input type="text" class="form-control" placeholder="Name of the room" name="name" required>
+                    </div>
+                    
+                    <!-- Buttons Row -->
+                    <div class="form-row d-flex justify-content-end mt-2">
+                        <div class="col-10 px-0">
+                            <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
                         </div>
-                    </form>
-                </div>
+                        <div class="col-2 px-0">
+                            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
+                                <i class="fa-solid fa-question"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    
-        <!-- Gap for spacing -->
-        <div class="d-none d-lg-block col-lg-1"></div>
-    
+
         <!-- Right Side - Table or Alert Section -->
-        <div class="col-12 col-lg-5 my-auto mx-auto">
+        <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-room-section">
             {% if template_data.rooms|length > 0 %}
                 <h6 class="text-center">Last 3 rooms added</h6>
                 <table class="table table-striped">
@@ -65,140 +73,148 @@
                     </tbody>
                 </table>
             {% else %}
-                <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                    You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
+                <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                    <p class="text-center">You have not added any rooms yet! Before you can add any tasks or flatmates, 
+                        please add some rooms.</p>
                 </div>
             {% endif %}
         </div>
     </div>
-    
+        
  
     <!-- Adding flatmates into the DB -->
     <hr>
-    <div class="row my-5 p-5">
+    <div class="row p-5 d-flex align-items-center justify-content-center">
 
-        <div class="col-12 col-lg-8 mx-auto my-auto">
-            <!-- Text row -->
-            <div class="row col-12 justify-content-center">
-                <h5>Adding flatmates:</h5>
-            </div>
-            <div class="row justify-content-center">
+        <div class="col-11 px-0 mx-0">
+            <h1 class="">Add Flatmates</h1>
+        </div>
+        <!-- Left Side - Form Section -->
+        <div class="col-12 col-lg-7 mt-2 p-5 add-flatmate-section">
+            <!-- Note row -->
+            <div class="row d-flex align-items-center justify-content-center">
                 <small>(Remember, they don't have to be your friends, just to do the tasks!)</small>
             </div>
-        
             <!-- Form row -->
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto my-auto">
-                    <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post">
-                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
-                            <input type="text" class="form-control col-10" placeholder="Name of the flatmate" name="name" required>
-                            <input type="text" class="form-control col-10" placeholder="Email of the flatmate" name="email" required>
-                            <!-- Note row -->
-
-                            <input type="submit" value="Add!" class="btn btn-info col-10 col-lg-10 mt-2">
+                <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post" class="col-12">
+                    <!-- Text Inputs -->
+                    <div class="form-row d-flex align-items-center justify-content-center">
+                        <input type="text" class="form-control col-12" placeholder="Name of the flatmate" name="name" required>
+                        <input type="text" class="form-control col-12 mt-2" placeholder="Email of the flatmate" name="email" required>
+                    </div>
+                    
+                    <!-- Buttons Row -->
+                    <div class="form-row d-flex justify-content-end mt-2">
+                        <div class="col-10 px-0">
+                            <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
                         </div>
-                    </form>
+                        <div class="col-2 px-0">
+                            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
+                                <i class="fa-solid fa-question"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Side - Table or Alert Section -->
+        <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-flatmate-section">
+            {% if template_data.flatmates|length > 0 %}
+                <h6 class="text-center">Flatmates added so far:</h6>
+                <table class="table table-striped">
+                    <tbody>
+                        {% for flatmate in template_data.flatmates[:12] %}
+                            <tr>
+                                <td>{{ flatmate.name }}</td>
+                                <td>
+                                    <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                        <input type="hidden" name="table_name" value="flatmates">
+                                        <input type="hidden" name="id" value="{{ flatmate.id }}">
+                                        <input type="submit" value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                    <p class="text-center">You have not added any flatmates yet! Please note that probably, YOU CANNOT DO THIS ALONE!.</p>
                 </div>
-            </div>
-        
-
+            {% endif %}
         </div>
-        
-
-        <!-- Show a table with the last tasks instead of the alert -->
-        {% if template_data.flatmates|length > 0 %}
-        <div class="col-12 col-lg-4 my-auto mx-auto">
-            <h6 class="text-center">Flatmates added so far:</h6>
-            <table class="table table-striped">
-                <tbody>
-                    <!-- Displaying only the last 6 flatmates -->
-                    {% for flatmate in template_data.flatmates[:12] %}
-                        <tr>
-                            <td>{{ flatmate.name }}</td>
-                            <td>
-                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                                    <input type="hidden" name="table_name" value="flatmates">
-                                    <input type="hidden" name="id" value="{{ flatmate.id }}">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Will show an alert about no rooms added -->
-        {% else %}
-        <div class="col-12 col-lg-4">
-            <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                You have not added any flatmates yet! Please note that probably, YOU CANNOT DO THIS ALONE!.
-            </div>
-        </div>
-        {% endif %}
-
     </div>
+
 
     <!-- Adding tasks into the DB -->
     <hr>
-    <div class="row my-5 p-5">
-
-        <div class="col-12 col-lg-8 mx-auto my-auto">
-            <!-- Text row -->
-            <div class="row col-12 justify-content-center">
-                <h5>Adding tasks:</h5>
-            </div>
-            <div class="row justify-content-center">
+    <div class="row p-5 d-flex align-items-center justify-content-center">
+        <div class="col-11 px-0 mx-0">
+            <h1>Add Tasks</h1>
+        </div>
+        <!-- Left Side - Form Section -->
+        <div class="col-12 col-lg-7 mt-2 p-5 add-tasks-section">
+            <!-- Note row -->
+            <div class="row d-flex align-items-center justify-content-center">
                 <small>(The most added 100 tasks are added as suggestions)</small>
             </div>
-
             <!-- Form row -->
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto my-auto">
-                    <form action="{{ url_for('additems_bp.add_task') }}" method="post">
-                        <div class="form-row col-12 d-flex align-items-center justify-content-center">
-                            <input list="popularTasks" type="text" name="description" maxlength="80" placeholder="Description of the task (max. 80 characters)" class="form-control col-10" required>
-                                <datalist id="popularTasks">
-                                    {% for task in template_data.popular_tasks %}
-                                        <option value="{{ task.description }}">
-                                    {% endfor %}
-                                </datalist>
-                            <input type="number" name="points" min="1" max="20" placeholder="Points assigned to task (1 - 20)" class="form-control col-10" required />
-                            <input name="room" placeholder="In what room is this task?" class="form-control col-10" list="roomList" required />
-                                <datalist id="roomList">
-                                    {% for room in template_data.rooms %}
-                                        <option value="{{ room.name }}">
-                                    {% endfor %}
-                                </datalist>
-                    
-                            <input class="form-control col-10" list="frequencies" id="frequency" name="frequency" placeholder="Frequency of this task" />
-                                <datalist id="frequencies">
-                                    <option value="Daily">
-                                    <option value="Twice weekly">
-                                    <option value="Weekly">
-                                    <option value="Twice monthly">
-                                    <option value="Monthly">
-                                    <option value="Yearly">
-                                </datalist>
-
-                                {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 %}
-                                <small class="mt-2">Before adding tasks, rooms and flatmates must be added</small>
-                                {% else %}
-                                <input type="submit" value="Add!" class="btn btn-info col-10 col-lg-10 mt-2" >
-                                {% endif %} 
+                <form action="{{ url_for('additems_bp.add_task') }}" method="post" class="col-12">
+                    <!-- Text Input -->
+                    <div class="form-row d-flex align-items-center justify-content-center">
+                        <input list="popularTasks" type="text" name="description" maxlength="80" placeholder="Description of the task (max. 80 characters)" class="form-control" required>
+                        <datalist id="popularTasks">
+                            {% for task in template_data.popular_tasks %}
+                                <option value="{{ task.description }}">
+                            {% endfor %}
+                        </datalist>
+                        <input type="number" name="points" min="1" max="20" placeholder="Points assigned to task (1 - 20)" class="form-control mt-2" required />
+                        <input name="room" placeholder="In what room is this task?" class="form-control mt-2" list="roomList" required />
+                        <datalist id="roomList">
+                            {% for room in template_data.rooms %}
+                                <option value="{{ room.name }}">
+                            {% endfor %}
+                        </datalist>
+                        <input class="form-control mt-2" list="frequencies" id="frequency" name="frequency" placeholder="Frequency of this task"/>
+                        <datalist id="frequencies">
+                            <option value="Daily">
+                            <option value="Twice weekly">
+                            <option value="Weekly">
+                            <option value="Twice monthly">
+                            <option value="Monthly">
+                            <option value="Yearly">
+                        </datalist>
+                    </div>
+                        <!-- Add Task Button -->
+                        {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 %}
+                        <small class="mt-2">Before adding tasks, rooms and flatmates must be added</small>
+                        {% else %}
+                         <!-- Buttons Row -->
+                        <div class="form-row d-flex justify-content-end mt-2">
+                            <div class="col-10 px-0">
+                                <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
+                            </div>
+                            <div class="col-2 px-0">
+                                <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
+                                    <i class="fa-solid fa-question"></i>
+                                </a>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>  
+                        {% endif %}
+
+                </form>
+            </div>
         </div>
 
-            <!-- Show a table with the last tasks instead of the alert -->
+        <!-- Right Side - Table or Alert Section -->
+        <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-tasks-section">
             {% if template_data.tasks|length > 0 %}
-            <div class="col-12 col-lg-4 my-auto mx-auto">
-                <h6 class="text-center">Tasks added so far (last 6): </h6>
+                <h6 class="text-center">Tasks added so far (last 6):</h6>
                 <table class="table table-striped">
                     <tbody>
-                        <!-- Displaying only the last 6 tasks -->
                         {% for task in template_data.tasks[:6] %}
                             <tr>
                                 <td>{{ task.description }}</td>
@@ -214,18 +230,12 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
-
-            <!-- Will show an alert about no flatmates added -->
             {% else %}
-            <div class="col-12 col-lg-4">
-                <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                    There are no tasks added yet. But that's no problem, mold and cockroaches never killed anyone (allegedly)!
+                <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                    <p class="text-center">There are no tasks added yet. But that's no problem, mold and cockroaches never killed anyone (allegedly)!</p>
                 </div>
-            </div>
             {% endif %}
         </div>
-
     </div>
 
     <div class="row mt-5">

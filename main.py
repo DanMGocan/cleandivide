@@ -8,6 +8,10 @@ from views.helpers import helpers_bp
 from views.generator import generator_bp
 from models import get_db_connection
 
+
+
+
+
 # Creating the instance of the Flask application with the name app
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,14 +22,6 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(additems_bp)
 app.register_blueprint(helpers_bp)
 app.register_blueprint(generator_bp)
-
-
-
-
-
-
-
-
 
 # Using the app instance to handle incoming requests and send answers
 @app.route("/") # decorator -> transforms functions' return value in an HTTP response. This function will respond to the "/" URL requests 
