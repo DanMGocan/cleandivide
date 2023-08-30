@@ -4,6 +4,7 @@ from flask_oauthlib.client import OAuth
 from models import User, get_db_connection
 from datetime import datetime
 
+
 google = None
 auth_bp = Blueprint('auth_bp', __name__)
 

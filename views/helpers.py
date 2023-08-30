@@ -2,8 +2,6 @@ from flask import Blueprint, redirect, url_for, session, render_template, flash,
 from flask_login import login_required
 from models import get_db_connection
 
-
-
 helpers_bp = Blueprint('helpers_bp', __name__)
 
 boilerplate_tasks = [

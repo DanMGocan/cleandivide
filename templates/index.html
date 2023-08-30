@@ -1,1 +1,92 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row col-12 d-flex flex-column justify-content-center align-items-center" id="index-title-section">
+    <h1 class="text-center mt-5 col-12">Welcome to Clean Divide</h1>
+    <p class="col-md-6 text-center mt-0 pt-0"> Clean Divide can help you easily divide the cleaning tasks in your apartment
+        and keep everyone accountable that the work gets done. <strong>Be warned</strong> though,
+        it's still you that needs to do the cleaning, I'm just doing the app.</p>
+</div>
+
+<div class="row col-12 d-flex justify-content-center align-items-center">
+  <a href="/login" target="_blank" class="btn mx-2 rounded mx-auto" id="google-button">
+    <i class="fa-brands fa-google fa-lg"></i></i> Continue with Google
+  </a>
+</div>
+
+    
+    <hr>
+    <div class="container mt-5 d-flex flex-column justify-content-center align-items-center">
+        <div class="row">
+            <h1 class="mb-0 py-0 col-12 text-center howitworks">How it works?</h1>
+            <small class="mt-0 py-0 col-12 text-center">Assuming it does...</small>  
+        </div>    
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="mt-4 mt-md-1 col-md-4">
+              <div class="custom-box" id="box1">
+                <div class="number mx-auto my-auto">1.</div>
+                <div class="hidden-text"><a href="{{ url_for('auth_bp.login')}}">Login</a> here, using your Google account.
+                To save all your tasks, flatmates and rooms, we need users to be logged in.</div>
+              </div>
+            </div>
+            <div class="mt-4 mt-md-1 col-md-4">
+              <div class="custom-box" id="box2">
+                <div class="number mx-auto my-auto">2.</div>
+                <div class="hidden-text">Start adding rooms you need cleaned, flatmates and tasks. 
+                    Every task is worth a certain number of points (add the points based <strong>strictly</strong>
+                    on the difficulty, not on the frequency).
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 mt-md-1 col-md-4">
+              <div class="custom-box" id="box3">
+                <div class="number mx-auto my-auto">3.</div>
+                <div class="hidden-text">When you click "Generate", the algorith divides all the tasks 
+                    equally between participants and sends your flatmates an invitation. Once they join 
+                    they can see exactly what needs to be done today, tomorrow, etc. 
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5" id="index-contact-section">
+        <p class="col-md-6 text-center mt-0 pt-0">This is a passion project of mine, as I am trying
+            to build a portfolio, combining different libraries and approaches. If you want to connect, have a chat or, if you find this
+            application useful and want to buy me a coffe, please find me here: 
+        </p></div>
+
+<!-- Container for the buttons -->
+<div class="container mt-3 d-flex justify-content-center">
+    <!-- GitHub Button -->
+    <a href="https://github.com/DanMGocan" target="_blank" class="btn btn-dark mx-2">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  
+    <!-- LinkedIn Button -->
+    <a href="https://www.linkedin.com/in/dangocan/" target="_blank" class="btn btn-primary mx-2" id="linkedin-button">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+  
+    <!-- Email Button -->
+    <a href="mailto:gocandan@gmail.com" class="btn btn-success mx-2">
+        <i class="fa-solid fa-square-envelope"></i> Email
+    </a>
+  
+    <!-- Donations Button -->
+    <a href="https://ko-fi.com/jspleb" target="_blank" class="btn btn-danger mx-2">
+        <i class="fa-solid fa-mug-saucer"></i> Buy me a coffee!
+    </a>
+
+  </div>
+  
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+{% endblock %}
+

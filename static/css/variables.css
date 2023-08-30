@@ -1,4 +1,10 @@
 :root {
     --primary-color: rgba(155, 0, 80, 1);
     --secondary-color: rgba(23, 162, 184, 1);
+    --hunyadi-yellow: hsla(35, 93%, 70%, 1);
+    --dark-purple: hsla(315, 27%, 18%, 1);
+    --eggplant: hsla(344, 29%, 31%, 1);
+    --bittersweet-shimmer: hsla(4, 52%, 52%, 1);
+    --prussian-blue: hsla(199, 79%, 17%, 1);
+    --jasper: hsla(8, 73%, 58%, 1);
   }

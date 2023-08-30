@@ -12,7 +12,13 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/homepagesvg.css') }}">
+    {% block custom_css %} {% endblock %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100;9..40,200;9..40,400;9..40,500;9..40,700;9..40,1000&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Will look inside the static folder, for the static file -->
     <title>{% block title %} {% endblock %}</title>
@@ -33,15 +39,23 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary container">
-        <a class="navbar-brand font-weight-bold" href="{{ url_for('main')}}">CleanDivide</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <!-- Added ml-auto to right-align the items -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <div class="d-flex flex-column">
+                <a class="navbar-brand font-weight-bold mb-0 pb-0" href="{{ url_for('main') }}">CleanDivide</a>
+                {% if user_id %}
+                <small class="text-white mt-0 pt-0">(Signed in as {{ user_id }} <a href="/logout">Logout</a>)</small>
+                {% else %}
+                <small class="text-white mt-0 pt-0">(You are not logged in but you can do it <a href="/login">here</a>)</small>
+                {% endif %}
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Added ml-auto to right-align the items -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('about')}}">About</a>
                 </li>
@@ -68,43 +82,13 @@
                     <a class="nav-link text-white" href="/admin">Database</a>
                 </li>
                 {% endif %}
-            </ul>
+                </ul>
+            </div>
         </div>
     </nav>
+    <div></div>
 
-
-    <div class="container">
-        <div class="row mt-5 p-0">
-            <div class="col-1 p-0 m-0 d-flex justify-content-center align-items-center svg-container">
-                <!-- <object data="{{ url_for('static', filename='icons/house-heart.svg') }}" type="image/svg+xml" class="w-75 h-75"></object> -->
-                <a href="{{ url_for('main') }}">
-                    <svg class="svg1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-                        fill="rgba(155, 0, 80, 1)" class="bi bi-houses" viewBox="0 0 16 16">
-                        <path
-                            d="M5.793 1a1 1 0 0 1 1.414 0l.647.646a.5.5 0 1 1-.708.708L6.5 1.707 2 6.207V12.5a.5.5 0 0 0 .5.5.5.5 0 0 1 0 1A1.5 1.5 0 0 1 1 12.5V7.207l-.146.147a.5.5 0 0 1-.708-.708L5.793 1Zm3 1a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708L8.793 2Zm.707.707L5 7.207V13.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V7.207l-4.5-4.5Z" />
-                    </svg>
-                    <svg class="svg2" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-                        fill="rgba(155, 0, 80, 1)" class="bi bi-houses-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M7.207 1a1 1 0 0 0-1.414 0L.146 6.646a.5.5 0 0 0 .708.708L1 7.207V12.5A1.5 1.5 0 0 0 2.5 14h.55a2.51 2.51 0 0 1-.05-.5V9.415a1.5 1.5 0 0 1-.56-2.475l5.353-5.354L7.207 1Z" />
-                        <path
-                            d="M8.793 2a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708L8.793 2Z" />
-                    </svg>
-                </a>
-            </div>
-            <div class="col-11 p-0 m-0">
-                <h1 class="pb-0 mb-0">Welcome to CleanDivide</h1>
-                {% if user_id %}
-                <small class="pt-0 mt-0">Signed in as {{ user_id }} (<a href="/logout">Logout</a>)</small>
-                {% else %}
-                <small>You are not logged in but you can do it <a href="/login">here</a></small>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-
-    <main class="container">
+    <main class="container mt-5">
         {% block content %}
         {% endblock %}
     </main>

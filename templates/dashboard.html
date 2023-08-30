@@ -1,88 +1,81 @@
 {% extends 'base.html' %}
 {% block title %}CleanDivide{% endblock %}
+{%block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/dashboard.css') }}">
+
+{% endblock %}
 
 {% block content %}
 
-    <div class="row mt-4">
-        <div class="col-12">
-            <p class=""><strong>CleanDivide</strong> is a passion project and will let you create a fair cleaning schedule
-                for you and  your flat mates. First, you will need to add the rooms you want cleaned,
-                add your flatmates and then your task. You will need to give every task a "difficulty"
-                rating, from 1 to 20. The harder it is and the more often it needs to be done, the more 
-                it will weight in the schedule. The algorithm will then divide the tasks and give everyone
-                an (almost...) equal share of work! 
-                
-                <small>Pssst, why not, use our <a href="{{ url_for('helpers_bp.populate_db') }}">
-                predefined database?</a>.</small>
-            </p>
-        </div>
+    <div class="row d-flex justify-content-end my-5">
+            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn" id="default-values-button">
+                Load default values</a>
+            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button mx-2">
+                <i class="fa-solid fa-question"></i>
+            </a>
     </div>
 
     <!-- Adding rooms into the DB -->
-    <div class="row mt-4">
-
-        <div class="col-12 col-lg-8 mx-auto my-auto">
+    <hr>
+    <div class="row my-5 p-5" id="add-room-section">
+        <!-- Left Side - Form Section -->
+        <div class="col-12 col-lg-6 mx-auto my-auto">
             <!-- Text row -->
-            <div class="row col-12 justify-content-center">
+            <div class="row justify-content-center">
                 <h5>Adding rooms:</h5>
             </div>
+            <!-- Note row -->
             <div class="row d-flex align-items-center justify-content-center">
                 <small>(We recommend you only add the common areas, at least 4 or 5!)</small>
-            </div> 
-        
+            </div>
             <!-- Form row -->
             <div class="row">
                 <div class="col-12 col-lg-10 mx-auto my-auto">
                     <form action="{{ url_for('additems_bp.add_room') }}" method="post">
                         <div class="form-row col-12 d-flex align-items-center justify-content-center">
                             <input type="text" class="form-control col-12 col-lg-10" placeholder="Name of the room" name="name" required>
-                            <!-- Note row -->
-                       
                             <input type="submit" value="Add!" class="btn btn-info col-12 col-lg-10 mt-2">
                         </div>
                     </form>
                 </div>
             </div>
-        
-
         </div>
-        
-
-        <!-- Show a table with the last rooms instead of the alert -->
-        {% if template_data.rooms|length > 0 %}
-        <div class="col-12 col-lg-4 my-auto mx-auto">
-            <h6 class="text-center">Last 3 rooms added</h6>
-            <table class="table table-striped">
-                <tbody>
-                    <!-- Displaying only the last 6 tasks -->
-                    {% for room in template_data.rooms[:3] %}
-                        <tr>
-                            <td>{{ room.name }}</td>
-                            <td>
-                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                                    <input type="hidden" name="table_name" value="rooms">
-                                    <input type="hidden" name="id" value="{{ room.id }}">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    
+        <!-- Gap for spacing -->
+        <div class="d-none d-lg-block col-lg-1"></div>
+    
+        <!-- Right Side - Table or Alert Section -->
+        <div class="col-12 col-lg-5 my-auto mx-auto">
+            {% if template_data.rooms|length > 0 %}
+                <h6 class="text-center">Last 3 rooms added</h6>
+                <table class="table table-striped">
+                    <tbody>
+                        {% for room in template_data.rooms[:3] %}
+                            <tr>
+                                <td>{{ room.name }}</td>
+                                <td>
+                                    <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                        <input type="hidden" name="table_name" value="rooms">
+                                        <input type="hidden" name="id" value="{{ room.id }}">
+                                        <input type="submit" value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                    You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
+                </div>
+            {% endif %}
         </div>
-
-        <!-- Will show an alert about no rooms added -->
-        {% else %}
-        <div class="col-12 col-lg-4">
-            <div class="alert alert-info d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                You have not added any rooms yet! Before you can add any tasks or flatmates, please add some rooms.
-            </div>
-        </div>
-        {% endif %}
     </div>
+    
  
     <!-- Adding flatmates into the DB -->
-    <div class="row mt-5">
+    <hr>
+    <div class="row my-5 p-5">
 
         <div class="col-12 col-lg-8 mx-auto my-auto">
             <!-- Text row -->
@@ -147,7 +140,8 @@
     </div>
 
     <!-- Adding tasks into the DB -->
-    <div class="row mt-5">
+    <hr>
+    <div class="row my-5 p-5">
 
         <div class="col-12 col-lg-8 mx-auto my-auto">
             <!-- Text row -->

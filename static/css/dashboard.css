@@ -1,0 +1,21 @@
+#add-room-section {
+    position: relative;
+    border: 2px solid var(--eggplant);
+    border-radius: 10px;
+    z-index: 1;
+    }
+    
+#add-room-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../media/img/add_rooms.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Adjust the opacity here */
+    z-index: -1;
+    }
+
