@@ -42,8 +42,8 @@ def generate():
     sorted_tasks = sorted(tasks, key=lambda x: x['room'])
 
     # Initialize dictionaries to hold assigned tasks and points per flatmate
-    assigned_tasks = {flatmate["name"]: [] for flatmate in flatmates}
-    points_per_name = {flatmate["name"]: 0 for flatmate in flatmates}
+    assigned_tasks = {flatmate["email"]: [] for flatmate in flatmates}
+    points_per_name = {flatmate["email"]: 0 for flatmate in flatmates}
 
     # Function to find the flatmate with the least points who is also working in the same room if possible
     def find_suitable_flatmate(assigned_tasks, points_per_name, room):
@@ -121,14 +121,15 @@ def generate():
         conn.rollback()
         flash(f"An error occurred while deleting old tasks: {e}", "error")
 
+
     # Function to insert tasks into the database
     def insert_tasks(tasks, date_str, user_id, cursor):
         for task in tasks:
             try:
                 cursor.execute("""
-                    INSERT INTO task_table (table_owner, task_date, task_id, task_frequency, task_points, room_id, task_owner_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
-                """, (user_id, date_str, task['description'], task["frequency"], task["points"], task['room'], task['assigned_to']))
+                    INSERT INTO task_table (table_owner, task_date, task_id, task_description, task_frequency, task_points, room_id, task_owner)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (user_id, date_str, task["id"], task['description'], task["frequency"], task["points"], task['room'], task['assigned_to']))
             except IntegrityError:
                 conn.rollback()
                 flash(f"Could not insert {task['frequency']} task into task_table", "error")
@@ -145,7 +146,7 @@ def generate():
         insert_tasks(daily_tasks, day_str, user_id, cursor)
 
         # Add twice-weekly tasks
-        if day_of_week in [0, 3]:  # Assuming tasks need to be done on Monday and Thursday
+        if day_of_week in [1, 4]:  # Assuming tasks need to be done on Monday and Thursday
             insert_tasks(twice_weekly_tasks, day_str, user_id, cursor)
 
         # Add weekly tasks
@@ -153,11 +154,11 @@ def generate():
             insert_tasks(weekly_tasks, day_str, user_id, cursor)
 
         # Add twice-monthly tasks
-        if day_of_month in [1, 15]:  # Assuming tasks need to be done on the 1st and the 15th of the month
+        if day_of_month in [2, 16]:  # Assuming tasks need to be done on the 1st and the 15th of the month
             insert_tasks(twice_monthly_tasks, day_str, user_id, cursor)
 
         # Add monthly tasks
-        if day_of_month == 1:  # Assuming tasks need to be done on the 1st of every month
+        if day_of_month == 30:  # Assuming tasks need to be done on the 1st of every month
             insert_tasks(monthly_tasks, day_str, user_id, cursor)
 
 

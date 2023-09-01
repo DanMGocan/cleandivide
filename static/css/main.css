@@ -165,3 +165,9 @@ a {
 #google-button:hover i.fa-google {
   color: white;
 }
+
+.default-dashboard-button {
+  font-weight: 600;
+  color: var(--dark-purple);
+  background-color: var(--hunyadi-yellow);
+  }

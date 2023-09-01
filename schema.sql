@@ -26,12 +26,12 @@ CREATE TABLE tasks (
     user_id TEXT,
     description TEXT NOT NULL,
     points INTEGER NOT NULL,
-    room_id INTEGER,
+    room TEXT,
     frequency TEXT NOT NULL,
     used_count INTEGER DEFAULT 1,
 
     FOREIGN KEY(user_id) REFERENCES users(user_id),
-    FOREIGN KEY(room_id) REFERENCES rooms(id)
+    FOREIGN KEY(room) REFERENCES rooms(name)
 );
 
 CREATE TABLE flatmates (
@@ -49,16 +49,19 @@ CREATE TABLE task_table (
     table_owner TEXT, 
     task_date DATE, 
     task_id INTEGER,
+    task_description TEXT,
     task_frequency TEXT,
     task_points INTEGER,
+    task_complete INTEGER DEFAULT 0,
     room_id INTEGER,
-    task_owner_id INTEGER,
+    task_owner TEXT,
 
     FOREIGN KEY(table_owner) REFERENCES users(user_id),
     FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (task_description) REFERENCES tasks(description),
     FOREIGN KEY (task_points) REFERENCES tasks(points),
     FOREIGN KEY (room_id) REFERENCES rooms(id),
-    FOREIGN KEY (task_owner_id) REFERENCES flatmates(id),
+    FOREIGN KEY (task_owner) REFERENCES flatmates(id),
     FOREIGN KEY (task_frequency) REFERENCES tasks(frequency)
 );
 

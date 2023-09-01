@@ -12,7 +12,7 @@ additems_bp = Blueprint('additems_bp', __name__)
 def add_task():
     if request.method == 'POST':
         description = request.form['description'].lower()
-        points = request.form["points"]
+        points = int(request.form["points"])
         room = request.form["room"]
         frequency = request.form["frequency"]
         user_id = session.get('user_id')  

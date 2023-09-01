@@ -61,8 +61,3 @@
     z-index: -1;
 }
 
-.default-dashboard-button {
-    font-weight: 600;
-    color: var(--dark-purple);
-    background-color: var(--hunyadi-yellow);
-    }

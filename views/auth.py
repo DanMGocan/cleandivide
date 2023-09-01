@@ -97,7 +97,6 @@ def authorized():
     session["user_id"] = user_email
     add_or_get_user(user_email, "login")
     return redirect(url_for("main"))
-    # return render_template("dashboard.html", user_email=user_email)
 
 
 

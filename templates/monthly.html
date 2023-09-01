@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}CleanDivide{% endblock %}
+{%block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="row d-flex justify-content-end my-5">
+        <a href="{{ url_for('dashboard_bp.dashboard') }}" method="post" class="btn default-dashboard-button">
+            Back
+        </a>
+        <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button mx-2">
+            <i class="fa-solid fa-question"></i>
+        </a>
+    </div>
+
+    <h1>Next 30 Days Cleaning Schedule</h1>
+
+    <h1>Next 30 Days Cleaning Schedule</h1>
+
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Tasks</th>
+        </tr>
+        {% for current_date in next_30_days %}
+        <tr>
+            <td>{{ current_date }}</td>
+            <td>
+                {% if tasks_by_date.get(current_date) %}
+                <ul>
+                    {% for task in tasks_by_date[current_date] %}
+                    <li>{{ task.task_description }}: {{ task.task_frequency }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                No tasks
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+{%block scripts %}
+<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+<script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
+
+<!-- JS variables -->
+<script type="text/javascript">
+    // Define a JavaScript variable that holds the URL
+    let generateURL = "{{ url_for('generator_bp.generate') }}";
+</script>
+
+{% endblock %}
+
+{% endblock %}
