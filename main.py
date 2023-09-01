@@ -8,13 +8,6 @@ from views.helpers import helpers_bp
 from views.generator import generator_bp
 from models import get_db_connection
 
-
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1dd5863fae90134e8fd1276f8204a313c7863dd1
 # Creating the instance of the Flask application with the name app
 app = Flask(__name__)
 app.config.from_object('config')

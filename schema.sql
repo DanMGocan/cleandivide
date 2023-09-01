@@ -50,11 +50,13 @@ CREATE TABLE task_table (
     task_date DATE, 
     task_id INTEGER,
     task_frequency TEXT,
+    task_points INTEGER,
     room_id INTEGER,
     task_owner_id INTEGER,
 
     FOREIGN KEY(table_owner) REFERENCES users(user_id),
     FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (task_points) REFERENCES tasks(points),
     FOREIGN KEY (room_id) REFERENCES rooms(id),
     FOREIGN KEY (task_owner_id) REFERENCES flatmates(id),
     FOREIGN KEY (task_frequency) REFERENCES tasks(frequency)

@@ -121,26 +121,46 @@ def generate():
         conn.rollback()
         flash(f"An error occurred while deleting old tasks: {e}", "error")
 
+    # Function to insert tasks into the database
+    def insert_tasks(tasks, date_str, user_id, cursor):
+        for task in tasks:
+            try:
+                cursor.execute("""
+                    INSERT INTO task_table (table_owner, task_date, task_id, task_frequency, task_points, room_id, task_owner_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, (user_id, date_str, task['description'], task["frequency"], task["points"], task['room'], task['assigned_to']))
+            except IntegrityError:
+                conn.rollback()
+                flash(f"Could not insert {task['frequency']} task into task_table", "error")
+                continue
+
+    # Loop over 31 days
     for i in range(31):
         date = datetime.now() + timedelta(days=i)
         day_str = date.strftime('%Y-%m-%d')
-        
-        calendar[day_str] = []
+        day_of_week = date.weekday()  # 0 is Monday, 1 is Tuesday, etc.
+        day_of_month = date.day
 
         # Add daily tasks
-        for task in daily_tasks:
-            try:
-                cursor.execute("""
-                    INSERT INTO task_table (table_owner, task_date, task_id, task_frequency, room_id, task_owner_id)
-                    VALUES (?, ?, ?, ?, ?, ?)
-                """, (user_id, day_str, task['description'], task["frequency"], task['room'], task['assigned_to']))
-            except IntegrityError:
-                conn.rollback()
-                flash("Could not insert daily task into task_table", "error")
-                continue
-        
-        # Similar blocks for twice-weekly, weekly, twice-monthly, and monthly tasks
-        # ...
+        insert_tasks(daily_tasks, day_str, user_id, cursor)
+
+        # Add twice-weekly tasks
+        if day_of_week in [0, 3]:  # Assuming tasks need to be done on Monday and Thursday
+            insert_tasks(twice_weekly_tasks, day_str, user_id, cursor)
+
+        # Add weekly tasks
+        if day_of_week == 0:  # Assuming tasks need to be done every Monday
+            insert_tasks(weekly_tasks, day_str, user_id, cursor)
+
+        # Add twice-monthly tasks
+        if day_of_month in [1, 15]:  # Assuming tasks need to be done on the 1st and the 15th of the month
+            insert_tasks(twice_monthly_tasks, day_str, user_id, cursor)
+
+        # Add monthly tasks
+        if day_of_month == 1:  # Assuming tasks need to be done on the 1st of every month
+            insert_tasks(monthly_tasks, day_str, user_id, cursor)
+
+
 
     conn.commit()
     conn.close()
