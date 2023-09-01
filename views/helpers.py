@@ -142,6 +142,7 @@ def clear_db():
     flash('Database cleared successfully :( ', 'success')
     return redirect(url_for('main'))
 
+
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
@@ -150,9 +151,6 @@ def viewdata():
     rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC ;").fetchall()
     flatmates = conn.execute("SELECT * FROM flatmates ORDER BY id DESC ").fetchall()
     return render_template('viewdata.html', rooms=rooms, tasks=tasks, flatmates=flatmates)
-
-
-
 
 @helpers_bp.route('/delete', methods=['POST'])
 @login_required
@@ -180,3 +178,22 @@ def delete_entry():
     return_url = request.referrer or url_for("main")
     print(return_url)
     return redirect(return_url)
+
+
+@helpers_bp.route('/mark_complete', methods=['POST'])
+@login_required
+def mark_complete():
+    task_id = int(request.form.get('task_id'))  # Cast to int
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (task_id,))
+    conn.commit()
+    conn.close()
+
+    if cursor.rowcount:
+        flash("Task successfully marked as complete", "success")
+    else:
+        flash("No such task", "warning")
+
+    return redirect(request.referrer or url_for("dashboard"))
+

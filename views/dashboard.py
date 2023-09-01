@@ -51,6 +51,7 @@ def dashboard():
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
     tasks_today = cursor.fetchall()
 
+
     # Get tasks for tomorrow
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now', '+1 day')", flatmate_ids)
     tasks_tomorrow = cursor.fetchall()

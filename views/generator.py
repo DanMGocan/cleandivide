@@ -146,19 +146,19 @@ def generate():
         insert_tasks(daily_tasks, day_str, user_id, cursor)
 
         # Add twice-weekly tasks
-        if day_of_week in [1, 4]:  # Assuming tasks need to be done on Monday and Thursday
+        if day_of_week in random.sample(range(0, 7), 2):  # Assuming tasks need to be done on Monday and Thursday
             insert_tasks(twice_weekly_tasks, day_str, user_id, cursor)
 
         # Add weekly tasks
-        if day_of_week == 0:  # Assuming tasks need to be done every Monday
+        if day_of_week in random.sample(range(0, 7), 1):  # Assuming tasks need to be done every Monday
             insert_tasks(weekly_tasks, day_str, user_id, cursor)
 
         # Add twice-monthly tasks
-        if day_of_month in [2, 16]:  # Assuming tasks need to be done on the 1st and the 15th of the month
+        if day_of_month in random.sample(range(1, 32), 2):
             insert_tasks(twice_monthly_tasks, day_str, user_id, cursor)
 
         # Add monthly tasks
-        if day_of_month == 30:  # Assuming tasks need to be done on the 1st of every month
+        if day_of_month in random.sample(range(1, 32), 1):  # Assuming tasks need to be done on the 1st of every month
             insert_tasks(monthly_tasks, day_str, user_id, cursor)
 
 

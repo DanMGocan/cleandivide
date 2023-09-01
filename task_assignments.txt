@@ -20,7 +20,6 @@
 {'id': 68, 'description': 'Cleaning hair brushes', 'points': 3, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 69, 'description': 'Cleaning makeup brushes', 'points': 4, 'room': 'Bathroom', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 86, 'description': 'Washing showerheads', 'points': 6, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 90, 'description': 'ass wash', 'points': 60, 'room': 'Bathroom', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 2, 'description': 'making the bed', 'points': 4, 'room': 'Bedroom', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 12, 'description': 'ironing clothes', 'points': 1, 'room': 'Bedroom', 'frequency': 'Twice Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 22, 'description': 'Cleaning light fixtures', 'points': 11, 'room': 'Bedroom', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
