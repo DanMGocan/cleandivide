@@ -2,10 +2,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, sessio
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
 from models import User, get_db_connection
+from views.auth import add_or_get_user
 
 additems_bp = Blueprint('additems_bp', __name__)
-
-
 
 
 @additems_bp.route("/addtask", methods=("GET", "POST"))
@@ -49,6 +48,7 @@ def add_task():
         flash('Task added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
+
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
 def add_room():
@@ -64,8 +64,6 @@ def add_room():
 
         flash('Room added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
-
-    return render_template('add_room.html')
 
 @additems_bp.route("/addflatmate", methods=("GET", "POST"))
 @login_required
@@ -83,5 +81,3 @@ def add_flatmate():
 
         flash('Flatmate added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
-
-    return redirect(url_for("main"))

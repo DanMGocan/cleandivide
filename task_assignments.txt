@@ -1,17 +1,16 @@
-{'id': 1, 'description': 'spalat coaie', 'points': 202020, 'room': 'Baie', 'frequency': 'Daily', 'assigned_to': 'Dan'}:
-{'id': 5, 'description': 'cleaning the bathroom', 'points': 9, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'Ioana'}:
-{'id': 11, 'description': 'cleaning blinds', 'points': 10, 'room': 'Bathroom', 'frequency': 'Daily', 'assigned_to': 'Radu'}:
-{'id': 3, 'description': 'making the bed', 'points': 4, 'room': 'Bedroom', 'frequency': 'Weekly', 'assigned_to': 'Ioana'}:
-{'id': 13, 'description': 'ironing clothes', 'points': 1, 'room': 'Bedroom', 'frequency': 'Twice Weekly', 'assigned_to': 'Radu'}:
-{'id': 14, 'description': 'polishing shoes', 'points': 5, 'room': 'Closet', 'frequency': 'Twice Monthly', 'assigned_to': 'Radu'}:
-{'id': 2, 'description': 'cleaning the garage', 'points': 2, 'room': 'Garage', 'frequency': 'Daily', 'assigned_to': 'Ioana'}:
-{'id': 4, 'description': 'trimming the hedge', 'points': 9, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'Ioana'}:
-{'id': 8, 'description': 'wleaning the fish tank', 'points': 1, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'Radu'}:
-{'id': 10, 'description': 'raking leaves', 'points': 4, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'Radu'}:
-{'id': 12, 'description': 'doing the dishes', 'points': 7, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'Radu'}:
-{'id': 6, 'description': 'changing air filters', 'points': 4, 'room': 'Living Room', 'frequency': 'Daily', 'assigned_to': 'Ioana'}:
-{'id': 15, 'description': 'polishing woodwork', 'points': 11, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'Ioana'}:
-{'id': 16, 'description': 'sweeping the floor', 'points': 9, 'room': 'Living Room', 'frequency': 'Twice Weekly', 'assigned_to': 'Radu'}:
-{'id': 17, 'description': 'dusting the furniture', 'points': 12, 'room': 'Living Room', 'frequency': 'Twice Monthly', 'assigned_to': 'Radu'}:
-{'id': 7, 'description': 'wiping down electronics', 'points': 4, 'room': 'Office', 'frequency': 'Twice Monthly', 'assigned_to': 'Ioana'}:
-{'id': 9, 'description': 'cleaning baseboards', 'points': 10, 'room': 'Office', 'frequency': 'Weekly', 'assigned_to': 'Ioana'}:
+{'id': 4, 'description': 'cleaning the bathroom', 'points': 9, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'Dan'}:
+{'id': 10, 'description': 'cleaning blinds', 'points': 10, 'room': 'Bathroom', 'frequency': 'Daily', 'assigned_to': 'Maria'}:
+{'id': 2, 'description': 'making the bed', 'points': 4, 'room': 'Bedroom', 'frequency': 'Weekly', 'assigned_to': 'Botic'}:
+{'id': 12, 'description': 'ironing clothes', 'points': 1, 'room': 'Bedroom', 'frequency': 'Twice Weekly', 'assigned_to': 'Adresa'}:
+{'id': 13, 'description': 'polishing shoes', 'points': 5, 'room': 'Closet', 'frequency': 'Twice Monthly', 'assigned_to': 'muie'}:
+{'id': 1, 'description': 'cleaning the garage', 'points': 2, 'room': 'Garage', 'frequency': 'Daily', 'assigned_to': 'Adresa'}:
+{'id': 3, 'description': 'trimming the hedge', 'points': 9, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'Adresa'}:
+{'id': 7, 'description': 'wleaning the fish tank', 'points': 1, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'Botic'}:
+{'id': 9, 'description': 'raking leaves', 'points': 4, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'Botic'}:
+{'id': 11, 'description': 'doing the dishes', 'points': 7, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'muie'}:
+{'id': 5, 'description': 'changing air filters', 'points': 4, 'room': 'Living Room', 'frequency': 'Daily', 'assigned_to': 'Dan'}:
+{'id': 14, 'description': 'polishing woodwork', 'points': 11, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'Botic'}:
+{'id': 15, 'description': 'sweeping the floor', 'points': 9, 'room': 'Living Room', 'frequency': 'Twice Weekly', 'assigned_to': 'Maria'}:
+{'id': 16, 'description': 'dusting the furniture', 'points': 12, 'room': 'Living Room', 'frequency': 'Twice Monthly', 'assigned_to': 'Adresa'}:
+{'id': 6, 'description': 'wiping down electronics', 'points': 4, 'room': 'Office', 'frequency': 'Twice Monthly', 'assigned_to': 'muie'}:
+{'id': 8, 'description': 'cleaning baseboards', 'points': 10, 'room': 'Office', 'frequency': 'Weekly', 'assigned_to': 'Dan'}:

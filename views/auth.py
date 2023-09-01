@@ -8,7 +8,10 @@ from datetime import datetime
 google = None
 auth_bp = Blueprint('auth_bp', __name__)
 
-def add_or_get_user(user_email):
+def add_or_get_user(user_email, function):
+
+    print(type(user_email))
+    print(user_email)
    
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -16,9 +19,13 @@ def add_or_get_user(user_email):
     # Check if user already exists
     user = cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,)).fetchone()
 
-    if user:
+    if user and function == "login":
         cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email, ))
         conn.commit()
+
+    elif user and function == "flatmate_update":
+        pass
+        
     else:
         # User doesn't exist, add to database
         cursor.execute('INSERT INTO users (user_id) VALUES (?)', (user_email,))
@@ -88,7 +95,7 @@ def authorized():
     user = User(user_email)
     login_user(user)
     session["user_id"] = user_email
-    add_or_get_user(user_email)
+    add_or_get_user(user_email, "login")
     return redirect(url_for("main"))
     # return render_template("dashboard.html", user_email=user_email)
 

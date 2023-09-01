@@ -4,6 +4,8 @@ from models import get_db_connection
 from datetime import datetime, timedelta
 import random
 from itertools import groupby
+from views.auth import add_or_get_user
+from sqlite3 import IntegrityError
 
 calendar = {}
 generator_bp = Blueprint('generator_bp', __name__)
@@ -25,7 +27,11 @@ def generate():
     conn.close()
 
     tasks = [dict(id=row[0], description=row[2], points=row[3], room=row[4], frequency=row[5]) for row in tasks_db]
-    flatmates = [dict(id=row[0], name=row[2]) for row in flatmates_db]
+    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+
+    # Send e-mail invitations to all flatmates from the DB 
+    for user in flatmates:
+        add_or_get_user(user["email"], "flatmate_update")
 
     # Control point, if it's only one task, the program will error #
     if len(tasks_db) == 1:
@@ -104,44 +110,39 @@ def generate():
         "In an unprecedented move, "
     ]
 
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Delete old entries for the user
+    try:
+        cursor.execute("DELETE FROM task_table WHERE table_owner = ?", (user_id,))
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        flash(f"An error occurred while deleting old tasks: {e}", "error")
+
     for i in range(31):
         date = datetime.now() + timedelta(days=i)
         day_str = date.strftime('%Y-%m-%d')
         
         calendar[day_str] = []
-        
+
         # Add daily tasks
         for task in daily_tasks:
-            calendar[day_str].append({"introduction": random.choice(introductions), 'task': task['description'], 'owner': task['assigned_to'], "frequency": task["frequency"]})
-
-        # Add twice-weekly tasks
-        if i == 4:
-            for task in twice_weekly_tasks:
-                calendar[day_str].append({"introduction": random.choice(introductions), 'task': task['description'], 'owner': task['assigned_to'], "frequency": task["frequency"]})
+            try:
+                cursor.execute("""
+                    INSERT INTO task_table (table_owner, task_date, task_id, task_frequency, room_id, task_owner_id)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (user_id, day_str, task['description'], task["frequency"], task['room'], task['assigned_to']))
+            except IntegrityError:
+                conn.rollback()
+                flash("Could not insert daily task into task_table", "error")
+                continue
         
-        # Add weekly tasks
-        if i % 7 == 0:
-            for task in weekly_tasks:
-                calendar[day_str].append({"introduction": random.choice(introductions), 'task': task['description'], 'owner': task['assigned_to'], "frequency": task["frequency"]})
+        # Similar blocks for twice-weekly, weekly, twice-monthly, and monthly tasks
+        # ...
+
+    conn.commit()
+    conn.close()
         
-        # Add twice monthly tasks
-        if i == 0 or i == 15:
-            for task in twice_monthly_tasks:
-                calendar[day_str].append({"introduction": random.choice(introductions), 'task': task['description'], 'owner': task['assigned_to'], "frequency": task["frequency"]})
-        
-        # Add monthly tasks:
-        random_value = random.randint(16, 31)
-        if i == random_value:
-            for task in monthly_tasks:
-                calendar[day_str].append({"introduction": random.choice(introductions), 'task': task['description'], 'owner': task['assigned_to'], "frequency": task["frequency"]})
-
-
-    grouped_by_date = {}
-    for day, tasks in calendar.items():
-        grouped_by_date[day] = {}
-        tasks.sort(key=lambda x: x['owner'])
-        for owner, owner_tasks in groupby(tasks, key=lambda x: x['owner']):
-            grouped_by_date[day][owner] = list(owner_tasks)
-
-    print(calendar)
-    return render_template("generator.html", calendar=grouped_by_date)
+    return redirect(url_for("main"))

@@ -103,7 +103,7 @@ boilerplate_rooms = [
 ]
 
 # Populate DB button, with the standard items
-@helpers_bp.route('/populate_db', methods=['POST'])
+@helpers_bp.route('/populate_db', methods=['GET', 'POST'])
 @login_required
 def populate_db():
     user_id = session.get('user_id') 
@@ -113,8 +113,8 @@ def populate_db():
     rooms_with_email = [(user_id,) + room_tuple for room_tuple in boilerplate_rooms]
 
     # Your function to populate the database
-    cursor.executemany('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', tasks_with_email)
     cursor.executemany('INSERT INTO rooms (user_id, name) VALUES (?, ?)', rooms_with_email)
+    cursor.executemany('INSERT INTO tasks (user_id, description, points, room_id, frequency) VALUES (?, ?, ?, ?, ?)', tasks_with_email)
     cursor.execute("UPDATE users SET default_database=? WHERE user_id=?", (1, user_id))
     conn.commit()
     conn.close()
