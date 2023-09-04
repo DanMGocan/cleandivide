@@ -2,7 +2,6 @@ from flask import Blueprint, redirect, url_for, session, render_template, flash
 from flask_login import login_required
 from models import get_db_connection
 from datetime import datetime, timedelta
-import random
 from itertools import groupby
 from views.auth import add_or_get_user
 from sqlite3 import IntegrityError
@@ -26,12 +25,13 @@ def dashboard():
 
     conn = get_db_connection()
     cursor = conn.cursor()
-    
-    # Ensure rows are returned as dictionaries, not tuples
-    cursor.row_factory = sqlite3.Row 
 
-    # Find table_owner corresponding to the logged-in user
-    cursor.execute("SELECT table_owner FROM task_table WHERE table_owner = ?", (user_id,))
+
+    # Ensure rows are returned as dictionaries, not tuples
+    cursor.row_factory = sqlite3.Row
+
+    # Find the table_owner for the current user
+    cursor.execute("SELECT DISTINCT table_owner FROM task_table WHERE table_owner = ? OR task_owner = ?", (user_id, user_id))
     table_owner_row = cursor.fetchone()
 
     if not table_owner_row:
@@ -39,18 +39,17 @@ def dashboard():
 
     table_owner = table_owner_row['table_owner']
 
-    # Fetch all the flatmate IDs added by the same table_owner
+    # Fetch all the flatmate IDs added by the same table_owner or by themselves
     cursor.execute("SELECT DISTINCT task_owner FROM task_table WHERE table_owner = ?", (table_owner,))
     flatmate_ids_row = cursor.fetchall()
     flatmate_ids = [str(row['task_owner']) for row in flatmate_ids_row]
 
     # Use placeholders and parameterized query to fetch tasks for today and tomorrow
     placeholders = ', '.join(['?' for _ in flatmate_ids])
-    
+
     # Get tasks for today
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
     tasks_today = cursor.fetchall()
-
 
     # Get tasks for tomorrow
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now', '+1 day')", flatmate_ids)
@@ -65,6 +64,7 @@ def dashboard():
 
     return render_template(
         'dashboard.html', 
+        table_owner=table_owner,
         own_tasks_today=own_tasks_today, 
         flatmates_tasks_today=flatmates_tasks_today, 
         own_tasks_tomorrow=own_tasks_tomorrow

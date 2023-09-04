@@ -9,34 +9,53 @@ google = None
 auth_bp = Blueprint('auth_bp', __name__)
 
 def add_or_get_user(user_email, function):
-
-    print(type(user_email))
-    print(user_email)
-   
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Check if user already exists
-    user = cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,)).fetchone()
+    # Fetch existing user
+    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
+    user = cursor.fetchone()
 
-    if user and function == "login":
-        cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email, ))
-        conn.commit()
+    if function not in ["login", "flatmate_update"]:
+        raise ValueError("Invalid function parameter")
 
-    elif user and function == "flatmate_update":
-        pass
-        
+    if user:
+        if function == "login":
+            cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email,))
+        elif function == "flatmate_update":
+            cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))  # Set table_owner to 0
+    
     else:
-        # User doesn't exist, add to database
+        # User doesn't exist, add them to 'users' table
         cursor.execute('INSERT INTO users (user_id) VALUES (?)', (user_email,))
-        conn.commit()
+        
+        # Check for table participant and owner status
+        cursor.execute("SELECT 1 FROM task_table WHERE task_owner = ?", (user_email,))
+        table_participant = cursor.fetchone()
 
+        cursor.execute("SELECT 1 FROM task_table WHERE table_owner = ?", (user_email,))
+        table_owner = cursor.fetchone()
+
+        if table_participant and not table_owner:
+            cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))
+    
+    # Add user to 'flatmates' table if not already present
+    cursor.execute('SELECT * FROM flatmates WHERE user_id = ?', (user_email,))
+    flatmate = cursor.fetchone()
+    if not flatmate:
+        cursor.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_email, user_email))
+
+    # Update the last login time
     cursor.execute("UPDATE users SET last_login = ? WHERE user_id = ?", (datetime.now(), user_email))
+
     conn.commit()
+
+    # Fetch the updated user
+    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
+    user = cursor.fetchone()
     
     conn.close()
     return user
-
 
 def setup_google(app):
     global google

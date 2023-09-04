@@ -54,8 +54,13 @@
                     <a class="nav-link text-white" href="/logout">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/viewdata">View and Edit Data</a>
+                    <a class="nav-link text-white" href="/viewdata">View and Delete Data</a>
                 </li>
+                    {% if is_table_owner %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for("additems_bp.add_items")}}">Add items</a>
+                    </li>
+                    {% endif %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/dashboard">Dashboard</a>
                 </li>

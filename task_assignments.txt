@@ -1,88 +1,88 @@
 {'id': 18, 'description': 'Cleaning door knobs', 'points': 4, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 25, 'description': 'Cleaning air vents', 'points': 1, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 38, 'description': 'Feeding the pets', 'points': 1, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 42, 'description': 'Oiling hinges', 'points': 3, 'room': 'All Rooms', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 25, 'description': 'Cleaning air vents', 'points': 1, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 38, 'description': 'Feeding the pets', 'points': 1, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 42, 'description': 'Oiling hinges', 'points': 3, 'room': 'All Rooms', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 51, 'description': 'Changing batteries in smoke alarms', 'points': 3, 'room': 'All Rooms', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 56, 'description': 'Cleaning fans', 'points': 5, 'room': 'All Rooms', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 56, 'description': 'Cleaning fans', 'points': 5, 'room': 'All Rooms', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 57, 'description': 'Dusting light bulbs', 'points': 4, 'room': 'All Rooms', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 62, 'description': 'Cleaning pet areas', 'points': 8, 'room': 'All Rooms', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 62, 'description': 'Cleaning pet areas', 'points': 8, 'room': 'All Rooms', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 73, 'description': 'Cleaning up litter', 'points': 5, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 74, 'description': 'Cleaning headphones', 'points': 2, 'room': 'All Rooms', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 81, 'description': 'Cleaning phone screens', 'points': 2, 'room': 'All Rooms', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 83, 'description': 'Cleaning wheelchairs', 'points': 5, 'room': 'All Rooms', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 83, 'description': 'Cleaning wheelchairs', 'points': 5, 'room': 'All Rooms', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 87, 'description': 'Cleaning attic', 'points': 10, 'room': 'Attic', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 4, 'description': 'cleaning the bathroom', 'points': 9, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 4, 'description': 'cleaning the bathroom', 'points': 9, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 10, 'description': 'cleaning blinds', 'points': 10, 'room': 'Bathroom', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 24, 'description': 'Cleaning shower curtain', 'points': 11, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 24, 'description': 'Cleaning shower curtain', 'points': 11, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 33, 'description': 'Cleaning drains', 'points': 7, 'room': 'Bathroom', 'frequency': 'Twice Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 65, 'description': 'Sanitizing bathroom', 'points': 8, 'room': 'Bathroom', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 65, 'description': 'Sanitizing bathroom', 'points': 8, 'room': 'Bathroom', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 67, 'description': 'Cleaning toothbrush holders', 'points': 5, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 68, 'description': 'Cleaning hair brushes', 'points': 3, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 68, 'description': 'Cleaning hair brushes', 'points': 3, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 69, 'description': 'Cleaning makeup brushes', 'points': 4, 'room': 'Bathroom', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 86, 'description': 'Washing showerheads', 'points': 6, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 86, 'description': 'Washing showerheads', 'points': 6, 'room': 'Bathroom', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 2, 'description': 'making the bed', 'points': 4, 'room': 'Bedroom', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 12, 'description': 'ironing clothes', 'points': 1, 'room': 'Bedroom', 'frequency': 'Twice Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 22, 'description': 'Cleaning light fixtures', 'points': 11, 'room': 'Bedroom', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 22, 'description': 'Cleaning light fixtures', 'points': 11, 'room': 'Bedroom', 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 50, 'description': 'Washing pillows', 'points': 9, 'room': 'Bedroom', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 63, 'description': 'Cleaning out closets', 'points': 10, 'room': 'Bedroom', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 40, 'description': 'Sanitizing toys', 'points': 4, 'room': "Children's Room", 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 71, 'description': 'Disinfecting toys', 'points': 6, 'room': "Children's Room", 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 40, 'description': 'Sanitizing toys', 'points': 4, 'room': "Children's Room", 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 71, 'description': 'Disinfecting toys', 'points': 6, 'room': "Children's Room", 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 13, 'description': 'polishing shoes', 'points': 5, 'room': 'Closet', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 70, 'description': 'Organizing shoes', 'points': 9, 'room': 'Closet', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 70, 'description': 'Organizing shoes', 'points': 9, 'room': 'Closet', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 41, 'description': 'Polishing silverware', 'points': 7, 'room': 'Dining Room', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 30, 'description': 'Washing the car', 'points': 11, 'room': 'Driveway', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 30, 'description': 'Washing the car', 'points': 11, 'room': 'Driveway', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 35, 'description': 'Shoveling snow', 'points': 3, 'room': 'Driveway', 'frequency': 'Seasonal', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 1, 'description': 'cleaning the garage', 'points': 2, 'room': 'Garage', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 82, 'description': 'Cleaning sports equipment', 'points': 7, 'room': 'Garage', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 88, 'description': 'Cleaning bicycle', 'points': 7, 'room': 'Garage', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 88, 'description': 'Cleaning bicycle', 'points': 7, 'room': 'Garage', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 3, 'description': 'trimming the hedge', 'points': 9, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 7, 'description': 'wleaning the fish tank', 'points': 1, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 9, 'description': 'raking leaves', 'points': 4, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 7, 'description': 'wleaning the fish tank', 'points': 1, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 9, 'description': 'raking leaves', 'points': 4, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 26, 'description': 'Washing the dog', 'points': 8, 'room': 'Garden', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 27, 'description': 'Watering plants', 'points': 2, 'room': 'Garden', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 36, 'description': 'Scrubbing the grill', 'points': 6, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 27, 'description': 'Watering plants', 'points': 2, 'room': 'Garden', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 36, 'description': 'Scrubbing the grill', 'points': 6, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 39, 'description': 'Composting', 'points': 5, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 45, 'description': 'Weeding the garden', 'points': 8, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 45, 'description': 'Weeding the garden', 'points': 8, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 54, 'description': 'Cleaning the pool', 'points': 12, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 55, 'description': 'Mowing the lawn', 'points': 7, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 64, 'description': 'Repotting plants', 'points': 5, 'room': 'Garden', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 55, 'description': 'Mowing the lawn', 'points': 7, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 64, 'description': 'Repotting plants', 'points': 5, 'room': 'Garden', 'frequency': 'Quarterly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 76, 'description': 'Cleaning garden tools', 'points': 7, 'room': 'Garden', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 84, 'description': 'Cleaning bird feeders', 'points': 4, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 84, 'description': 'Cleaning bird feeders', 'points': 4, 'room': 'Garden', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 85, 'description': 'Cleaning the shed', 'points': 9, 'room': 'Garden', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 19, 'description': 'Washing walls', 'points': 2, 'room': 'Hallway', 'frequency': 'Twice Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 72, 'description': 'Cleaning yoga mats', 'points': 2, 'room': 'Home Gym', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 11, 'description': 'doing the dishes', 'points': 7, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 19, 'description': 'Washing walls', 'points': 2, 'room': 'Hallway', 'frequency': 'Twice Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 72, 'description': 'Cleaning yoga mats', 'points': 2, 'room': 'Home Gym', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 11, 'description': 'doing the dishes', 'points': 7, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 17, 'description': 'Cleaning coffee maker', 'points': 4, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 21, 'description': 'Cleaning the microwave', 'points': 6, 'room': 'Kitchen', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 21, 'description': 'Cleaning the microwave', 'points': 6, 'room': 'Kitchen', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 23, 'description': 'Mopping the floor', 'points': 9, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 28, 'description': 'Cleaning the stove', 'points': 4, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 37, 'description': 'Taking out the trash', 'points': 4, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 28, 'description': 'Cleaning the stove', 'points': 4, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 37, 'description': 'Taking out the trash', 'points': 4, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 43, 'description': 'Cleaning the fridge', 'points': 12, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 44, 'description': 'Cleaning the oven', 'points': 11, 'room': 'Kitchen', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 44, 'description': 'Cleaning the oven', 'points': 11, 'room': 'Kitchen', 'frequency': 'Quarterly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 47, 'description': 'Cleaning out the pantry', 'points': 6, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 52, 'description': 'Emptying the dishwasher', 'points': 2, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 61, 'description': 'Polishing kitchenware', 'points': 6, 'room': 'Kitchen', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 52, 'description': 'Emptying the dishwasher', 'points': 2, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 61, 'description': 'Polishing kitchenware', 'points': 6, 'room': 'Kitchen', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 77, 'description': 'Sharpening kitchen knives', 'points': 4, 'room': 'Kitchen', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 20, 'description': 'Washing rugs', 'points': 4, 'room': 'Laundry Room', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 32, 'description': 'Folding laundry', 'points': 10, 'room': 'Laundry Room', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 32, 'description': 'Folding laundry', 'points': 10, 'room': 'Laundry Room', 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 34, 'description': 'Washing bed linens', 'points': 9, 'room': 'Laundry Room', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 75, 'description': 'Washing towels', 'points': 6, 'room': 'Laundry Room', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 75, 'description': 'Washing towels', 'points': 6, 'room': 'Laundry Room', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 5, 'description': 'changing air filters', 'points': 4, 'room': 'Living Room', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 14, 'description': 'polishing woodwork', 'points': 11, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 14, 'description': 'polishing woodwork', 'points': 11, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 15, 'description': 'sweeping the floor', 'points': 9, 'room': 'Living Room', 'frequency': 'Twice Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 16, 'description': 'dusting the furniture', 'points': 12, 'room': 'Living Room', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 31, 'description': 'Cleaning curtains', 'points': 6, 'room': 'Living Room', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 46, 'description': 'Reorganizing bookshelves', 'points': 5, 'room': 'Living Room', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 31, 'description': 'Cleaning curtains', 'points': 6, 'room': 'Living Room', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 46, 'description': 'Reorganizing bookshelves', 'points': 5, 'room': 'Living Room', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 48, 'description': 'Sanitizing remote controls', 'points': 2, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 58, 'description': 'Cleaning under furniture', 'points': 8, 'room': 'Living Room', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 58, 'description': 'Cleaning under furniture', 'points': 8, 'room': 'Living Room', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 60, 'description': 'Cleaning lampshades', 'points': 3, 'room': 'Living Room', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 66, 'description': 'Cleaning gaming controllers', 'points': 2, 'room': 'Living Room', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 79, 'description': 'Cleaning the fireplace', 'points': 8, 'room': 'Living Room', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 6, 'description': 'wiping down electronics', 'points': 4, 'room': 'Office', 'frequency': 'Twice Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 8, 'description': 'cleaning baseboards', 'points': 10, 'room': 'Office', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 6, 'description': 'wiping down electronics', 'points': 4, 'room': 'Office', 'frequency': 'Twice Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
+{'id': 8, 'description': 'cleaning baseboards', 'points': 10, 'room': 'Office', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 49, 'description': 'Cleaning computer keyboards', 'points': 4, 'room': 'Office', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 78, 'description': 'Sorting mail', 'points': 1, 'room': 'Office', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
 {'id': 80, 'description': 'Cleaning camera lenses', 'points': 3, 'room': 'Office', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 29, 'description': 'Cleaning gutters', 'points': 2, 'room': 'Outside', 'frequency': 'Monthly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 29, 'description': 'Cleaning gutters', 'points': 2, 'room': 'Outside', 'frequency': 'Monthly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
 {'id': 53, 'description': 'Cleaning out gutters', 'points': 10, 'room': 'Outside', 'frequency': 'Quarterly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 59, 'description': 'Sanitizing doorbells', 'points': 2, 'room': 'Outside', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 59, 'description': 'Sanitizing doorbells', 'points': 2, 'room': 'Outside', 'frequency': 'Weekly', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:

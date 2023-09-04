@@ -10,6 +10,11 @@
         <a href="{{ url_for('dashboard_bp.dashboard_monthly') }}" method="post" class="btn default-dashboard-button">
             See next 30 days 
         </a>
+        {% if is_table_owner %}
+        <a href="/add.html" class="btn default-dashboard-button">
+            Generate a new table 
+        </a>
+        {% endif %}
         <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button mx-2">
             <i class="fa-solid fa-question"></i>
         </a>
@@ -18,73 +23,76 @@
 
     <!-- Your Own Tasks Today -->
     <h1>Your Tasks for Today</h1>
-    <h1>Your Tasks for Today</h1>
-<form method="post" action="{{ url_for('helpers_bp.mark_complete') }}">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Points</th>
-            <th>Frequency</th>
-            <th>Action</th>
-        </tr>
-        {% for task in own_tasks_tomorrow %}
-        <tr>
-            <td>{{ task['id'] }}</td>
-            <td>{{ task['task_description'] }}</td>
-            <td>{{ task['task_points'] }}</td>
-            <td>{{ task['task_frequency'] }}</td>
-            <td>
-                {% if task['task_complete'] == 1 %}
-                    Complete!
-                {% else %}
-                    <button type="submit" name="task_id" value="{{ task['id'] }}">Mark as complete</button>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</form>
+    <h4>Table owner is {{ table_owner }}</h4>
+
+    <form method="post" action="{{ url_for('helpers_bp.mark_complete') }}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Points</th>
+                <th>Frequency</th>
+                <th>Complete?</th>
+            </tr>
+            {% for task in own_tasks_today %}
+            <tr>
+                <td>{{ task["id"] }} </td>
+                <td>{{ task['task_description'] }}</td>
+                <td>{{ task['task_points'] }}</td>
+                <td>{{ task['task_frequency'] }}</td>
+                <td>
+                    {% if task['task_complete'] == 1 %}
+                        Complete!
+                    {% else %}
+                        <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post">
+                            <button type="submit" name="task_id" value="{{ task['id'] }}">Mark as complete</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
 
     <!-- Flatmates' Tasks Today -->
     <h1>Flatmates' Tasks for Today</h1>
     <table>
         <tr>
-            <th>ID</th>
+            <th>Task owner</th>
             <th>Description</th>
-            <th>Points</th>
-            <th>Frequency</th>
+            <th>Status</th>
         </tr>
         {% for task in flatmates_tasks_today %}
-        <tr>
-            <td>{{ task['id'] }}</td>
-            <td>{{ task['task_description'] }}</td>
-            <td>{{ task['task_points'] }}</td>
-            <td>{{ task['task_frequency'] }}</td>
-        </tr>
-        {% endfor %}
+    <tr>
+        <td>{{ task['flatmate_name'] or task['task_owner'] }}</td>
+        <td>{{ task['task_description'] }}</td>
+        <td>
+            {% if task['task_complete'] == 1 %}
+                Complete!
+            {% else %}
+                Incomplete!
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
     </table>
 
     <!-- Your Own Tasks for Tomorrow -->
     <h1>Your Tasks for Tomorrow</h1>
     <table>
         <tr>
-            <th>ID</th>
             <th>Description</th>
             <th>Points</th>
             <th>Frequency</th>
         </tr>
         {% for task in own_tasks_tomorrow %}
         <tr>
-            <td>{{ task['id'] }}</td>
             <td>{{ task['task_description'] }}</td>
             <td>{{ task['task_points'] }}</td>
             <td>{{ task['task_frequency'] }}</td>
         </tr>
         {% endfor %}
     </table>
-
-
 
 
 {%block scripts %}

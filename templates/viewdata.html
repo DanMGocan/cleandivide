@@ -74,14 +74,14 @@
     <tr>
         <th>ID</th>
         <th>User ID</th>
-        <th>Name</th>
+        <th>Email</th>
         <th>Modifier</th>
     </tr>
     {% for flatmate in flatmates %}
     <tr>
         <td>{{ flatmate.id }}</td>
         <td>{{ flatmate.user_id }}</td>
-        <td>{{ flatmate.name }}</td>
+        <td>{{ flatmate.email }}</td>
         <td>{{ flatmate.modifier }}</td>
         <td>
             <form class="delete-form"  action="{{ url_for('helpers_bp.delete_entry') }}" method="post">

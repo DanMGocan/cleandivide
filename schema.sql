@@ -10,7 +10,8 @@ CREATE TABLE users (
     user_id TEXT NOT NULL UNIQUE,
     last_login DATETIME,
     times_logged INTEGER DEFAULT 1,
-    default_database INTEGER DEFAULT 0
+    default_database INTEGER DEFAULT 0,
+    table_owner INTEGER DEFAULT 1
 );
 
 CREATE TABLE rooms (
@@ -37,7 +38,6 @@ CREATE TABLE tasks (
 CREATE TABLE flatmates (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,
-    name TEXT NOT NULL,
     email TEXT NOT NULL,
 
     FOREIGN KEY(user_id) REFERENCES users(user_id)

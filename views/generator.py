@@ -10,8 +10,6 @@ from sqlite3 import IntegrityError
 calendar = {}
 generator_bp = Blueprint('generator_bp', __name__)
 
-
-
 @generator_bp.route("/generate", methods=["GET", "POST"])
 @login_required
 def generate():
@@ -27,7 +25,7 @@ def generate():
     conn.close()
 
     tasks = [dict(id=row[0], description=row[2], points=row[3], room=row[4], frequency=row[5]) for row in tasks_db]
-    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+    flatmates = [dict(id=row[0], email=row[2]) for row in flatmates_db]
 
     # Send e-mail invitations to all flatmates from the DB 
     for user in flatmates:
@@ -38,7 +36,6 @@ def generate():
         flash("You have added only one task, you don't need us. Plus, the algorithm is literally incapable of solving for one task", "warning")
         return redirect(url_for("main"))
 
-    average_points = sum(task["points"] for task in tasks) / len(flatmates)
     sorted_tasks = sorted(tasks, key=lambda x: x['room'])
 
     # Initialize dictionaries to hold assigned tasks and points per flatmate
@@ -77,38 +74,9 @@ def generate():
     twice_monthly_tasks = [task for task in sorted_tasks if task['frequency'] == 'Twice Monthly']
     monthly_tasks = [task for task in sorted_tasks if task['frequency'] == 'Monthly']
 
-    # print(sorted_tasks)
-    # Write the results to a file
-    # Write the results to a file
     with open("task_assignments.txt", "w") as f:
         for element in sorted_tasks:
             f.write(f"{element}:\n")
-
-    introductions = [
-        "On this magnificent day ",
-        "Today ",
-        "I reckon that it is time that ",
-        "They might not like it, but ",
-        "In the spirit of avoiding procrastination, ",
-        "By the power vested in me, ",
-        "The stars have aligned and ",
-        "It's not you, it's me saying that ",
-        "Lo and behold, ",
-        "For the greater good of the household, ",
-        "With utmost urgency, ",
-        "As foretold by the ancients, ",
-        "Without further ado, ",
-        "They will absolutely seize the day and, ",
-        "The time has come and ",
-        "Under the watchful eyes of the cleaning gods, ",
-        "Ding, ding, ding! We have a winner, and ",
-        "Be warned, for ",
-        "Y'all won't believe it but ",
-        "In a world where chores never end, ",
-        "As a sign of my benevolence, ",
-        "According to my calculations, ",
-        "In an unprecedented move, "
-    ]
 
     conn = get_db_connection()
     cursor = conn.cursor()

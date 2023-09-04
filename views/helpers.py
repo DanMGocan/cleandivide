@@ -4,6 +4,9 @@ from models import get_db_connection
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
+
+
+
 boilerplate_tasks = [
     ('cleaning the garage', 2, 'Garage', 'Daily'),
     ('making the bed', 4, 'Bedroom', 'Weekly'),
@@ -142,7 +145,6 @@ def clear_db():
     flash('Database cleared successfully :( ', 'success')
     return redirect(url_for('main'))
 
-
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
@@ -157,7 +159,6 @@ def viewdata():
 def delete_entry():
     table_name = request.form.get('table_name')
     id_to_delete = int(request.form.get('id'))  # Cast to int
-    print(f"Deleting id {id_to_delete} from table {table_name}")  # Debugging
     conn = get_db_connection()
 
     # Safeguard against SQL Injection for table_name
@@ -176,24 +177,27 @@ def delete_entry():
         flash("No such entry", "warning")
   
     return_url = request.referrer or url_for("main")
-    print(return_url)
     return redirect(return_url)
-
 
 @helpers_bp.route('/mark_complete', methods=['POST'])
 @login_required
 def mark_complete():
-    task_id = int(request.form.get('task_id'))  # Cast to int
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (task_id,))
-    conn.commit()
-    conn.close()
+    try:
+        task_id = int(request.form.get('task_id'))  # Cast to int
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (task_id,))
+        conn.commit()
+        conn.close()
 
-    if cursor.rowcount:
-        flash("Task successfully marked as complete", "success")
-    else:
-        flash("No such task", "warning")
+        if cursor.rowcount:
+            flash(f"Task {task_id} successfully marked as complete", "success")
+        else:
+            flash("No such task", "warning")
+    except Exception as e:
+        print("An error occurred:", str(e))
+        flash("An error occurred while marking the task as complete", "error")
 
     return redirect(request.referrer or url_for("dashboard"))
+
 

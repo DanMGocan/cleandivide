@@ -17,6 +17,13 @@
         </a>
 </div>
 
+<div class="row d-flex justify-content-end my-5">
+    <p>There is no task table generated yet. Please add the requested information and then click
+        "Generate", at the bottom of the page. Once the table is in, yourself and your flatmates 
+        will see your tasks!
+    </p>
+</div>
+
 <!-- Adding rooms into the DB -->
 <hr>
 <div class="row p-5 d-flex align-items-center justify-content-center" >
@@ -101,7 +108,6 @@
             <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post" class="col-12" id="emailForm">
                 <!-- Text Inputs -->
                 <div class="form-row d-flex align-items-center justify-content-center">
-                    <input type="text" class="form-control col-12" placeholder="Name of the flatmate" name="name" required>
                     <input type="email" class="form-control col-12 mt-2" placeholder="Email of the flatmate" name="email" id="email" required>
                 </div>
                 

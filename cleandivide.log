@@ -1,0 +1,892 @@
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\main.py', reloading
+INFO:main:Info level log
+WARNING:main:Warning level log
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:58] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:22:59] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BV2ZTS3-X5q7L3gST_3En_Z7h0m2aEfyI0fTNl-F1JV6cmk2olWl2oekhi50tHv4Q', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[32mGET /login/callback?code=4/0Adeu5BV2ZTS3-X5q7L3gST_3En_Z7h0m2aEfyI0fTNl-F1JV6cmk2olWl2oekhi50tHv4Q&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:main:Info level log
+WARNING:main:Warning level log
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:00] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:02] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:02] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:02] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:02] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:02] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:main:Info level log
+WARNING:main:Warning level log
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:04] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:45] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:45] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:45] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:46] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:47] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:47] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:47] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:47] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:main:Info level log
+WARNING:main:Warning level log
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:23:49] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:37] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:38] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:40] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BWceDMxE4W_LpO40_fj2K1WUFRPlBr-RWewCfRbXN704McyaIg5SLUnT3fZzBRv1A', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[32mGET /login/callback?code=4/0Adeu5BWceDMxE4W_LpO40_fj2K1WUFRPlBr-RWewCfRbXN704McyaIg5SLUnT3fZzBRv1A&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:41] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:47] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:47] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:47] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:47] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:26:47] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:21] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:21] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:21] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:37] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:38] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:38] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:38] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BUpxEXonxYqjIzuV4z6p0t5X2nDGKV6ebWNIobMLl0okhBNCMNqjUHsHpWcW5_VAw', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[32mGET /login/callback?code=4/0Adeu5BUpxEXonxYqjIzuV4z6p0t5X2nDGKV6ebWNIobMLl0okhBNCMNqjUHsHpWcW5_VAw&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:39] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:40] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:40] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:40] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:44] "[33mGET /dashboard HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:46] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:47] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:47] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[32mPOST /populate_db HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:48] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[32mPOST /addflatmate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:32:55] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[32mPOST /addflatmate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:02] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:06] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:06] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:06] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:07] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:07] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:07] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:07] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:07] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:11] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:11] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:11] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:11] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:11] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:12] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:12] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:12] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:12] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:12] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:15] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:16] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:16] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:16] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:16] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:16] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:29] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[32mPOST /addflatmate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:38] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:42] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:45] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:45] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:45] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:46] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:46] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:46] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:46] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:46] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:49] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:49] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:49] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:49] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:49] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:50] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:33:56] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\helpers.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\helpers.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\helpers.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\helpers.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\helpers.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:07] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:08] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:09] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BV4F2iCEppjzSVl6RHoj0OQZM4HkPWXYd42vuLOjh04wFMDukDx9wFPPpONZyt7rQ', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "[32mGET /login/callback?code=4/0Adeu5BV4F2iCEppjzSVl6RHoj0OQZM4HkPWXYd42vuLOjh04wFMDukDx9wFPPpONZyt7rQ&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:12] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:37:13] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:02] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BVP9D_m4TTvyrHapZCY3Yz8IgAKbzvubNW3CkMy5ks-WwaJ2CdLLNQFjfB4rLHBuA', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[32mGET /login/callback?code=4/0Adeu5BVP9D_m4TTvyrHapZCY3Yz8IgAKbzvubNW3CkMy5ks-WwaJ2CdLLNQFjfB4rLHBuA&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:46:05] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:33] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:33] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:33] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:39] "[32mPOST /delete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:39] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:39] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:47:39] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:13] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:13] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:13] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:13] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:13] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "GET /add.html HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:48:15] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:03] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:03] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:03] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BW2KoqeBxgOTY0ztU48wwndKbw_YJGBfRKrXxfuK0bZ4UPIUNb8_7s92cK6iRokRA', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[32mGET /login/callback?code=4/0Adeu5BW2KoqeBxgOTY0ztU48wwndKbw_YJGBfRKrXxfuK0bZ4UPIUNb8_7s92cK6iRokRA&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:05] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:09] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:34] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:34] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:34] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:35] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:36] "[33mGET /add HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:39] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:39] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:39] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:41] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BVQdo7waQXVbXwFbexEzPbpdnyldvYTCwGK80WcuLfJcwsAbOXcVt7EOhVFaINYWw', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:41] "[32mGET /login/callback?code=4/0Adeu5BVQdo7waQXVbXwFbexEzPbpdnyldvYTCwGK80WcuLfJcwsAbOXcVt7EOhVFaINYWw&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:41] "[32mGET / HTTP/1.1[0m" 302 -
+ERROR:main:Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\3. Code\taks_for_flats\views\dashboard.py", line 67, in dashboard
+    return render_template(
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\3. Code\taks_for_flats\templates\dashboard.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\3. Code\taks_for_flats\templates\base.html", line 61, in top-level template code
+    <a class="nav-link text-white" href="{{ url_for("add_items")}}">Add items</a>
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\werkzeug\routing\map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'add_items'. Did you mean 'additems_bp.add_items' instead?
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:50:41] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:13] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:14] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:14] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:14] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BU_NoIlITVMXHHpIlt9KHGWtScQe-PK1G4Iap12m0gN6XNEAnpVlatcx3zXoXJFqQ', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[32mGET /login/callback?code=4/0Adeu5BU_NoIlITVMXHHpIlt9KHGWtScQe-PK1G4Iap12m0gN6XNEAnpVlatcx3zXoXJFqQ&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:15] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:52:17] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:18] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:21] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:22] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BV7vLTDTuBL8kqKbnOSd1feFqzI78o6u5FcfiVnf9nJYMw1m5B7XG_s7iJ-QvfUlg', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[32mGET /login/callback?code=4/0Adeu5BV7vLTDTuBL8kqKbnOSd1feFqzI78o6u5FcfiVnf9nJYMw1m5B7XG_s7iJ-QvfUlg&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=consent HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:30] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:31] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:31] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:31] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:31] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:49] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:49] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:49] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:49] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:49] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:50] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:50] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:50] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:50] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:53:50] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:33] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:54:34] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:15] "[31m[1mGET /add HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:19] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:20] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BUWD9C3Q2cgfCY47ilDT8NfNRdg20golF_4f2UO_1ZMChDSOD8zXg2KAY-m02OTRQ', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[32mGET /login/callback?code=4/0Adeu5BUWD9C3Q2cgfCY47ilDT8NfNRdg20golF_4f2UO_1ZMChDSOD8zXg2KAY-m02OTRQ&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 15:56:21] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\dashboard.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\additems.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:38] "[31m[1mGET /dashboard HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:42] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BUCrahkSWsJ964HnTrQh8fp7BFFonlTOC-QuShHRC3u4EjrwKrZjRrZGQwX9PzLxg', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[32mGET /login/callback?code=4/0Adeu5BUCrahkSWsJ964HnTrQh8fp7BFFonlTOC-QuShHRC3u4EjrwKrZjRrZGQwX9PzLxg&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:44] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:21:46] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:50] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:25:51] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:04] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:04] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:04] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:05] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BW2CY141yPpfHGra1ssjudc31wjSx5BOlSpEEUXGpH7JEnISmf1OMdq-bQsRfJGNg', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[32mGET /login/callback?code=4/0Adeu5BW2CY141yPpfHGra1ssjudc31wjSx5BOlSpEEUXGpH7JEnISmf1OMdq-bQsRfJGNg&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:06] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:09] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:09] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:09] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[32mPOST /populate_db HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:11] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[32mPOST /addflatmate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:20] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:24] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:24] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:24] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:37] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:38] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+ERROR:main:Exception on /generate [GET]
+Traceback (most recent call last):
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\3. Code\taks_for_flats\views\generator.py", line 29, in generate
+    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+  File "C:\3. Code\taks_for_flats\views\generator.py", line 29, in <listcomp>
+    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+IndexError: tuple index out of range
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:41] "[35m[1mGET /generate HTTP/1.1[0m" 500 -
+ERROR:main:Exception on /generate [GET]
+Traceback (most recent call last):
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "c:\3. code\taks_for_flats\venv\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\3. Code\taks_for_flats\views\generator.py", line 29, in generate
+    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+  File "C:\3. Code\taks_for_flats\views\generator.py", line 29, in <listcomp>
+    flatmates = [dict(id=row[0], name=row[2], email=row[3]) for row in flatmates_db]
+IndexError: tuple index out of range
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:26:43] "[35m[1mGET /generate HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:21] "[31m[1mGET /add HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:24] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:24] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:24] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:24] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:25] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BVa_0y3meVffa1OxpZdFewp8mjjbY8xQJjlnwAP9QOy4F6WhwN01fGQ-Ms0HgDm5w', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[32mGET /login/callback?code=4/0Adeu5BVa_0y3meVffa1OxpZdFewp8mjjbY8xQJjlnwAP9QOy4F6WhwN01fGQ-Ms0HgDm5w&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:26] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:32] "[33mGET /dashboard HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:38] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:38] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:38] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:39] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:39] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:39] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:39] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:39] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:42] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:42] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:42] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:42] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:42] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:49] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:49] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:49] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:49] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:27:49] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:27] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:27] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:27] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:27] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BWKl1IYtN268zSK7fjUTLeilul4hbqLsDJewZu1KtQ1lKK03ZG_8K6q_TIVT-aBrg', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[32mGET /login/callback?code=4/0Adeu5BWKl1IYtN268zSK7fjUTLeilul4hbqLsDJewZu1KtQ1lKK03ZG_8K6q_TIVT-aBrg&scope=email+openid+https://www.googleapis.com/auth/userinfo.email&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:29] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:32] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:32] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:32] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[32mPOST /clear_db HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:43] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:47] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:49] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:50] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:31:50] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:01] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:02] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:02] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:02] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BVm2kbiiCpkAFIG8DJGaplKoItUzXlgEMRG_RaFvgrAu8wUVmkPZe_MRaTko6CHLQ', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[32mGET /login/callback?code=4/0Adeu5BVm2kbiiCpkAFIG8DJGaplKoItUzXlgEMRG_RaFvgrAu8wUVmkPZe_MRaTko6CHLQ&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:07] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:17] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:17] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:17] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:20] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:26] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:26] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:26] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "[32mPOST /populate_db HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:27] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:28] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:28] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:28] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:28] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:29] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:29] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:29] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:36] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:36] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:36] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:39] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[32mPOST /addflatmate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:32:54] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:04] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:04] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:04] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:05] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:05] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:05] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:05] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:05] "[32mGET /generate HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:15] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:36] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:36] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:36] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:36] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:33:36] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:01] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:03] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:03] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:03] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:03] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:03] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:07] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:09] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:09] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:09] "[36mGET /static/js/index.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:10] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:10] "[36mGET /static/media/img/index_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:10] "[36mGET /static/media/img/index_2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:10] "[36mGET /static/media/img/index_3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:11] "[32mGET /login HTTP/1.1[0m" 302 -
+DEBUG:flask_oauthlib:Prepare oauth2 remote args {'code': '4/0Adeu5BVOcsQAX7ZgWAQsK1vShf4Itexej_7RyPxfUJ_Z-KX8ljqiwcjOAQBZghhUICft2g', 'client_secret': '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', 'redirect_uri': 'http://127.0.0.1:5000/login/callback'}
+DEBUG:flask_oauthlib:Request 'https://accounts.google.com/o/oauth2/token' with 'POST' method
+DEBUG:flask_oauthlib:Request 'https://www.googleapis.com/oauth2/v1/userinfo' with 'GET' method
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[32mGET /login/callback?code=4/0Adeu5BVOcsQAX7ZgWAQsK1vShf4Itexej_7RyPxfUJ_Z-KX8ljqiwcjOAQBZghhUICft2g&scope=email+https://www.googleapis.com/auth/userinfo.email+openid&authuser=0&hd=cnmv.ro&prompt=consent HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "GET /add HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[36mGET /static/css/add.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:19] "[36mGET /static/js/add.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:20] "[36mGET /static/media/img/background.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:20] "[36mGET /static/media/img/add_rooms.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:20] "[36mGET /static/media/img/add_flatmates.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:20] "[36mGET /static/media/img/add_tasks.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:22] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:22] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:22] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:22] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:22] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:25] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:26] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:27] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "[32mPOST /mark_complete HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:28] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:29] "GET /viewdata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:29] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:29] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:31] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:31] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:31] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:31] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [04/Sep/2023 16:34:31] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\generator.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in 'C:\\3. Code\\taks_for_flats\\views\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
