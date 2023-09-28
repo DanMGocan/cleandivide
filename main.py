@@ -1,6 +1,5 @@
 #pip install -r requirements.txt
 
-
 from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from views.auth import auth_bp, setup_google, add_or_get_user
@@ -9,14 +8,12 @@ from views.helpers import helpers_bp
 from views.generator import generator_bp
 from views.dashboard import dashboard_bp
 from models import get_db_connection
-import logging 
+# import logging 
 
 # Creating the instance of the Flask application with the name app
 app = Flask(__name__)
-logging.basicConfig(filename='cleandivide.log', level=logging.DEBUG)
+# logging.basicConfig(filename='cleandivide.log', level=logging.DEBUG)
 app.config.from_object('config')
-
-
 
 # Creates the authentication
 setup_google(app)
@@ -55,14 +52,9 @@ def about():
 
 # To have the user e-mail address available throughout the app #
 @app.context_processor
-def inject_user_email():
-    user_id = session.get('user_id')
-    return dict(user_id=user_id)
-
-@app.context_processor
 def inject_table_owner():
     user_id = session.get('user_id')
-    is_table_owner = False  # Default value
+    is_table_owner = ""
     
     if user_id:
         conn = get_db_connection()
@@ -72,7 +64,8 @@ def inject_table_owner():
         conn.close()
         
         if row and row['table_owner'] == 1:
-            is_table_owner = True
-            
+            is_table_owner = "House Master"
+        elif row and row["table_owner"] == 0:
+            is_table_owner = "House Member"
+     
     return dict(user_id=user_id, is_table_owner=is_table_owner)
-
