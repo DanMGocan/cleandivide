@@ -2,7 +2,7 @@
 
 from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
-from views.auth import auth_bp, setup_google, add_or_get_user
+from views.auth import auth_bp, setup_google, setup_facebook, add_or_get_user
 from views.additems import additems_bp
 from views.helpers import helpers_bp
 from views.generator import generator_bp
@@ -17,6 +17,7 @@ app.config.from_object('config')
 
 # Creates the authentication
 setup_google(app)
+setup_facebook(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(additems_bp)
 app.register_blueprint(helpers_bp)
@@ -69,3 +70,9 @@ def inject_table_owner():
             is_table_owner = "House Member"
      
     return dict(user_id=user_id, is_table_owner=is_table_owner)
+
+# Check if this is the main module being executed.
+if __name__ == '__main__':
+    # Self signed SSL Certificate #
+    context = ('cert.pem', 'key.pem')  # Paths to your SSL certificate and key files
+    app.run(ssl_context=context, debug=True)

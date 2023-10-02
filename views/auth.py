@@ -4,7 +4,7 @@ from flask_oauthlib.client import OAuth
 from models import User, get_db_connection
 from datetime import datetime
 
-
+facebook = None
 google = None
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -117,9 +117,61 @@ def authorized():
     add_or_get_user(user_email, "login")
     return redirect(url_for("main"))
 
+def setup_facebook(app):
+    global facebook
+    oauth = OAuth(app)
+    facebook = oauth.remote_app(
+        'facebook',
+        consumer_key=app.config["FACEBOOK_APP_ID"],  # Facebook App ID
+        consumer_secret=app.config["FACEBOOK_APP_SECRET"],  # Facebook App Secret
+        request_token_params={
+            'scope': 'email',
+        },
+        base_url='https://graph.facebook.com/v11.0/',  # Make sure the version (v11.0) is current
+        request_token_url=None,
+        access_token_method='GET',
+        access_token_url='https://graph.facebook.com/v11.0/oauth/access_token',
+        authorize_url='https://www.facebook.com/v11.0/dialog/oauth',
+    )
 
+    @facebook.tokengetter
+    def get_facebook_oauth_token():
+        return session.get('facebook_token')
 
+    login_manager = LoginManager()
+    login_manager.init_app(app)
 
+    @login_manager.user_loader
+    def load_user(user_id):
+        if "user_id" in session:
+            return User(session["user_id"])
+        return None
 
+@auth_bp.route("/login/facebook")
+def login_facebook():
+    return facebook.authorize(callback=url_for('auth_bp.authorized_facebook', _external=True))
 
+@auth_bp.route("/logout/facebook")
+def logout_facebook():
+    logout_user()  
+    return redirect(url_for('main', _external=True))
 
+@auth_bp.route('/login/facebook/callback')
+def authorized_facebook():
+    response = facebook.authorized_response()
+    if response is None or response.get('access_token') is None:
+        return 'Access denied: reason={} error={}'.format(
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+
+    session['facebook_token'] = (response['access_token'], '')
+    user_info = facebook.get('/me?fields=id,email')  # Get user ID and email
+    user_email = user_info.data["email"]
+    if user_email in ["gocandan@gmail.com"]:
+        session["is_admin"] = True
+    user = User(user_email)
+    login_user(user)
+    session["user_id"] = user_email
+    add_or_get_user(user_email, "login")
+    return redirect(url_for("main"))
