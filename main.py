@@ -7,6 +7,8 @@ from views.additems import additems_bp
 from views.helpers import helpers_bp
 from views.generator import generator_bp
 from views.dashboard import dashboard_bp
+from context_processors import get_table_owner_status
+
 from models import get_db_connection
 # import logging 
 
@@ -31,6 +33,9 @@ def main():
     cursor = conn.cursor()
     user_id = session.get('user_id')
 
+    table_owner_info = get_table_owner_status()
+    is_table_owner = table_owner_info["is_table_owner"]
+    
     if current_user.is_authenticated:
         # Fetch the user's times_logged value
         user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
@@ -45,9 +50,9 @@ def main():
         except:
             task_table = []
 
-        if len(task_table) > 0:
+        if is_table_owner == 0:
             return redirect(url_for("dashboard_bp.dashboard"))  # For users who have an active table
-        else:
+        elif is_table_owner == 1:
             return redirect(url_for("additems_bp.add_items"))  # For users who don't have an active table
     else:
         return render_template('index.html')  # For guests
@@ -59,22 +64,7 @@ def about():
 # To have the user e-mail address available throughout the app #
 @app.context_processor
 def inject_table_owner():
-    user_id = session.get('user_id')
-    is_table_owner = ""
-    
-    if user_id:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute("SELECT table_owner FROM users WHERE user_id = ?", (user_id,))
-        row = cursor.fetchone()
-        conn.close()
-        
-        if row and row['table_owner'] == 1:
-            is_table_owner = "House Master"
-        elif row and row["table_owner"] == 0:
-            is_table_owner = "House Member"
-     
-    return dict(user_id=user_id, is_table_owner=is_table_owner)
+    return get_table_owner_status()
 
 # Check if this is the main module being executed.
 if __name__ == '__main__':

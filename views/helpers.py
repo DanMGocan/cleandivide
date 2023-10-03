@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, url_for, session, render_template, flash, request, jsonify
 from flask_login import login_required
 from models import get_db_connection
+from context_processors import get_table_owner_status
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
@@ -148,6 +149,8 @@ def clear_db():
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
+    is_table_owner = get_table_owner_status(user_id)
+
     conn = get_db_connection()
     tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC ;").fetchall()
     rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC ;").fetchall()
@@ -219,5 +222,6 @@ def become_house_master():
 @helpers_bp.route('/become_house_member', methods=["GET", 'POST'])
 @login_required
 def become_house_member():
+    
     # set table owner value to 0
     return redirect(url_for('dashboard_bp.dashboard'))

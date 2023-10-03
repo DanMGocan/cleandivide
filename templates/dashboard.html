@@ -6,18 +6,17 @@
 
 {% block content %}
 
-    {% if not table_owner%}
-
-    <div class="row col-12 d-flex justify-content-center align-items-center">
-        <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
-        <i class="fa-brands fa-google fa-lg"></i></i> Become house master
-        </a>
-    </div>
+    {% if total_tasks == 0 %}
+        {% if is_table_owner == 0 %}
+            <div class="row col-12 d-flex justify-content-center align-items-center">
+                <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
+                <i class="fa-brands fa-google fa-lg"></i></i> Become house master
+                </a>
+            </div>
+        {% endif %}
 
         <p>Your house master has not created a task calendar yet. This usually means that you can continue procrastinating</p>
     {% else %}
-
-  
 
     <div class="row d-flex justify-content-end my-5">
         <a href="{{ url_for('dashboard_bp.dashboard_monthly') }}" method="post" class="btn default-dashboard-button">

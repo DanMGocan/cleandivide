@@ -20,12 +20,12 @@ dashboard_bp = Blueprint('dashboard_bp', __name__)
 @login_required
 def dashboard():
     user_id = session.get('user_id')
+
     if not user_id:
         return "Please login first", 401
 
     conn = get_db_connection()
     cursor = conn.cursor()
-
 
     # Ensure rows are returned as dictionaries, not tuples
     cursor.row_factory = sqlite3.Row
@@ -34,16 +34,21 @@ def dashboard():
     cursor.execute("SELECT DISTINCT table_owner FROM task_table WHERE table_owner = ? OR task_owner = ?", (user_id, user_id))
     table_owner_row = cursor.fetchone()
 
-    if not table_owner_row:
+    if table_owner_row is None:
+    # Handle this case appropriately, e.g., by showing an error message or redirecting the user
+        print("Table owner is none")
         return render_template(
-            'dashboard.html', 
-            table_owner=False,
-            own_tasks_today=False, 
-            flatmates_tasks_today=False, 
-            own_tasks_tomorrow=False
+            'dashboard.html',
+            total_tasks=0, 
+            table_owner=0,
+            own_tasks_today=0, 
+            flatmates_tasks_today=0, 
+            own_tasks_tomorrow=0
     )
 
     table_owner = table_owner_row['table_owner']
+
+    # if user_id == table_owner_row['table_owner']:
 
     # Fetch all the flatmate IDs added by the same table_owner or by themselves
     cursor.execute("SELECT DISTINCT task_owner FROM task_table WHERE table_owner = ?", (table_owner,))
@@ -52,6 +57,10 @@ def dashboard():
 
     # Use placeholders and parameterized query to fetch tasks for today and tomorrow
     placeholders = ', '.join(['?' for _ in flatmate_ids])
+
+    # Get tasks in total
+    cursor.execute(f"SELECT * FROM task_table WHERE task_owner = ?", (table_owner,))
+    tasks_total = cursor.fetchall()
 
     # Get tasks for today
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
@@ -64,12 +73,14 @@ def dashboard():
     conn.close()
 
     # Separate the tasks
+    total_tasks = [task for task in tasks_total]
     own_tasks_today = [task for task in tasks_today if task['task_owner'] == str(user_id)]
     own_tasks_tomorrow = [task for task in tasks_tomorrow if task['task_owner'] == str(user_id)]
     flatmates_tasks_today = [task for task in tasks_today if task['task_owner'] != str(user_id)]
 
     return render_template(
-        'dashboard.html', 
+        'dashboard.html',
+        total_tasks=total_tasks, 
         table_owner=table_owner,
         own_tasks_today=own_tasks_today, 
         flatmates_tasks_today=flatmates_tasks_today, 
