@@ -9,9 +9,9 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL UNIQUE,
     last_login DATETIME,
-    times_logged INTEGER DEFAULT 1,
+    times_logged INTEGER DEFAULT 0,
     default_database INTEGER DEFAULT 0,
-    table_owner INTEGER DEFAULT 1
+    table_owner INTEGER DEFAULT 0
 );
 
 CREATE TABLE rooms (

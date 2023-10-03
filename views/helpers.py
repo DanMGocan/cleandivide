@@ -200,4 +200,24 @@ def mark_complete():
 
     return redirect(request.referrer or url_for("dashboard"))
 
+@helpers_bp.route('/become_house_master', methods=["GET", 'POST'])
+@login_required
+def become_house_master():
+    user_id = session.get('user_id')   
 
+    # Establish a database connection and cursor
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Update the table_owner value to 1
+    cursor.execute("UPDATE users SET table_owner = 1 WHERE user_id = ?", (user_id,))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('additems_bp.add_items'))
+
+@helpers_bp.route('/become_house_member', methods=["GET", 'POST'])
+@login_required
+def become_house_member():
+    # set table owner value to 0
+    return redirect(url_for('dashboard_bp.dashboard'))

@@ -25,27 +25,32 @@ app.register_blueprint(generator_bp)
 app.register_blueprint(dashboard_bp)
 
 # Using the app instance to handle incoming requests and send answers
-@app.route("/") # decorator -> transforms functions' return value in an HTTP response. This function will respond to the "/" URL requests 
+@app.route("/")
 def main():
-
     conn = get_db_connection()
     cursor = conn.cursor()
     user_id = session.get('user_id')
 
     if current_user.is_authenticated:
-        try:
-            task_table = conn.execute("SELECT * FROM task_table WHERE table_owner = ?", (user_id, )).fetchall()
-        except:
-            task_table = 0
-    
-        if len(task_table) > 0:
-            return redirect(url_for("dashboard_bp.dashboard")) # For users who have an active table
-        
-        else:
-            return redirect(url_for("additems_bp.add_items")) # For users who have an active table
+        # Fetch the user's times_logged value
+        user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
+        times_logged = user_record[0] if user_record else None
 
+        # If times_logged is 0, redirect the user to a different HTML page
+        if times_logged == 0:
+            return render_template('housestatus.html') 
+
+        try:
+            task_table = cursor.execute("SELECT * FROM task_table WHERE table_owner = ?", (user_id,)).fetchall()
+        except:
+            task_table = []
+
+        if len(task_table) > 0:
+            return redirect(url_for("dashboard_bp.dashboard"))  # For users who have an active table
+        else:
+            return redirect(url_for("additems_bp.add_items"))  # For users who don't have an active table
     else:
-        return render_template('index.html') # For guests
+        return render_template('index.html')  # For guests
 
 @app.route("/about")
 def about():

@@ -6,6 +6,19 @@
 
 {% block content %}
 
+    {% if not table_owner%}
+
+    <div class="row col-12 d-flex justify-content-center align-items-center">
+        <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
+        <i class="fa-brands fa-google fa-lg"></i></i> Become house master
+        </a>
+    </div>
+
+        <p>Your house master has not created a task calendar yet. This usually means that you can continue procrastinating</p>
+    {% else %}
+
+  
+
     <div class="row d-flex justify-content-end my-5">
         <a href="{{ url_for('dashboard_bp.dashboard_monthly') }}" method="post" class="btn default-dashboard-button">
             See next 30 days 
@@ -93,18 +106,21 @@
         </tr>
         {% endfor %}
     </table>
-
-
-{%block scripts %}
-<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
-<script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
-
-<!-- JS variables -->
-<script type="text/javascript">
-    // Define a JavaScript variable that holds the URL
-    let generateURL = "{{ url_for('generator_bp.generate') }}";
-</script>
-
+    {% endif %}
 {% endblock %}
+
+
+
+    {%block scripts %}
+    <!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+    <script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
+
+    <!-- JS variables -->
+    <script type="text/javascript">
+        // Define a JavaScript variable that holds the URL
+        let generateURL = "{{ url_for('generator_bp.generate') }}";
+    </script>
+
+    
 
 {% endblock %}

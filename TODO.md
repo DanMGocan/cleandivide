@@ -15,3 +15,4 @@
 - Generate function should invite all flatmates to it, increment all tasks by 1, assign tables to users 
 - limit of 1 table per user and every user can be either an owner or a participant
 - add a TOTAL POINTS kind of score for the cleanest cleaning cleaner 
+- privacy statement: we only take the e-mail address and that's it 

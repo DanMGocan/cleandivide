@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row col-12 d-flex justify-content-center align-items-center">
+        <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
+        <i class="fa-brands fa-google fa-lg"></i></i> Become house master
+        </a>
+    </div>
+  
+    <div class="row col-12 d-flex justify-content-center align-items-center">
+        <a href="{{ url_for('helpers_bp.become_house_member') }}" class="btn mx-2 rounded mx-auto" id="google-button">
+        <i class="fa-brands fa-google fa-lg"></i></i> Become house member
+        </a>
+    </div>
+
+{% endblock %}

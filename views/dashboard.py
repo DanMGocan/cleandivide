@@ -35,7 +35,13 @@ def dashboard():
     table_owner_row = cursor.fetchone()
 
     if not table_owner_row:
-        return "Table owner not found", 404
+        return render_template(
+            'dashboard.html', 
+            table_owner=False,
+            own_tasks_today=False, 
+            flatmates_tasks_today=False, 
+            own_tasks_tomorrow=False
+    )
 
     table_owner = table_owner_row['table_owner']
 
