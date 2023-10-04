@@ -58,10 +58,11 @@ def dashboard():
     # Use placeholders and parameterized query to fetch tasks for today and tomorrow
     placeholders = ', '.join(['?' for _ in flatmate_ids])
 
+
     # Get tasks in total
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner = ?", (table_owner,))
     tasks_total = cursor.fetchall()
-
+    
     # Get tasks for today
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
     tasks_today = cursor.fetchall()

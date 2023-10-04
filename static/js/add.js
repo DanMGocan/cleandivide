@@ -49,3 +49,29 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 });
+
+// Making the switch between Add Flatmate and Add Tasks sections
+document.addEventListener('DOMContentLoaded', function() {
+  // The switchSections function is the same as you provided
+  function switchSections(hideSectionId, showSectionId) {
+    let hideSection = document.getElementById(hideSectionId);
+    let showSection = document.getElementById(showSectionId);
+
+    hideSection.classList.add('hidden');
+    hideSection.classList.remove('custom-fade');
+
+    showSection.classList.remove('hidden');
+    showSection.classList.add('custom-fade');
+  }
+
+  // Add event listener to "Add Tasks" button
+  document.getElementById('btnAddTasks').addEventListener('click', function() {
+    switchSections("sectionFlatmates", "sectionTasks");
+  });
+
+  // Add event listener to "Invite Flatmates" button
+  document.getElementById('btnInviteFlatmates').addEventListener('click', function() {
+    switchSections("sectionTasks", "sectionFlatmates");
+  });
+
+});

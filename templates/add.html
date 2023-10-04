@@ -24,8 +24,24 @@
     </p>
 </div>
 
-<!-- Adding rooms into the DB -->
-<hr>
+<div class="row d-flex justify-content-center my-5">
+    <button class="btn default-dashboard-button" id="btnAddTasks">Add Tasks</button>
+    <button class="btn default-dashboard-button ml-3" id="btnInviteFlatmates">Invite Flatmates</button>
+    {% if template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
+    <button class="btn default-dashboard-button ml-3 custom-tooltip" data-tooltip="Either tasks of flat mates are missing and data cannot be generated" disabled>Cannot generate</button>
+    {% endif %}
+</div>
+
+<div class="col-12 col-md-10 col-lg-8 d-flex justify-content-center mx-auto">
+    {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
+        <a href="#" class="btn btn-secondary mt-2 text-center col-10" disabled>Cannot generate, data missing</a>
+    {% else %}
+        <a href="{{ url_for('generator_bp.generate') }}" class="btn btn-primary mt-2 text-center col-10" id="generate-button">Generate</a>
+    {% endif %}          
+    </div>
+
+{#
+     <!-- Adding rooms into the DB -->
 <div class="row p-5 d-flex align-items-center justify-content-center" >
 
     <div class="col-11 px-0 mx-0">
@@ -87,163 +103,171 @@
             </div>
         {% endif %}
     </div>
-</div>
+</div>  #} 
     
 
-<!-- Adding flatmates into the DB -->
-<hr>
-<div class="row p-5 d-flex align-items-center justify-content-center">
+<div id="main-container">
 
-    <div class="col-11 px-0 mx-0">
-        <h1 class="">Add Flatmates</h1>
-    </div>
-    <!-- Left Side - Form Section -->
-    <div class="col-12 col-lg-7 mt-2 p-5 add-flatmate-section">
-        <!-- Note row -->
-        <div class="row d-flex align-items-center justify-content-center">
-            <small>(Remember, they don't have to be your friends, just to do the tasks!)</small>
-        </div>
-        <!-- Form row -->
-        <div class="row">
-            <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post" class="col-12" id="emailForm">
-                <!-- Text Inputs -->
-                <div class="form-row d-flex align-items-center justify-content-center">
-                    <input type="email" class="form-control col-12 mt-2" placeholder="Email of the flatmate" name="email" id="email" required>
-                </div>
-                
-                <!-- Buttons Row -->
-                <div class="form-row d-flex justify-content-end mt-2">
-                    <div class="col-10 px-0">
-                        <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
-                    </div>
-                    <div class="col-2 px-0">
-                        <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
-                            <i class="fa-solid fa-question"></i>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- Adding flatmates into the DB -->
+    <div class="row d-flex justify-content-center my-5 hidden" id="sectionFlatmates">
 
-    <!-- Right Side - Table or Alert Section -->
-    <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-flatmate-section">
-        {% if template_data.flatmates|length > 0 %}
-            <h6 class="text-center">Flatmates added so far:</h6>
-            <table class="table table-striped">
-                <tbody>
-                    {% for flatmate in template_data.flatmates[:12] %}
-                        <tr>
-                            <td>{{ flatmate.name }}</td>
-                            <td>
-                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                                    <input type="hidden" name="table_name" value="flatmates">
-                                    <input type="hidden" name="id" value="{{ flatmate.id }}">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                <p class="text-center">You have not added any flatmates yet! Please note that probably, YOU CANNOT DO THIS ALONE!.</p>
+        <div class="row p-5 d-flex align-items-center justify-content-center">
+    
+            <div class="col-11 px-0 mx-0">
+                <h1 class="">Add Flatmates</h1>
             </div>
-        {% endif %}
-    </div>
-</div>
-
-
-<!-- Adding tasks into the DB -->
-<hr>
-<div class="row p-5 d-flex align-items-center justify-content-center">
-    <div class="col-11 px-0 mx-0">
-        <h1>Add Tasks</h1>
-    </div>
-    <!-- Left Side - Form Section -->
-    <div class="col-12 col-lg-7 mt-2 p-5 add-tasks-section">
-        <!-- Note row -->
-        <div class="row d-flex align-items-center justify-content-center">
-            <small>(The most added 100 tasks are added as suggestions)</small>
-        </div>
-        <!-- Form row -->
-        <div class="row">
-            <form action="{{ url_for('additems_bp.add_task') }}" method="post" class="col-12">
-                <!-- Text Input -->
-                <div class="form-row d-flex align-items-center justify-content-center">
-                    <input list="popularTasks" type="text" name="description" maxlength="80" placeholder="Description of the task (max. 80 characters)" class="form-control" required>
-                    <datalist id="popularTasks">
-                        {% for task in template_data.popular_tasks %}
-                            <option value="{{ task.description }}">
-                        {% endfor %}
-                    </datalist>
-                    <input type="number" name="points" min="1" max="20" placeholder="Points assigned to task (1 - 20)" class="form-control mt-2" required />
-                    <input name="room" placeholder="In what room is this task?" class="form-control mt-2" list="roomList" required />
-                    <datalist id="roomList">
-                        {% for room in template_data.rooms %}
-                            <option value="{{ room.name }}">
-                        {% endfor %}
-                    </datalist>
-                    <input class="form-control mt-2" list="frequencies" id="frequency" name="frequency" placeholder="Frequency of this task"/>
-                    <datalist id="frequencies">
-                        <option value="Daily">
-                        <option value="Twice weekly">
-                        <option value="Weekly">
-                        <option value="Twice monthly">
-                        <option value="Monthly">
-                        <option value="Yearly">
-                    </datalist>
+            <!-- Left Side - Form Section -->
+            <div class="col-12 col-lg-7 mt-2 p-5 add-flatmate-section">
+                <!-- Note row -->
+                <div class="row d-flex align-items-center justify-content-center">
+                    <small>(Remember, they don't have to be your friends, just to do the tasks!)</small>
                 </div>
-                    <!-- Add Task Button -->
-                    {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 %}
-                    <small class="mt-2">Before adding tasks, rooms and flatmates must be added</small>
-                    {% else %}
+                <!-- Form row -->
+                <div class="row">
+                    <form action="{{ url_for('additems_bp.add_flatmate') }}" method="post" class="col-12" id="emailForm">
+                        <!-- Text Inputs -->
+                        <div class="form-row d-flex align-items-center justify-content-center">
+                            <input type="email" class="form-control col-12 mt-2" placeholder="Email of the flatmate" name="email" id="email" required>
+                        </div>
+                        
                         <!-- Buttons Row -->
-                    <div class="form-row d-flex justify-content-end mt-2">
-                        <div class="col-10 px-0">
-                            <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
+                        <div class="form-row d-flex justify-content-end mt-2">
+                            <div class="col-10 px-0">
+                                <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
+                            </div>
+                            <div class="col-2 px-0">
+                                <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
+                                    <i class="fa-solid fa-question"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-2 px-0">
-                            <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
-                                <i class="fa-solid fa-question"></i>
-                            </a>
-                        </div>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Right Side - Table or Alert Section -->
+            <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-flatmate-section">
+                {% if template_data.flatmates|length > 0 %}
+                    <h6 class="text-center">Flatmates added so far:</h6>
+                    <table class="table table-striped">
+                        <tbody>
+                            {% for flatmate in template_data.flatmates[:12] %}
+                                <tr>
+                                    <td>{{ flatmate.name }}</td>
+                                    <td>
+                                        <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                            <input type="hidden" name="table_name" value="flatmates">
+                                            <input type="hidden" name="id" value="{{ flatmate.id }}">
+                                            <input type="submit" value="Delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                        <p class="text-center">You have not added any flatmates yet! Please note that probably, YOU CANNOT DO THIS ALONE!.</p>
                     </div>
-                    {% endif %}
-
-            </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Adding tasks into the DB -->
+    <div class="row d-flex justify-content-center my-5" id="sectionTasks">
+    
+        <div class="row p-5 d-flex align-items-center justify-content-center">
+            <div class="col-11 px-0 mx-0">
+                <h1>Add Tasks</h1>
+            </div>
+            <!-- Left Side - Form Section -->
+            <div class="col-12 col-lg-7 mt-2 p-5 add-tasks-section">
+                <!-- Note row -->
+                <div class="row d-flex align-items-center justify-content-center">
+                    <small>(The most added 100 tasks are added as suggestions)</small>
+                </div>
+                <!-- Form row -->
+                <div class="row">
+                    <form action="{{ url_for('additems_bp.add_task') }}" method="post" class="col-12">
+                        <!-- Text Input -->
+                        <div class="form-row d-flex align-items-center justify-content-center">
+                            <input list="popularTasks" type="text" name="description" maxlength="80" placeholder="Description of the task (max. 80 characters)" class="form-control" required>
+                            <datalist id="popularTasks">
+                                {% for task in template_data.popular_tasks %}
+                                    <option value="{{ task.description }}">
+                                {% endfor %}
+                            </datalist>
+                            <input type="number" name="points" min="1" max="20" placeholder="Points assigned to task (1 - 20)" class="form-control mt-2" required />
+                            <input name="room" placeholder="In what room is this task?" class="form-control mt-2" list="roomList" required />
+                            <datalist id="roomList">
+                                {% for room in template_data.rooms %}
+                                    <option value="{{ room.name }}">
+                                {% endfor %}
+                            </datalist>
+                            <input class="form-control mt-2" list="frequencies" id="frequency" name="frequency" placeholder="Frequency of this task"/>
+                            <datalist id="frequencies">
+                                <option value="Daily">
+                                <option value="Twice weekly">
+                                <option value="Weekly">
+                                <option value="Twice monthly">
+                                <option value="Monthly">
+                                <option value="Yearly">
+                            </datalist>
+                        </div>
+                            <!-- Add Task Button -->
+                            {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 %}
+                            <small class="mt-2">Before adding tasks, rooms and flatmates must be added</small>
+                            {% else %}
+                                <!-- Buttons Row -->
+                            <div class="form-row d-flex justify-content-end mt-2">
+                                <div class="col-10 px-0">
+                                    <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
+                                </div>
+                                <div class="col-2 px-0">
+                                    <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
+                                        <i class="fa-solid fa-question"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+    
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Right Side - Table or Alert Section -->
+            <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-tasks-section">
+                {% if template_data.tasks|length > 0 %}
+                    <h6 class="text-center">Tasks added so far (last 6):</h6>
+                    <table class="table table-striped">
+                        <tbody>
+                            {% for task in template_data.tasks[:6] %}
+                                <tr>
+                                    <td>{{ task.description }}</td>
+                                    <td>{{ task.points }}</td>
+                                    <td>
+                                        <form action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                                            <input type="hidden" name="table_name" value="tasks">
+                                            <input type="hidden" name="id" value="{{ task.id }}">
+                                            <input type="submit" value="Delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
+                        <p class="text-center">There are no tasks added yet. But that's no problem, mold and cockroaches never killed anyone (allegedly)!</p>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 
-    <!-- Right Side - Table or Alert Section -->
-    <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-tasks-section">
-        {% if template_data.tasks|length > 0 %}
-            <h6 class="text-center">Tasks added so far (last 6):</h6>
-            <table class="table table-striped">
-                <tbody>
-                    {% for task in template_data.tasks[:6] %}
-                        <tr>
-                            <td>{{ task.description }}</td>
-                            <td>{{ task.points }}</td>
-                            <td>
-                                <form action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                                    <input type="hidden" name="table_name" value="tasks">
-                                    <input type="hidden" name="id" value="{{ task.id }}">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                <p class="text-center">There are no tasks added yet. But that's no problem, mold and cockroaches never killed anyone (allegedly)!</p>
-            </div>
-        {% endif %}
-    </div>
 </div>
+
 
 <div class="row mt-5">
     <p>If all the tasks are added, all the rooms are build and the gang is together, you can generate your personalized schedule now.
@@ -251,27 +275,20 @@
 </div>
 
 <div class="row mb-5">
-    <div class="col-12 col-md-10 col-lg-8 d-flex justify-content-center mx-auto">
-    {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
-        <a href="#" class="btn btn-secondary mt-2 text-center col-10" disabled>Cannot generate, data missing :(</a>
-    {% else %}
-        <a href="{{ url_for('generator_bp.generate') }}" class="btn btn-primary mt-2 text-center col-10" id="generate-button">Generate schedule</a>
-    {% endif %}          
-    </div>
+   
 </div>
 
 
 
-{%block scripts %}
-<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
-<script src="{{ url_for('static', filename= 'js/add.js') }}"></script>
+    {%block scripts %}
+        <!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
-<!-- JS variables -->
-<script type="text/javascript">
-    // Define a JavaScript variable that holds the URL
-    let generateURL = "{{ url_for('generator_bp.generate') }}";
-</script>
-
-{% endblock %}
+        <!-- JS variables -->
+        <script type="text/javascript">
+            // Define a JavaScript variable that holds the URL
+            //let generateURL = "{{ url_for('generator_bp.generate') }}";
+        </script>
+    {% endblock %}
 
 {% endblock %}

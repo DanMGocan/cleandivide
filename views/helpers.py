@@ -149,6 +149,7 @@ def clear_db():
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
+    user_id = session.get('user_id') 
     is_table_owner = get_table_owner_status(user_id)
 
     conn = get_db_connection()

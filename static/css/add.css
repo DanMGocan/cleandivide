@@ -61,3 +61,33 @@
     z-index: -1;
 }
 
+/* Transition between add tasks and add flatmates */
+#main-container {
+    position: relative; /* Set the position context for absolute positioning */
+    /* Set a fixed height if needed, or let it adapt to the initially visible section */
+    height: 500px;
+}
+
+/* Make both sections occupy the same space within the container */
+#sectionFlatmates, #sectionTasks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%; /* Ensure the section takes up the full width of the container */
+}
+
+.custom-fade {
+    opacity: 1; 
+    transition: opacity 0.5s ease;
+    pointer-events: auto; 
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+

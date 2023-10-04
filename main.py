@@ -26,6 +26,7 @@ app.register_blueprint(helpers_bp)
 app.register_blueprint(generator_bp)
 app.register_blueprint(dashboard_bp)
 
+
 # Using the app instance to handle incoming requests and send answers
 @app.route("/")
 def main():
