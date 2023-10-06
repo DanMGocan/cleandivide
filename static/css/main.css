@@ -180,7 +180,7 @@ a {
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 12px;
-  z-index: 10000; /* Make sure it appears above other content */
+  z-index: 100000; /* Make sure it appears above other content */
   pointer-events: none; /* Ensure the tooltip doesn't interfere with clicks */
   display: none;
   opacity: 0.8;

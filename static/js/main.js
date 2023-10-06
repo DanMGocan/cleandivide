@@ -1,26 +1,30 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementsByClassName('custom-tooltip');
+    const buttons = document.getElementsByClassName('tooltip-button');
 
-    button.addEventListener('mousemove', function(e) {
-        let tooltip = document.querySelector('.custom-tooltip');
+    for(let i = 0; i < buttons.length; i++) {
+        let button = buttons[i];
 
-        if (!tooltip) {
-            tooltip = document.createElement('div');
-            tooltip.className = 'custom-tooltip';
-            document.body.appendChild(tooltip);
-        }
+        button.addEventListener('mousemove', function(e) {
+            console.log("Mouse over detected");
+            let tooltip = document.querySelector('.tooltip-content');
 
-        tooltip.textContent = button.getAttribute('data-tooltip');
-        tooltip.style.top = (e.pageY + 10) + 'px';
-        tooltip.style.left = (e.pageX + 10) + 'px';
-        tooltip.style.display = 'block';
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'tooltip-content';
+                document.body.appendChild(tooltip);
+            }
 
-    });
+            tooltip.textContent = e.currentTarget.getAttribute('data-tooltip');
+            tooltip.style.top = (e.pageY + 10) + 'px';
+            tooltip.style.left = (e.pageX + 10) + 'px';
+            tooltip.style.display = 'block';
+        });
 
-    button.addEventListener('mouseout', function() {
-        const tooltip = document.querySelector('.custom-tooltip');
-        if (tooltip) {
-            tooltip.style.display = 'none';
-        }
-    });
+        button.addEventListener('mouseout', function() {
+            const tooltip = document.querySelector('.tooltip-content');
+            if (tooltip) {
+                tooltip.style.display = 'none';
+            }
+        });
+    }
 });

@@ -25,20 +25,15 @@
 </div>
 
 <div class="row d-flex justify-content-center my-5">
-    <button class="btn default-dashboard-button" id="btnAddTasks">Add Tasks</button>
-    <button class="btn default-dashboard-button ml-3" id="btnInviteFlatmates">Invite Flatmates</button>
+    <a href="" class="btn default-dashboard-button tooltip-button" id="btnAddTasks">Add Tasks</a>
+    <a href="" class="btn default-dashboard-button ml-3 tooltip-button" id="btnInviteFlatmates">Invite Flatmates</a>
     {% if template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
-    <button class="btn default-dashboard-button ml-3 custom-tooltip" data-tooltip="Either tasks of flat mates are missing and data cannot be generated" disabled>Cannot generate</button>
+    <a href="" class="btn default-dashboard-button ml-3 tooltip-button" data-tooltip="Either tasks or flatmates are missing, and data cannot be generated" disabled>Cannot generate</a>
+    {% else %}
+    <a href="{{ url_for('generator_bp.generate') }}" class="btn default-dashboard-button ml-3 tooltip-button" data-tooltip="Let's go!">Generate cleaning schedule</a>
     {% endif %}
 </div>
 
-<div class="col-12 col-md-10 col-lg-8 d-flex justify-content-center mx-auto">
-    {% if template_data.rooms|length == 0 or template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
-        <a href="#" class="btn btn-secondary mt-2 text-center col-10" disabled>Cannot generate, data missing</a>
-    {% else %}
-        <a href="{{ url_for('generator_bp.generate') }}" class="btn btn-primary mt-2 text-center col-10" id="generate-button">Generate</a>
-    {% endif %}          
-    </div>
 
 {#
      <!-- Adding rooms into the DB -->
@@ -282,7 +277,6 @@
 
     {%block scripts %}
         <!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
-        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
         <!-- JS variables -->
         <script type="text/javascript">

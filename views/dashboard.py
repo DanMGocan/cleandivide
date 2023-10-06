@@ -62,7 +62,7 @@ def dashboard():
     # Get tasks in total
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner = ?", (table_owner,))
     tasks_total = cursor.fetchall()
-    
+
     # Get tasks for today
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
     tasks_today = cursor.fetchall()

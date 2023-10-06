@@ -146,11 +146,16 @@ def clear_db():
     flash('Database cleared successfully :( ', 'success')
     return redirect(url_for('main'))
 
+
+
+
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
+
     user_id = session.get('user_id') 
-    is_table_owner = get_table_owner_status(user_id)
+    is_table_owner = get_table_owner_status()
+
 
     conn = get_db_connection()
     tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC ;").fetchall()
