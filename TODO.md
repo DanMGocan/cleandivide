@@ -17,3 +17,6 @@
 - add a TOTAL POINTS kind of score for the cleanest cleaning cleaner 
 - privacy statement: we only take the e-mail address and that's it 
 - remove the default values 
+- cannot remove yourself from the DB
+- add caca on towels  
+- check for duplicates in flatmates 

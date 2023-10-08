@@ -64,14 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
     showSection.classList.add('custom-fade');
   }
 
-  // Add event listener to "Add Tasks" button
-  document.getElementById('btnAddTasks').addEventListener('click', function() {
-    switchSections("sectionFlatmates", "sectionTasks");
-  });
+    // Add event listener to "Add Tasks" button
+    document.getElementById('btnAddTasks').addEventListener('click', function(event) {
+      event.preventDefault();
+      switchSections("sectionFlatmates", "sectionTasks");
+    });
 
-  // Add event listener to "Invite Flatmates" button
-  document.getElementById('btnInviteFlatmates').addEventListener('click', function() {
-    switchSections("sectionTasks", "sectionFlatmates");
-  });
-
+    // Add event listener to "Invite Flatmates" button
+    document.getElementById('btnInviteFlatmates').addEventListener('click', function(event) {
+      event.preventDefault();
+      switchSections("sectionTasks", "sectionFlatmates");
+    });
 });
+
+  

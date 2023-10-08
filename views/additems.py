@@ -7,10 +7,10 @@ from views.auth import add_or_get_user
 additems_bp = Blueprint('additems_bp', __name__)
 
 # Parent route #
-
 @additems_bp.route("/add", methods=["GET", "POST"])
 @login_required
 def add_items():
+
     user_id = session.get('user_id') 
     conn = get_db_connection()
     cursor = conn.cursor()
