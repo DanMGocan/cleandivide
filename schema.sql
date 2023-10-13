@@ -1,9 +1,10 @@
 /* delete tables if exists, for a hard reset */
-DROP TABLE IF EXISTS tasks;
-DROP TABLE IF EXISTS rooms;
-DROP TABLE IF EXISTS flatmates;
-DROP TABLE IF EXISTS users; 
 DROP TABLE IF EXISTS task_table;
+DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS flatmates;
+DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -2,6 +2,7 @@
 
 from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
+from flask_mail import Mail
 from views.auth import auth_bp, setup_google, setup_facebook, add_or_get_user
 from views.additems import additems_bp
 from views.helpers import helpers_bp
@@ -26,6 +27,15 @@ app.register_blueprint(helpers_bp)
 app.register_blueprint(generator_bp)
 app.register_blueprint(dashboard_bp)
 
+# Configuration for Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.example.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'your_email@example.com'
+app.config['MAIL_PASSWORD'] = 'your_password'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+mail = Mail(app)
 
 # Using the app instance to handle incoming requests and send answers
 @app.route("/")
@@ -62,13 +72,11 @@ def main():
 def about():
     return render_template("about.html")
 
-# To have the user e-mail address available throughout the app #
+# To have the user status as a home master or member available #
 @app.context_processor
 def inject_table_owner():
     return get_table_owner_status()
 
 # Check if this is the main module being executed.
-if __name__ == '__main__':
-    # Self signed SSL Certificate #
-    context = ('cert.pem', 'key.pem')  # Paths to your SSL certificate and key files
-    app.run(ssl_context=context, debug=True)
+if __name__ == "__main__":
+    app.run(port=5000, debug=True) 

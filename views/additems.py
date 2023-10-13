@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, flash
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
+from flask_mail import Message
+from main import mail
 from models import User, get_db_connection
 from views.auth import add_or_get_user
 
@@ -74,8 +76,6 @@ def add_task():
         flash('Task added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
-
-
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
 def add_room():
@@ -94,6 +94,8 @@ def add_room():
 
 @additems_bp.route("/addflatmate", methods=("GET", "POST"))
 @login_required
+@additems_bp.route("/addflatmate", methods=("GET", "POST"))
+@login_required
 def add_flatmate():
     if request.method == 'POST':
         user_id = session.get('user_id')
@@ -105,5 +107,11 @@ def add_flatmate():
         conn.commit()
         conn.close()
 
+        # Send an email to the flatmate
+        msg = Message('Welcome to Our App!', sender='your_email@example.com', recipients=[flatmate_email])
+        msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
+        mail.send(msg)
+
         flash('Flatmate added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
+

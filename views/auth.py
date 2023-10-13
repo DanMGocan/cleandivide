@@ -90,7 +90,7 @@ def setup_google(app):
 
 @auth_bp.route("/login")
 def login():
-    return google.authorize(callback=url_for('auth_bp.authorized', _external=True))
+    return google.authorize(callback=url_for('auth_bp.authorized', _external=True, _scheme="https"))
 
 @auth_bp.route("/logout")
 def logout():
@@ -150,7 +150,7 @@ def setup_facebook(app):
 
 @auth_bp.route("/login/facebook")
 def login_facebook():
-    return facebook.authorize(callback=url_for('auth_bp.authorized_facebook', _external=True))
+    return facebook.authorize(callback=url_for('auth_bp.authorized_facebook', _external=True, _scheme='https'))
 
 @auth_bp.route("/logout/facebook")
 def logout_facebook():

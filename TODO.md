@@ -20,3 +20,10 @@
 - cannot remove yourself from the DB
 - add caca on towels  
 - check for duplicates in flatmates 
+
+# Paid features
+- calendar for 60 or 90 days
+- email reminder 
+
+# Personal features
+- download CV option

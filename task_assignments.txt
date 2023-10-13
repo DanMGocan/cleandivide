@@ -1,2 +1,0 @@
-{'id': 2, 'description': 'wash the floors', 'points': 8, 'room': 'All the house', 'frequency': 'Weekly', 'assigned_to': 'gocandan@gmail.com'}:
-{'id': 1, 'description': 'doing the dishes', 'points': 15, 'room': 'Kitchen', 'frequency': 'Daily', 'assigned_to': 'ioana.nicolaescu@cnmv.ro'}:
