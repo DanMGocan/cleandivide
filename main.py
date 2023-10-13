@@ -5,7 +5,7 @@ from flask_login import login_required, UserMixin, LoginManager, login_user, log
 from flask_mail import Mail
 from views.auth import auth_bp, setup_google, setup_facebook, add_or_get_user
 from views.additems import additems_bp
-from views.helpers import helpers_bp
+from views.helpers import helpers_bp, mail
 from views.generator import generator_bp
 from views.dashboard import dashboard_bp
 from context_processors import get_table_owner_status
@@ -26,6 +26,9 @@ app.register_blueprint(additems_bp)
 app.register_blueprint(helpers_bp)
 app.register_blueprint(generator_bp)
 app.register_blueprint(dashboard_bp)
+
+# Importing mail object
+mail.init_app(app)
 
 # Configuration for Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.example.com'

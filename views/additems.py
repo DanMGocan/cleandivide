@@ -2,9 +2,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, sessio
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
 from flask_mail import Message
-from main import mail
 from models import User, get_db_connection
 from views.auth import add_or_get_user
+from views.helpers import mail
 
 additems_bp = Blueprint('additems_bp', __name__)
 
@@ -92,8 +92,6 @@ def add_room():
         flash('Room added successfully!', 'success')
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
-@additems_bp.route("/addflatmate", methods=("GET", "POST"))
-@login_required
 @additems_bp.route("/addflatmate", methods=("GET", "POST"))
 @login_required
 def add_flatmate():

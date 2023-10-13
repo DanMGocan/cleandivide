@@ -2,9 +2,12 @@ from flask import Blueprint, redirect, url_for, session, render_template, flash,
 from flask_login import login_required
 from models import get_db_connection
 from context_processors import get_table_owner_status
+from flask_mail import Mail
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
+# Helper for Mail logic
+mail = Mail()
 
 
 @helpers_bp.route('/clear_db', methods=['POST'])
