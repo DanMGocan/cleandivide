@@ -12,7 +12,9 @@ CREATE TABLE users (
     last_login DATETIME,
     times_logged INTEGER DEFAULT 0,
     default_database INTEGER DEFAULT 0,
-    table_owner INTEGER DEFAULT 0
+    table_owner INTEGER DEFAULT 0,
+    points INTEGER DEFAULT 0, 
+    awards TEXT
 );
 
 CREATE TABLE rooms (

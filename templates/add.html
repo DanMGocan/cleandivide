@@ -17,7 +17,7 @@
 <div class="row d-flex justify-content-center my-5">
     <a href="#" class="btn default-dashboard-button tooltip-button" id="btnAddTasks">Add Tasks <small>({{ template_data.tasks | length }} added)</small></a>
     <a href="#" class="btn default-dashboard-button ml-3 tooltip-button" id="btnInviteFlatmates">Invite Flatmates <small>({{ template_data.flatmates | length }} invited)</small></a>
-    {% if template_data.flatmates|length == 0 or template_data.tasks|length == 0 %}
+    {% if template_data.flatmates|length == 0 or template_data.tasks|length < 2 %}
     <span data-bs-toggle="tooltip" data-bs-placement="top" title="Not enough flatmates or tasks added!" class=""><a href="" class="btn default-dashboard-button ml-3 tooltip-button disabled" >Cannot generate</a></span>
     {% else %}
     <a href="{{ url_for('generator_bp.generate') }}" class="btn default-dashboard-button ml-3 tooltip-button" data-tooltip="Let's go!">Generate cleaning schedule</a>
@@ -118,7 +118,7 @@
                         <!-- Buttons Row -->
                         <div class="form-row d-flex align-items-center justify-content-center mt-2">
                             <div class="col-10 px-0">
-                                <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
+                                <input type="submit" value="Send invitation" class="btn default-dashboard-button w-100 px-0" />
                             </div>
                         </div>
                     </form>
@@ -127,11 +127,11 @@
     
             <!-- Right Side - Table or Alert Section -->
             <div class="col-12 col-lg-5 p-5 my-auto mx-2 add-flatmate-section">
-                {% if template_data.flatmates|length > 1 %}
+                {% if template_data.flatmates|length > 0 %}
                     <h6 class="text-center">Flatmates added so far:</h6>
                     <table class="table table-striped">
                         <tbody>
-                            {% for flatmate in template_data.flatmates[:6] %}
+                            {% for flatmate in template_data.flatmates %}
                                 <tr>
                                     <td>{{ flatmate.email }}</td>
                                     <td>

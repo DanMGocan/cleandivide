@@ -2,16 +2,14 @@
 
 {% block content %}
 
+    <p>You have not been invited as a House Member so you are to become a House Master instead. If this is not why
+        you are here, please close the site and wait until your house master sends you an invitation. Otherwise, click
+        the button and start ruining people's lives!
+    </p>
     <div class="row col-12 d-flex justify-content-center align-items-center">
         <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
         <i class="fa-brands fa-google fa-lg"></i></i> Become house master
         </a>
     </div>
   
-    <div class="row col-12 d-flex justify-content-center align-items-center">
-        <a href="{{ url_for('helpers_bp.become_house_member') }}" class="btn mx-2 rounded mx-auto" id="google-button">
-        <i class="fa-brands fa-google fa-lg"></i></i> Become house member
-        </a>
-    </div>
-
 {% endblock %}

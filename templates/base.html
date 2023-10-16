@@ -33,7 +33,7 @@
                 {% if current_user.is_authenticated %}
                 <small class="text-white mt-0 pt-0">(Signed in as {{ user_id }}, {{ table_owner_title }} <a href="/logout">Logout</a>)</small>
                 {% else %}
-                <small class="text-white mt-0 pt-0">(You are not logged in but you can do it <a href="/login">here</a>)</small>
+                <small class="text-white mt-0 pt-0">(You are not logged in)</small>
                 {% endif %}
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -50,6 +50,9 @@
                 <!-- Conditional to show login or logout, depending if the user is logged in -->
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
+                    <a href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="/logout">Logout</a>
                 </li>
                 <li class="nav-item">
@@ -62,10 +65,6 @@
                     {% endif %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/dashboard">Dashboard</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/login">Login</a>
                 </li>
                 {% endif %}
 

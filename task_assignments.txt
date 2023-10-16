@@ -1,0 +1,2 @@
+{'id': 1, 'description': 'Cleaning cat shit', 'points': 60, 'room': 'Bedroom', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:
+{'id': 2, 'description': 'Feeding cat', 'points': 15, 'room': 'Bedroom', 'frequency': 'Daily', 'assigned_to': 'gocandan@gmail.com'}:

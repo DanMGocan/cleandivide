@@ -1,0 +1,6 @@
+2023-10-16 12:42:08,279 - main - ERROR - Failed to add flatmate due to [Errno 11001] getaddrinfo failed
+2023-10-16 12:42:18,663 - main - ERROR - Failed to add flatmate due to [Errno 11001] getaddrinfo failed
+2023-10-16 13:07:46,248 - main - ERROR - Failed to add flatmate due to Connection unexpectedly closed
+2023-10-16 13:12:47,963 - main - ERROR - Failed to add flatmate due to (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials bw17-20020a0560001f9100b0032da4f70756sm5542359wrb.5 - gsmtp')
+2023-10-16 13:32:22,087 - main - ERROR - Failed to add flatmate due to 
+2023-10-16 13:34:01,174 - main - ERROR - Failed to add flatmate due to 

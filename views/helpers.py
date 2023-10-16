@@ -31,8 +31,6 @@ def clear_db():
     return redirect(url_for('main'))
 
 
-
-
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
@@ -79,7 +77,25 @@ def mark_complete():
         task_id = int(request.form.get('task_id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (task_id,))
+
+        # Get the points value of the task
+        cursor.execute("SELECT points FROM tasks WHERE id = ?", (task_id,))
+        task_points = cursor.fetchone()
+
+        if task_points:
+            task_points = task_points[0]  # Extract points from the tuple
+        else:
+            flash("No such task", "warning")
+            return redirect(request.referrer or url_for("dashboard"))
+
+        # Mark the task as complete in 'task_table'
+        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE task_id = ?", (task_id,))
+
+        # Update the user's points
+        user_id = session.get('user_id')
+        cursor.execute("UPDATE users SET points = points + ? WHERE user_id = ?", (task_points, user_id))
+
+
         conn.commit()
         conn.close()
 
@@ -93,6 +109,7 @@ def mark_complete():
 
     return redirect(request.referrer or url_for("dashboard"))
 
+
 @helpers_bp.route('/become_house_master', methods=["GET", 'POST'])
 @login_required
 def become_house_master():
@@ -102,16 +119,35 @@ def become_house_master():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Update the table_owner value to 1
-    cursor.execute("UPDATE users SET table_owner = 1 WHERE user_id = ?", (user_id,))
+    # Fetch the current times_logged value
+    user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
+    times_logged = user_record[0] if user_record else 0
+
+    # Update the table_owner value to 1 and increment times_logged by 1
+    cursor.execute("UPDATE users SET table_owner = 1, times_logged = ? WHERE user_id = ?", (times_logged + 1, user_id,))
     conn.commit()
     conn.close()
 
     return redirect(url_for('additems_bp.add_items'))
 
+
 @helpers_bp.route('/become_house_member', methods=["GET", 'POST'])
 @login_required
 def become_house_member():
-    
-    # set table owner value to 0
+    user_id = session.get('user_id')
+
+    # Establish a database connection and cursor
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch the current times_logged value
+    user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
+    times_logged = user_record[0] if user_record else 0
+
+    # Increment times_logged by 1
+    cursor.execute("UPDATE users SET times_logged = ? WHERE user_id = ?", (times_logged + 1, user_id,))
+    conn.commit()
+    conn.close()
+
     return redirect(url_for('dashboard_bp.dashboard'))
+

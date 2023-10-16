@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Profile | {{ user_id }}{% endblock %}
+{%block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h5>Name: </h5> {{ user_id }}
+<h1>{{ user.username }}'s Profile</h1>
+<p>Points: {{ user.points }}</p>
+<p>Awards: {{ user.awards }}</p>
+
+
+{% endblock%}

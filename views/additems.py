@@ -1,10 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session, flash
+from flask import Blueprint, render_template, redirect, url_for, request, session, flash, current_app
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from flask_oauthlib.client import OAuth
 from flask_mail import Message
+
 from models import User, get_db_connection
 from views.auth import add_or_get_user
 from views.helpers import mail
+
+from views.html_helpers import email_text
 
 additems_bp = Blueprint('additems_bp', __name__)
 
@@ -39,7 +42,7 @@ def add_items():
 @login_required
 def add_task():
     if request.method == 'POST':
-        description = request.form['description'].lower()
+        description = request.form['description'].capitalize()
         points = int(request.form["points"])
         room = request.form["room"]
         frequency = request.form["frequency"]
@@ -56,25 +59,41 @@ def add_task():
 
         points *= frequency_multiplier.get(frequency, 1)
         
-        # Check if the task description already exists
         conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute('SELECT id FROM tasks WHERE user_id = ? AND description = ?', (user_id, description))
-        task_exists = cursor.fetchone()
+        try:
+            # Check if the room already exists
+            cursor = conn.cursor()
+            cursor.execute('SELECT id FROM rooms WHERE user_id = ? AND name = ?', (user_id, room))
+            room_exists = cursor.fetchone()
 
-        if task_exists:
-            # Increment the used_count for the task
-            conn.execute('UPDATE tasks SET used_count = used_count + 1 WHERE id = ?', (task_exists[0],))
-        else:
-            # Insert new task
-            conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', 
-                         (user_id, description, points, room, frequency))
+            if not room_exists:
+                # Insert new room
+                conn.execute('INSERT INTO rooms (user_id, name) VALUES (?, ?)', (user_id, room))
 
-        conn.commit()
-        conn.close()
+            # Check if the task description already exists
+            cursor.execute('SELECT id FROM tasks WHERE user_id = ? AND description = ?', (user_id, description))
+            task_exists = cursor.fetchone()
 
-        flash('Task added successfully!', 'success')
+            if task_exists:
+                # Increment the used_count for the task
+                conn.execute('UPDATE tasks SET used_count = used_count + 1 WHERE id = ?', (task_exists[0],))
+            else:
+                # Insert new task
+                conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', 
+                             (user_id, description, points, room, frequency))
+
+            conn.commit()
+
+            flash('Task added successfully!', 'success')
+        except Exception as e:
+            current_app.logger.error(f"Failed to add task due to {e}")
+            flash('An error occurred. Please try again.', 'danger')
+        finally:
+            conn.close()
+
         return redirect(url_for('main'))  # Redirect to user's dashboard
+
+
 
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
@@ -98,18 +117,31 @@ def add_flatmate():
     if request.method == 'POST':
         user_id = session.get('user_id')
         flatmate_email = request.form["email"]  
-        
-        # Add task to database
+
         conn = get_db_connection()
-        conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
-        conn.commit()
-        conn.close()
+        try:
+            # Check if flatmate already exists
+            existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ?', (flatmate_email,)).fetchone()
+            if existing_flatmate:
+                flash('Flatmate already exists and cloning is but a distant dream!', 'danger')
+                return redirect(url_for('main'))  # Redirect to user's dashboard
 
-        # Send an email to the flatmate
-        msg = Message('Welcome to Our App!', sender='your_email@example.com', recipients=[flatmate_email])
-        msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
-        mail.send(msg)
+            # If not, proceed with adding the flatmate
+            conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
+            conn.commit()
 
-        flash('Flatmate added successfully!', 'success')
+            # Send an email to the flatmate
+            msg = Message("Welcome to DivideNDust! Stop procrastinating... from tomorrow!", sender=current_app.config['MAIL_USERNAME'], recipients=[flatmate_email])
+            # msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
+            msg.html = email_text
+            mail.send(msg)
+
+            flash('Flatmate added successfully!', 'success')
+        except Exception as e:
+            current_app.logger.error(f"Failed to add flatmate due to {e}")
+            flash('An error occurred. I am very bad at this, errors are very common!', 'danger')
+        finally:
+            conn.close()
+
         return redirect(url_for('main'))  # Redirect to user's dashboard
 
