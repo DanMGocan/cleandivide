@@ -12,6 +12,7 @@ from views.profile import profile_bp
 from context_processors import get_table_owner_status
 
 from models import get_db_connection
+from math import floor
 
 import logging 
 from logging.handlers import RotatingFileHandler
@@ -42,6 +43,15 @@ app.register_blueprint(profile_bp)
 # Importing mail object
 mail.init_app(app)
 mail = Mail(app)
+
+# At this point only God understands what is happening
+# Custom Jinja2 filter to floor a number
+def floor(value):
+    """Return the floor of the value."""
+    import math
+    return math.floor(value)
+app.jinja_env.filters['floor'] = floor
+
 
 # Using the app instance to handle incoming requests and send answers
 @app.route("/")
@@ -95,3 +105,5 @@ def inject_table_owner():
 # Check if this is the main module being executed.
 if __name__ == "__main__":
     app.run(port=5000, debug=True) 
+
+

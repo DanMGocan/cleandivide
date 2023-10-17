@@ -32,3 +32,8 @@ def user_profile(user_id):
         }
 
         return render_template('profile.html', user=user_dict)
+
+def purchase_tools(total_points):
+    points_based_awards = {}
+
+

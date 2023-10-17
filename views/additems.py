@@ -19,7 +19,7 @@ def add_items():
     user_id = session.get('user_id') 
     conn = get_db_connection()
     cursor = conn.cursor()
-    tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
+    tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC", (user_id, )).fetchall()
     rooms = conn.execute("SELECT * FROM rooms WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
     flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
     popular_tasks = conn.execute("SELECT description FROM tasks GROUP BY description ORDER BY COUNT(description) DESC LIMIT 100").fetchall()

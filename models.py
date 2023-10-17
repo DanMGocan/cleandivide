@@ -6,6 +6,6 @@ class User(UserMixin):
         self.id = id
 
 def get_db_connection():
-    conn = sqlite3.connect("database.db")
+    conn = sqlite3.connect('database.db', timeout=10)  # 10 seconds
     conn.row_factory = sqlite3.Row
     return conn

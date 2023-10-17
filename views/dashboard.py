@@ -9,9 +9,11 @@ from datetime import datetime
 from models import get_db_connection
 import sqlite3
 
-
-
-
+power_costs = {
+    "reassign": 90,
+    "skip": 150,
+    "procrastinate": 120
+}
 
 calendar = {}
 dashboard_bp = Blueprint('dashboard_bp', __name__)
@@ -19,13 +21,20 @@ dashboard_bp = Blueprint('dashboard_bp', __name__)
 @dashboard_bp.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-    user_id = session.get('user_id')
 
-    if not user_id:
-        return "Please login first", 401
 
     conn = get_db_connection()
     cursor = conn.cursor()
+
+    # Get the total points per user #
+    cursor.execute('''
+        SELECT task_owner, SUM(task_points) AS total_points
+        FROM task_table
+        GROUP BY task_owner
+    ''')
+    flatmate_points_results = cursor.fetchall()
+
+    user_id = session.get('user_id')
 
     # Ensure rows are returned as dictionaries, not tuples
     cursor.row_factory = sqlite3.Row
@@ -78,16 +87,17 @@ def dashboard():
     own_tasks_today = [task for task in tasks_today if task['task_owner'] == str(user_id)]
     own_tasks_tomorrow = [task for task in tasks_tomorrow if task['task_owner'] == str(user_id)]
     flatmates_tasks_today = [task for task in tasks_today if task['task_owner'] != str(user_id)]
-
     return render_template(
         'dashboard.html',
         total_tasks=total_tasks, 
         table_owner=table_owner,
         own_tasks_today=own_tasks_today, 
         flatmates_tasks_today=flatmates_tasks_today, 
-        own_tasks_tomorrow=own_tasks_tomorrow
-    )
+        own_tasks_tomorrow=own_tasks_tomorrow,
+        power_costs=power_costs,
+        flatmates_points=flatmate_points_results
 
+    )
 
 @dashboard_bp.route("/dashboard_monthly", methods=["GET", "POST"])
 @login_required
@@ -120,8 +130,6 @@ def dashboard_monthly():
     next_30_days = [(datetime.now() + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(30)]
 
     return render_template('monthly.html', tasks_by_date=tasks_by_date, next_30_days=next_30_days)
-
-
 
 
 

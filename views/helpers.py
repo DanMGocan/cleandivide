@@ -3,6 +3,8 @@ from flask_login import login_required
 from models import get_db_connection
 from context_processors import get_table_owner_status
 from flask_mail import Mail
+from random import choice 
+from views.dashboard import power_costs
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
@@ -37,7 +39,6 @@ def viewdata():
 
     user_id = session.get('user_id') 
     is_table_owner = get_table_owner_status()
-
 
     conn = get_db_connection()
     tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC ;").fetchall()
@@ -74,12 +75,12 @@ def delete_entry():
 @login_required
 def mark_complete():
     try:
-        task_id = int(request.form.get('task_id'))  # Cast to int
+        id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
 
         # Get the points value of the task
-        cursor.execute("SELECT points FROM tasks WHERE id = ?", (task_id,))
+        cursor.execute("SELECT task_points FROM task_table WHERE id = ?", (id,))
         task_points = cursor.fetchone()
 
         if task_points:
@@ -89,7 +90,7 @@ def mark_complete():
             return redirect(request.referrer or url_for("dashboard"))
 
         # Mark the task as complete in 'task_table'
-        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE task_id = ?", (task_id,))
+        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (id,))
 
         # Update the user's points
         user_id = session.get('user_id')
@@ -100,7 +101,7 @@ def mark_complete():
         conn.close()
 
         if cursor.rowcount:
-            flash(f"Task {task_id} successfully marked as complete", "success")
+            flash(f"Task {id} successfully marked as complete", "success")
         else:
             flash("No such task", "warning")
     except Exception as e:
@@ -151,3 +152,81 @@ def become_house_member():
 
     return redirect(url_for('dashboard_bp.dashboard'))
 
+@helpers_bp.route('/reassign_task', methods=["GET", 'POST'])
+@login_required
+def reassign_task():
+    cost = power_costs["reassign"]
+    user_id = session["user_id"]
+    try:
+        id = int(request.form.get('id'))  # Cast to int
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Get number of points of the user 
+        cursor.execute("SELECT points FROM users WHERE user_id = ?", (user_id,))
+        row = cursor.fetchone()
+        if row:
+            available_points = row[0]
+        else:
+            # Handle the case where no matching row was found, e.g.:
+            available_points = 0  # Or set a default value, or raise an error, etc.
+
+
+        if available_points < cost:
+            flash("Not enough points for this I am afraid", "warning")
+            return redirect(url_for("dashboard_bp.dashboard"))
+
+        # Get the table_owner of the task
+        cursor.execute("SELECT table_owner FROM task_table WHERE id = ?", (id,))
+        table_owner = cursor.fetchone()
+        if not table_owner:
+            flash("No such task", "warning")
+            return redirect(url_for("dashboard_bp.dashboard"))
+        table_owner = table_owner[0]
+
+        # Retrieve all flatmates associated with the table_owner
+        cursor.execute("SELECT id, email FROM flatmates WHERE user_id = ?", (table_owner,))
+        flatmates = cursor.fetchall()
+
+        if not flatmates or len(flatmates) <= 1:  # No other flatmates to reassign to
+            flash("No other flatmates available for reassignment", "warning")
+            return redirect(url_for("dashboard_bp.dashboard"))
+
+        # Remove current task_owner from potential reassignment list
+        cursor.execute("SELECT task_owner FROM task_table WHERE id = ?", (id,))
+        current_task_owner = cursor.fetchone()[0]
+        flatmates = [flatmate for flatmate in flatmates if flatmate[0] != current_task_owner]
+
+        # Randomly select a flatmate
+        flatmate_id, flatmate_email = choice(flatmates)
+
+        # Reassign task to the new flatmate
+        cursor.execute("UPDATE task_table SET task_owner = ? WHERE id = ?", (flatmate_email, id))
+
+        # Decrease points from the user for the reassign action
+        cursor.execute("UPDATE users SET points = points - ? WHERE user_id = ?", (cost, table_owner))
+
+
+        conn.commit()
+        conn.close()
+
+        if cursor.rowcount:
+            flash(f"Task {id} successfully reassigned to {flatmate_email}", "success")
+        else:
+            flash("Reassignment failed", "warning")
+    except Exception as e:
+        print("An error occurred:", str(e))
+        flash("An error occurred while reassigning the task", "error")
+
+    return redirect(url_for("dashboard_bp.dashboard"))
+
+
+@helpers_bp.route('/skip_task', methods=["GET", 'POST'])
+@login_required
+def skip_task():
+    pass
+
+@helpers_bp.route('/procrastinate_task', methods=["GET", 'POST'])
+@login_required
+def procrastinate_task():
+    pass
