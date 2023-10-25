@@ -1,26 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{%block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}">
+
+{% endblock %}
 
 <div class="row col-12 d-flex flex-column justify-content-center align-items-center" id="index-title-section">
-    <h1 class="text-center mt-5 col-12">Welcome to Clean Divide</h1>
-    <p class="col-md-6 text-center mt-0 pt-0"> Clean Divide can help you easily divide the cleaning tasks in your apartment
-        and keep everyone accountable that the work gets done. <strong>Be warned</strong> though,
+    <h1 class="text-center mt-5 mb-0 col-12">Welcome to <strong>DivideNDust</strong></h1>
+    <small class="mt-0 pt-0 mb-5">Where chores meet red tape!</small>
+
+    <p class="col-md-8 text-center mt-0 pt-0">
+      DivideNDust can help you easily divide the cleaning tasks in your home
+        and keep everyone accountable that the work gets done. Easily add your tasks, invite 
+        your house colleagues and generate a 30 days cleaning schedule. Log in daily to mark 
+        your tasks as complete. Win <strong>points</strong> every 
+        time you complete a task and use those points creatively (mainly pass your tasks to 
+        someone else). Cleaning is never fun, but having an app about it, could be.
+        <br>
+        <br>
+        <strong>Be warned</strong> though,
         it's still you that needs to do the cleaning, I'm just doing the app.</p>
 </div>
+<br>
 
 <div class="row col-12 d-flex justify-content-center align-items-center">
-  <a href="/login" class="btn mx-2 rounded mx-auto" id="google-button">
-    <i class="fa-brands fa-google fa-lg"></i></i> Continue with Google
+  <span class="mr-3 h4">Login here:</span>
+  
+  <a href="/login" class="btn btn-primary square-btn mx-2">
+      Login <i class="fa-brands fa-google fa-lg"></i>
+  </a>
+  
+  <a href="/login/facebook" class="btn btn-primary square-btn mx-2">
+      Login <i class="fa-brands fa-facebook fa-lg"></i>
   </a>
 </div>
-
-<div class="row col-12 d-flex justify-content-center align-items-center">
-  <a href="/login/facebook" class="btn mx-2 rounded mx-auto" id="google-button">
-    <i class="fa-brands fa-google fa-lg"></i></i> Continue with Facebook
-  </a>
-</div>
-
 
     
     <hr>

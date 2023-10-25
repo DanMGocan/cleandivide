@@ -1,15 +1,7 @@
-- add user 
-- add tasks
-- multiplier for rooms (bathroom at 1.1 for example)
-- option to Add User, Add Task, Add Room
+
 - download the standard task mater for 2, 3, 4 flatmates in a standard apartment
 - database sanitizing
-- load essential DB or start from scratch option? 
-- last login for users
 - add date to tasks and such, to have them deleted yearly
-- add incremental variable to tasks
-- ULTRA RANDOM MODE
-- backup?
 - platform for updates
 - in the About file, explain the software process and cycle of life
 - Generate function should invite all flatmates to it, increment all tasks by 1, assign tables to users 
@@ -20,6 +12,10 @@
 - cannot remove yourself from the DB
 - add caca on towels  
 - check for duplicates in flatmates 
+- limit the amount of flat mates 
+- add titles that you can purchase with points
+- add hard limits for both number of tasks and flatmates
+
 
 # Paid features
 - calendar for 60 or 90 days

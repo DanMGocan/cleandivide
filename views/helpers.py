@@ -11,7 +11,6 @@ helpers_bp = Blueprint('helpers_bp', __name__)
 # Helper for Mail logic
 mail = Mail()
 
-
 @helpers_bp.route('/clear_db', methods=['POST'])
 @login_required
 def clear_db():
@@ -37,9 +36,13 @@ def clear_db():
 @login_required
 def viewdata():
 
-    user_id = session.get('user_id') 
     is_table_owner = get_table_owner_status()
+    print(is_table_owner)
 
+    if is_table_owner["is_table_owner"] == 0:
+        flash("You are not allowed here", "danger")
+        return redirect(url_for("dashboard_bp.dashboard"))
+    
     conn = get_db_connection()
     tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC ;").fetchall()
     rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC ;").fetchall()
@@ -49,6 +52,7 @@ def viewdata():
 @helpers_bp.route('/delete', methods=['POST'])
 @login_required
 def delete_entry():
+    user_id = session["user_id"]
     table_name = request.form.get('table_name')
     id_to_delete = int(request.form.get('id'))  # Cast to int
     conn = get_db_connection()
@@ -58,6 +62,11 @@ def delete_entry():
         flash("Invalid table name", "danger")
         return redirect(url_for("main"))
 
+    user_id_to_delete = conn.execute("SELECT user_id FROM flatmates WHERE id=?", (id_to_delete,)).fetchone()
+    if user_id_to_delete and user_id_to_delete[0] == user_id:
+        flash("You cannot delete yourself...", "danger")
+        return redirect(url_for("main"))
+    
     cursor = conn.cursor()
     cursor.execute(f"DELETE FROM {table_name} WHERE id=?", (id_to_delete,))
     conn.commit()

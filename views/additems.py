@@ -41,6 +41,7 @@ def add_items():
 @additems_bp.route("/addtask", methods=("GET", "POST"))
 @login_required
 def add_task():
+    #TODO: to add an enumerator, how many times a task has been used 
     if request.method == 'POST':
         description = request.form['description'].capitalize()
         points = int(request.form["points"])
@@ -92,8 +93,6 @@ def add_task():
             conn.close()
 
         return redirect(url_for('main'))  # Redirect to user's dashboard
-
-
 
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
