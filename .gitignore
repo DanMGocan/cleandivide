@@ -1,2 +1,3 @@
 /* Ignoring the python venv file */
 __pycache__/
+venv/
