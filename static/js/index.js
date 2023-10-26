@@ -1,3 +1,4 @@
+// 
 document.addEventListener('DOMContentLoaded', (event) => {
     const customBoxes = document.querySelectorAll('.custom-box');
   

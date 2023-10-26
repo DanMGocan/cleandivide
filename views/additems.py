@@ -23,6 +23,9 @@ def add_items():
     rooms = conn.execute("SELECT * FROM rooms WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
     flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
     popular_tasks = conn.execute("SELECT description FROM tasks GROUP BY description ORDER BY COUNT(description) DESC LIMIT 100").fetchall()
+    task_table_exists = conn.execute("SELECT 1 FROM task_table WHERE table_owner = ? LIMIT 1", (user_id,)).fetchone() is not None
+
+
 
     cursor.execute("SELECT default_database FROM users WHERE user_id=?", (user_id, ))
     row = cursor.fetchone()
@@ -34,8 +37,10 @@ def add_items():
         "flatmates": flatmates,
         "user_email": user_id,
         "default_database_bool": default_database_bool,
-        "popular_tasks": popular_tasks
+        "popular_tasks": popular_tasks,
+        "task_table_exists": task_table_exists
     }
+
     return render_template('add.html', template_data = template_data) # For logged-in users
 
 @additems_bp.route("/addtask", methods=("GET", "POST"))

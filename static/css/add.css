@@ -1,45 +1,12 @@
-.add-room-section {
-    position: relative;
-    border: 2px solid var(--eggplant);
-    border-radius: 10px;
-    z-index: 1;
-    }
-    
-.add-room-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../media/img/add_rooms.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.25; /* Adjust the opacity here */
-    z-index: -1;
-}
-
 .add-flatmate-section {
     position: relative;
-    border: 2px solid var(--eggplant);
+    color: var(--charcoal);
+    background-color: var(--persian-green);
+    border: 2px solid var(--charcoal);
     border-radius: 10px;
     z-index: 1;
     }
     
-.add-flatmate-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../media/img/add_flatmates.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.25; /* Adjust the opacity here */
-    z-index: -1;
-}
-
 .add-tasks-section {
     position: relative;
     border: 2px solid var(--eggplant);

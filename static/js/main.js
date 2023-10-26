@@ -51,3 +51,25 @@ if (window.location.hash && window.location.hash == '#_=_') {
         document.body.scrollLeft = scroll.left;
     }
 }
+
+// Gradient change on scroll
+window.addEventListener('scroll', handleScroll);
+
+function handleScroll() {
+  const scrollTop = window.scrollY;
+  const scrollPercent = scrollTop / (document.body.scrollHeight - window.innerHeight);
+  const offset = scrollPercent * 7;  // 5% max offset
+
+  document.body.style.setProperty('--stop1', `${5 + offset}%`);
+  document.body.style.setProperty('--stop2', `${10 + offset}%`);
+  document.body.style.setProperty('--stop3', `${90 - offset}%`);
+  document.body.style.setProperty('--stop4', `${95 - offset}%`);
+}
+
+// Initial call to set the gradient on page load
+handleScroll();
+
+
+
+
+  

@@ -1,26 +1,11 @@
 * {
-    border: 1px dotted rgba(0, 0, 0, 0.0);
-    /* font-family: 'Montserrat', sans-serif;
-    font-family: 'Quicksand', sans-serif; */
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
 }
 
-a {
-    color: var(--hunyadi-yellow);
-}
-
-.custom-box a {
-    color: var(--prussian-blue)
-}
-
-.rounded-custom {
-    border-radius:10%;  
-  }
-
-  body::before {
+/* body::before {
     content: "";
-    position: fixed; /* Fixed/sticky position */
+    position: fixed; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -28,134 +13,174 @@ a {
     background-image: url("../media/img/background.png");
     background-size: cover;
     background-repeat: no-repeat;
-    opacity: 0.5; /* Add transparency */
-    pointer-events: none; /* Allow clicks to pass through */
-    z-index: -1; /* Sit behind the content */
-  }
+    opacity: 0.5; 
+    pointer-events: none; 
+    z-index: -1; 
+  } */
 
-  .howitworks {
-    color: var(--prussian-blue);
-    font-size: 4rem;
-    font-weight: 700;
-  }
-
-  .custom-box {
-    position: relative;
-    border: 2px var(--prussian-blue) solid;
-    border-radius: 10px;
-    height: 200px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    flex-direction: column;   /* Stack child elements vertically */
-  }
-  
-  /* Background images */
-  #box1::before {
-    content: "";
-    background-image: url('../media/img/index_1.png');
-    /* common background styles */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  body {
+    --stop1: 5%;
+    --stop2: 10%;
+    --stop3: 90%;
+    --stop4: 95%;
+    margin: 0;
+    background: linear-gradient(45deg,
+        hsla(197, 37%, 24%, 0.99) 0%,
+        hsla(197, 37%, 24%, 0.99) var(--stop1),
+        hsla(173, 58%, 39%, 0.99) var(--stop1),
+        hsla(173, 58%, 39%, 0.99) var(--stop2),
+        hsla(43, 74%, 66%, 0.7) var(--stop2),
+        hsla(43, 74%, 66%, 0.7) var(--stop3),
+        hsla(27, 87%, 67%, 0.99) var(--stop3),
+        hsla(27, 87%, 67%, 0.99) var(--stop4),
+        hsla(12, 76%, 61%, 0.99) var(--stop4),
+        hsla(12, 76%, 61%, 0.99) 100%);
     background-size: cover;
-    opacity: 0.2;
-    z-index: -1;
-  }
-  
-  #box2::before {
-    content: "";
-    background-image: url('../media/img/index_2.png');
-    /* common background styles */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    opacity: 0.2;
-    z-index: -1;
-  }
-  
-  #box3::before {
-    content: "";
-    background-image: url('../media/img/index_3.png');
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    opacity: 0.2;
-    z-index: -1;
+    background-attachment: fixed;
   }
 
-    .number, .hidden-text {
-    transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    }
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  transform: translateX(25%);
+  height: 100%;
+  background-image: url(../media/img/backgroundmain.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  z-index: -1;
+}
 
-    .number {
-    font-size: 5rem;
-    font-weight: 700;
-    opacity: 1;
-    }
+.howitworks {
+  color: var(--prussian-blue);
+  font-size: 4rem;
+  font-weight: 700;
+}
 
-    .hidden-text {
-    opacity: 0;
-    }
+.custom-box {
+  position: relative;
+  border: 3px var(--charcoal) dashed;
+  border-radius: 10px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.custom-box img {
+  position: absolute;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  z-index: 1; /* Ensure image is above the box content but below the number */
+}
+
+.number {
+  font-size: 2em;
+  color: var(--charcoal);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensure number is above the image */
+}
+
+.custom-box:hover {
+  transform: scale(1.07);
+  border-color: var(--charcoal); /* Show border on hover */
+}
+
+.custom-box:hover img {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Background images */
+#box1 {
+  background-color: var(--saffron);
+}
+
+#box2 {
+  background-color: var(--sandy-brown);
+}
+
+#box3 {
+  background-color: var(--burnt-sienna);
+}
+
+.number,
+.hidden-text {
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.number {
+  font-size: 5rem;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.hidden-text {
+  opacity: 0;
+}
 
 /* Gradient background for navbar */
 .navbar {
-    background: linear-gradient(90deg, var(--dark-purple), var(--eggplant), var(--prussian-blue));
-  }
-  
-  /* Font styles */
-  .navbar-brand {
-    font-weight: bold;
-    color: var(--hunyadi-yellow) !important;
-  }
-  
-  .nav-link {
-    color: var(--bittersweet-shimmer) !important;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .nav-link:hover {
-    color: var(--hunyadi-yellow) !important;
-  }
-  
+  background-color: var(--burnt-sienna) !important;
+  border-bottom: 4px dashed var(--burnt-sienna);
+}
+
+/* Font styles */
+.navbar-brand {
+  font-weight: bold;
+  color: var(--charcoal) !important;
+}
+
+.nav-link {
+  color: var(--charcoal) !important;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--persian-green) !important;
+  transform: scale(1.2);
+}
+
+#signedAs {
+  color: var(--charcoal)
+}
+
+
 #index-title-section {
-    color: var(--prussian-blue);
+  color: var(--prussian-blue);
 }
 
 #linkedin-button {
-    background-color: rgb(0, 119, 181);
-}
-
-
-
-.question-button {
-  color: var(--hunyadi-yellow);
-  background-color: var(--dark-purple);
+  background-color: rgb(0, 119, 181);
 }
 
 #google-button {
   font-size: 1.2rem;
   font-weight: 700;
-  border: 2px rgb(15 157 88) solid;
-  color: #0f9d58; /* Initial Google green color */
+  border: 3px rgb(15 157 88) solid;
+  border-radius: 8px;
+  color: #0f9d58;
+  /* Initial Google green color */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
 #google-button:hover {
-  background-color: #0f9d58; /* Google green color on hover */
+  background-color: #0f9d58;
+  /* Google green color on hover */
   color: white;
 }
 
@@ -167,11 +192,45 @@ a {
   color: white;
 }
 
+#facebook-button {
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 3px rgb(66 103 178) solid;
+  border-radius: 8px;
+  color: #4267B2;
+  /* Initial Google green color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+#facebook-button:hover {
+  background-color: #4267B2;
+  /* Google green color on hover */
+  color: white;
+}
+
+#facebook-button i.fa-google {
+  transition: color 0.3s ease;
+}
+
+#facebook-button:hover i.fa-google {
+  color: white;
+}
+
 .default-dashboard-button {
-  font-weight: 600;
-  color: var(--dark-purple);
-  background-color: var(--hunyadi-yellow);
-  }
+  background-color: var(--charcoal);
+  color: var(--saffron);
+  transition: background-color 0.3s, color 0.3s; /* smooth transition */
+  padding: 10px;
+  font-weight: bold;
+  border:2px dashed var(--charcoal)
+}
+
+.default-dashboard-button:hover {
+  background-color: var(--saffron);
+  color: var(--charcoal);
+}
+
 
 /* Custom tooltip */
 .custom-tooltip {
@@ -181,8 +240,25 @@ a {
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 12px;
-  z-index: 100000; /* Make sure it appears above other content */
-  pointer-events: none; /* Ensure the tooltip doesn't interfere with clicks */
+  z-index: 100000;
+  /* Make sure it appears above other content */
+  pointer-events: none;
+  /* Ensure the tooltip doesn't interfere with clicks */
   display: none;
   opacity: 0.8;
+}
+
+.footer {
+  color: var(--saffron);
+  background-color: var(--charcoal) !important;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1; /* Ensure the footer sits below the image */
+}
+
+.footer a {
+  color: var(--charcoal) !important;
+  transition: color 0.3s ease-in-out;
 }

@@ -2,8 +2,8 @@
 
 from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
-from flask_mail import Mail
 from views.auth import auth_bp, setup_google, setup_facebook, add_or_get_user
+from flask_mail import Mail
 from views.additems import additems_bp
 from views.helpers import helpers_bp, mail
 from views.generator import generator_bp

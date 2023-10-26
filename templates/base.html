@@ -9,9 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
     {% block custom_css %} {% endblock %}
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,11 +29,6 @@
         <div class="container">
             <div class="d-flex flex-column">
                 <a class="navbar-brand font-weight-bold mb-0 pb-0" href="{{ url_for('main') }}">DivideNDust</a>
-                {% if current_user.is_authenticated %}
-                <small class="text-white mt-0 pt-0">(Signed in as {{ user_id }}, {{ table_owner_title }} <a href="/logout">Logout</a>)</small>
-                {% else %}
-                <small class="text-white mt-0 pt-0">(You are not logged in)</small>
-                {% endif %}
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,11 +44,8 @@
                 <!-- Conditional to show login or logout, depending if the user is logged in -->
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/logout">Logout</a>
-                </li>
+                    <a class="nav-link text-white" href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/viewdata">View and Delete Data</a>
                 </li>
@@ -80,7 +71,16 @@
             </div>
         </div>
     </nav>
-    <div style="height: 80px"> </div>
+    <div style="height: 60px"> </div>
+
+    <div class="container py-0 my-0" id="signedAs">
+        {% if current_user.is_authenticated %}
+        <small class="">(Signed in as {{ user_id }}, {{ table_owner_title }}) <a href="/logout">Logout</a></small>
+        {% else %}
+        <small class="">(You are not logged in)</small>
+        {% endif %}
+    </div>
+
 
     <!-- Container for flash message -->
     <div class="container mt-2">
@@ -99,6 +99,15 @@
         {% block content %}
         {% endblock %}
     </main>
+
+
+    <div style="height: 80px"> </div>
+    <footer class="footer mt-4 py-3">
+        <p class="my-auto">Rights are an illusion, none reserved!</p>
+        <!-- ...other footer content... -->
+    </footer>
+    
+    
 
     <!-- Optional JavaScript -->
     {% block scripts %}

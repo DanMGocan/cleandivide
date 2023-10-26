@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}">
 
 {% endblock %}
+<div class="container">
 
 <div class="row col-12 d-flex flex-column justify-content-center align-items-center" id="index-title-section">
     <h1 class="text-center mt-5 mb-0 col-12">Welcome to <strong>DivideNDust</strong></h1>
@@ -18,21 +19,18 @@
         time you complete a task and use those points creatively (mainly pass your tasks to 
         someone else). Cleaning is never fun, but having an app about it, could be.
         <br>
-        <br>
-        <strong>Be warned</strong> though,
-        it's still you that needs to do the cleaning, I'm just doing the app.</p>
+
 </div>
 <br>
 
 <div class="row col-12 d-flex justify-content-center align-items-center">
-  <span class="mr-3 h4">Login here:</span>
   
-  <a href="/login" class="btn btn-primary square-btn mx-2">
-      Login <i class="fa-brands fa-google fa-lg"></i>
+  <a href="/login" class="btn mx-2 my-2 my-auto-lg" id="google-button">
+    <p class="my-auto"><i class="fa-brands fa-google fa-lg"></i> Continue with <strong>Google</strong></p>
   </a>
   
-  <a href="/login/facebook" class="btn btn-primary square-btn mx-2">
-      Login <i class="fa-brands fa-facebook fa-lg"></i>
+  <a href="/login/facebook" class="btn mx-2" id="facebook-button">
+    <p class="my-auto"><i class="fa-brands fa-facebook fa-lg"></i> Continue with <strong>Facebook</strong></p> 
   </a>
 </div>
 
@@ -49,31 +47,52 @@
         <div class="row">
             <div class="mt-4 mt-md-1 col-md-4">
               <div class="custom-box" id="box1">
+                <img src='../static/media/img/vaccum.png' class="my-auto" alt='Image 1'>
+
                 <div class="number mx-auto my-auto">1.</div>
-                <div class="hidden-text"><a href="{{ url_for('auth_bp.login')}}">Login</a> here, using your Google account.
-                To save all your tasks, flatmates and rooms, we need users to be logged in.</div>
+                <div class="hidden-text">
+                  <p class="p-3 my-auto">First, login. If you have received an e-mail invitaiton, you should already be part of a house
+                  and maybe even have a task assigned. If not, you have the option to become a <strong>House Master</strong> and create 
+                  a cleaning schedule yourself.</p>
+                </div>
               </div>
             </div>
             <div class="mt-4 mt-md-1 col-md-4">
               <div class="custom-box" id="box2">
+                <img src='../static/media/img/bucket.png' class="my-auto" alt='Image 1'>
+
                 <div class="number mx-auto my-auto">2.</div>
-                <div class="hidden-text">Start adding rooms you need cleaned, flatmates and tasks. 
-                    Every task is worth a certain number of points (add the points based <strong>strictly</strong>
-                    on the difficulty, not on the frequency).
+                <div class="hidden-text">
+                  <p class="p-3 my-auto">Start adding tasks that need done and invite your flat mates. You assign each task a difficulty, 
+                  from 1 to 20 and based on this, the "algorithm" divides all that tasks between flat mates. You can create a cleaning 
+                  schedule for the next 30 days.</p>
                 </div>
               </div>
             </div>
             <div class="mt-4 mt-md-1 col-md-4">
               <div class="custom-box" id="box3">
+                <img src='../static/media/img/cloth.png' class="my-auto" alt='Image 1'>
+
                 <div class="number mx-auto my-auto">3.</div>
-                <div class="hidden-text">When you click "Generate", the algorith divides all the tasks 
-                    equally between participants and sends your flatmates an invitation. Once they join 
-                    they can see exactly what needs to be done today, tomorrow, etc. 
+                <div class="hidden-text">
+                  <p class="p-3 my-auto">Login daily to mark your tasks as complete and win points that you can then use to pass these 
+                  cleaning tasks to someone else, skip them or just procrastinate (as usual) and then feel bad about yourself.</p>
                 </div>
               </div>
             </div>
           </div>
     </div>
+
+    <div class="row col-12 d-flex justify-content-center align-items-center mt-5 ">
+      <blockquote cite="Human Person" class=" blockquote col-md-6">
+        <p>It used to take us 8, 9 hours to get our apartment clean. But now, with the admin work, 
+        and the bugs and the database errors, we are already up at 12 hours. What can I say? Amazing app. </p>
+        <footer class="blockquote-footer">John Smith McHuman Person, owner of own home</footer>
+      </blockquote>
+    </div>
+    </div>
+
+    <hr>
 
     <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5" id="index-contact-section">
         <p class="col-md-6 text-center mt-0 pt-0">This is a passion project of mine, as I am trying
@@ -104,13 +123,7 @@
     </a>
 </div>
 
-<div class="row col-12 d-flex justify-content-center align-items-center mt-4 ">
-  <blockquote cite="Human Person" class=" blockquote col-md-6">
-    <p>It used to take us 8, 9 hours to get our apartment clean. But now, with the admin work, 
-    and the bugs and the database errors, we are already up at 12 hours. Amazing app. </p>
-    <footer class="blockquote-footer">Human Person</footer>
-  </blockquote>
-</div>
+
   
 
 {% block scripts %}

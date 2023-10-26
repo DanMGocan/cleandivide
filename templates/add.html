@@ -2,19 +2,31 @@
 {% block title %}CleanDivide{% endblock %}
 {%block custom_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/add.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
+
 
 {% endblock %}
 
 {% block content %}
 
-<div class="row d-flex justify-content-end my-5">
-    <p>There is no task table generated yet. Please add the requested information and then click
-        "Generate", at the bottom of the page. Once the table is in, yourself and your flatmates 
-        will see your tasks!
-    </p>
-</div>
+<div class="container">
 
-<div class="row d-flex justify-content-center my-5">
+    {% if template_data.task_table_exists %}
+    <div class="row my-3">
+    <!-- Content to display if a task_table exists for the user -->
+        <p>A task table exists already but you can add more tasks or invite new house mates and then create a new one.
+            Existing data can be deleted by following this <a href="{{ url_for('helpers_bp.viewdata')}}">link</a>
+        </p>
+    </div>
+    {% else %}
+    <div class="row my-3">
+        <!-- Content to display if a task_table exists for the user -->
+        <p>You have not created a table yet. Please add the required data and click the "Generate cleaning schedule" button, once it becomes available</p>
+    </div>
+{% endif %}
+
+
+<div class="row">
     <a href="#" class="btn default-dashboard-button tooltip-button" id="btnAddTasks">Add Tasks <small>({{ template_data.tasks | length }} added)</small></a>
     <a href="#" class="btn default-dashboard-button ml-3 tooltip-button" id="btnInviteFlatmates">Invite Flatmates <small>({{ template_data.flatmates | length }} invited)</small></a>
     {% if template_data.flatmates|length == 0 or template_data.tasks|length < 2 %}
@@ -24,79 +36,14 @@
     {% endif %}
 </div>
 
-
-{#
-     <!-- Adding rooms into the DB -->
-<div class="row p-5 d-flex align-items-center justify-content-center" >
-
-    <div class="col-11 px-0 mx-0">
-        <h1 class="">Add rooms</h1>
-    </div>
-    <!-- Left Side - Form Section -->
-    <div class="col-12 col-lg-7 mt-2 p-5 add-room-section">
-        <!-- Note row -->
-        <div class="row d-flex align-items-center justify-content-center">
-            <small>(We recommend you only add the common areas, at least 4 or 5!)</small>
-        </div>
-        <!-- Form row -->
-        <div class="row">
-            <form action="{{ url_for('additems_bp.add_room') }}" method="post" class="col-12">
-                <!-- Text Input -->
-                <div class="form-row d-flex align-items-center justify-content-center">
-                    <input type="text" class="form-control" placeholder="Name of the room" name="name" required>
-                </div>
-                
-                <!-- Buttons Row -->
-                <div class="form-row d-flex justify-content-end mt-2">
-                    <div class="col-10 px-0">
-                        <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
-                    </div>
-                    <div class="col-2 px-0">
-                        <a href="{{ url_for('helpers_bp.populate_db') }}" class="btn question-button w-100 px-0">
-                            <i class="fa-solid fa-question"></i>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Right Side - Table or Alert Section -->
-    <div class="col-12 col-lg-4 p-5 my-auto mx-2 add-room-section">
-        {% if template_data.rooms|length > 0 %}
-            <h6 class="text-center">Last 3 rooms added</h6>
-            <table class="table table-striped">
-                <tbody>
-                    {% for room in template_data.rooms[:3] %}
-                        <tr>
-                            <td>{{ room.name }}</td>
-                            <td>
-                                <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                                    <input type="hidden" name="table_name" value="rooms">
-                                    <input type="hidden" name="id" value="{{ room.id }}">
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="d-flex align-items-center justify-content-center my-auto w-100 h-100">
-                <p class="text-center">You have not added any rooms yet! Before you can add any tasks or flatmates, 
-                    please add some rooms.</p>
-            </div>
-        {% endif %}
-    </div>
-</div>  #} 
-    
+<hr class="bg-dark mt-5">
 
 <div id="main-container">
 
     <!-- Adding flatmates into the DB -->
-    <div class="row d-flex justify-content-center my-5 hidden" id="sectionFlatmates">
+    <div class="row d-flex justify-content-center hidden" id="sectionFlatmates">
 
-        <div class="row p-5 d-flex align-items-center justify-content-center">
+        <div class="row d-flex align-items-center justify-content-center">
     
             <div class="col-11 px-0 mx-0">
                 <h1 class="">Add Flatmates</h1>
@@ -155,9 +102,9 @@
     </div>
     
     <!-- Adding tasks into the DB -->
-    <div class="row d-flex justify-content-center my-5" id="sectionTasks">
+    <div class="row d-flex justify-content-center" id="sectionTasks">
     
-        <div class="row p-5 d-flex align-items-center justify-content-center">
+        <div class="row d-flex align-items-center justify-content-center">
             <div class="col-11 px-0 mx-0">
                 <h1>Add Tasks</h1>
             </div>
@@ -198,7 +145,7 @@
                             <!-- Add Task Button -->
                                 <!-- Buttons Row -->
                             <div class="form-row d-flex justify-content-end mt-2">
-                                <div class="col-10 px-0">
+                                <div class="col-12 px-0">
                                     <input type="submit" value="Add!" class="btn default-dashboard-button w-100 px-0" />
                                 </div>
                             </div>
@@ -238,14 +185,6 @@
 
 </div>
 
-
-<div class="row mt-5">
-    <p>If all the tasks are added, all the rooms are build and the gang is together, you can generate your personalized schedule now.
-        And if you are stuck cleaning the toilet, just generate again! This website is not legally binding</p>
-</div>
-
-<div class="row mb-5">
-   
 </div>
 
 
