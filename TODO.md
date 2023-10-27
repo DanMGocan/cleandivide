@@ -16,6 +16,8 @@
 - add titles that you can purchase with points
 - add hard limits for both number of tasks and flatmates
 - clean tasks table as well when a Delete everything button is pressed
+- add hard limits for the number of tasks and flat mates (40, 8)
+- lighthouse score improvement and image loading improvement
 
 # Paid features
 - calendar for 60 or 90 days

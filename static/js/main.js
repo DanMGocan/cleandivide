@@ -69,7 +69,19 @@ function handleScroll() {
 // Initial call to set the gradient on page load
 handleScroll();
 
+// Making the flash message disappear after a while
+document.addEventListener('DOMContentLoaded', (event) => {
+    const flashMessages = document.querySelectorAll('.flash-message');
+    flashMessages.forEach(flashMessage => {
+        // Initiate a fade out by transitioning the opacity to 0
+        flashMessage.style.transition = 'opacity 1.5s ease-in-out';
+        flashMessage.style.opacity = '0';
 
-
+        // Once the transition is complete, remove the element from the DOM
+        flashMessage.addEventListener('transitionend', () => {
+            flashMessage.remove();
+        });
+    });
+});
 
   

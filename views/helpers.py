@@ -62,7 +62,7 @@ def delete_entry():
         flash("Invalid table name", "danger")
         return redirect(url_for("main"))
 
-    user_id_to_delete = conn.execute("SELECT user_id FROM flatmates WHERE id=?", (id_to_delete,)).fetchone()
+    user_id_to_delete = conn.execute("SELECT email FROM flatmates WHERE id=?", (id_to_delete,)).fetchone()
     if user_id_to_delete and user_id_to_delete[0] == user_id:
         flash("You cannot delete yourself...", "danger")
         return redirect(url_for("main"))

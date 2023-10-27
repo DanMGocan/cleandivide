@@ -1,0 +1,40 @@
+.default-dashboard-button {
+    background-color: var(--charcoal);
+    color: var(--saffron);
+    transition: background-color 0.3s, color 0.3s; /* smooth transition */
+    padding: 10px;
+    font-weight: bold;
+    border:2px dashed var(--charcoal)
+  }
+  
+  .default-dashboard-button:hover {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+  }
+
+  .task-card {
+    color: var(--charcoal);
+    background-color: var(--saffron);
+    border-radius: 8px;
+    border: 3px dashed var(--charcoal);
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Add this line */
+  }
+  
+  .task-card:hover {
+    background-color: var(--charcoal);
+    color: var(--saffron);
+  }
+
+  .complete-button {
+    background-color:var(--burnt-sienna);
+    color: var(--charcoal);
+    transition: background-color 0.3s, color 0.3s; /* smooth transition */
+    padding: 10px;
+    font-weight: bold;
+    border:2px double var(--charcoal)
+  }
+
+  /* .complete-button:hover {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+  } */

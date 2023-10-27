@@ -63,9 +63,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin">Admin</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin">Database</a>
-                </li>
                 {% endif %}
                 </ul>
             </div>
@@ -83,12 +80,12 @@
 
 
     <!-- Container for flash message -->
-    <div class="container mt-2">
+    <div class="container mt-2 flash-container">
         <div class="row">
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div class="container alert alert-{{ category }}">{{ message }}</div>
+            <div class="container flash-message alert alert-{{ category }}">{{ message }}</div>
             {% endfor %}
             {% endif %}
             {% endwith %}
@@ -101,10 +98,10 @@
     </main>
 
 
-    <div style="height: 80px"> </div>
-    <footer class="footer mt-4 py-3">
-        <p class="my-auto">Rights are an illusion, none reserved!</p>
-        <!-- ...other footer content... -->
+    <div style="height: 180px" class="py-5"> </div>
+    <footer class="footer mt-4 py-2">
+        <a href="#">Confidentiality and privacy |</a>
+        <a href="#">Terms of use</a>
     </footer>
     
     

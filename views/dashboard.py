@@ -22,7 +22,6 @@ dashboard_bp = Blueprint('dashboard_bp', __name__)
 @login_required
 def dashboard():
 
-
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -83,6 +82,7 @@ def dashboard():
     conn.close()
 
     # Separate the tasks
+    today_date = datetime.now().strftime('%d/%m/%Y')
     total_tasks = [task for task in tasks_total]
     own_tasks_today = [task for task in tasks_today if task['task_owner'] == str(user_id)]
     own_tasks_tomorrow = [task for task in tasks_tomorrow if task['task_owner'] == str(user_id)]
@@ -95,7 +95,8 @@ def dashboard():
         flatmates_tasks_today=flatmates_tasks_today, 
         own_tasks_tomorrow=own_tasks_tomorrow,
         power_costs=power_costs,
-        flatmates_points=flatmate_points_results
+        flatmates_points=flatmate_points_results,
+        today_date = today_date
 
     )
 

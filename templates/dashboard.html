@@ -6,87 +6,90 @@
 
 {% block content %}
 
+{% if total_tasks == 0 %}
+<h3 class="mt-5">There is no calendar created yet. This usually means that you can continue procrastinating.</h3>
+<form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="mx-auto mt-4">
+    <input type="submit" value="... Or, become the House Master" class="btn default-dashboard-button w-50" />
+</form>
 
-    {% if is_table_owner == 0 %}
-        <div class="row col-12 d-flex justify-content-center align-items-center">
-            <a href="{{ url_for('helpers_bp.become_house_master') }}" class="btn mx-2 rounded mx-auto" id="google-button">
-                <i class="fa-brands fa-google fa-lg"></i> Become house master <small>(this cannot be undone)</small>
-            </a>
-        </div>
+{% else %}
+
+<div class="row d-flex justify-content-end my-5">
+    <a href="{{ url_for('dashboard_bp.dashboard_monthly') }}" method="post" class="btn default-dashboard-button">
+        See next 30 days
+    </a>
+    {% if is_table_owner %}
+    <a href="{{ url_for('additems_bp.add_items') }}" class="btn default-dashboard-button mx-2">
+        Generate a new table
+    </a>
     {% endif %}
+</div>
 
-    {% if total_tasks == 0 %}
-        <p>There is no calendar created yet. This usually means that you can continue procrastinating.</p>
 
+<!-- Your Own Tasks Today -->
+<div class="container mt-5">
+    <h1 class="text-center mb-0">Your Tasks for Today</h1>
+    <div class="text-center">
+        <small class="d-inline-block mx-auto mt-0"><strong>Today is {{ today_date }} and the table owner is
+                {{ table_owner }}</strong></small>
+    </div>
+    {% if own_tasks_today|length < 1 %}
+    <p>Free as a bird! </p>
     {% else %}
 
-    <div class="row d-flex justify-content-end my-5">
-        <a href="{{ url_for('dashboard_bp.dashboard_monthly') }}" method="post" class="btn default-dashboard-button">
-            See next 30 days 
-        </a>
-        {% if is_table_owner %}
-        <a href="{{ url_for('additems_bp.add_items') }}" class="btn default-dashboard-button">
-            Generate a new table 
-        </a>
-        {% endif %}
-    </div>
 
-
-    <!-- Your Own Tasks Today -->
     <div class="container mt-5">
-        <h1 class="text-center">Your Tasks for Today</h1>
-        <h4 class="text-center text-muted mb-4">Table owner is {{ table_owner }}</h4>
-
-        {% if own_tasks_today|length < 1 %}
-            <p>Free as a bird! </p>
-        {% else %}
-
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Points</th>
-                    <th>Frequency</th>
-                    <th>Complete?</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for task in own_tasks_today %}
-                <tr>
-                    <td>{{ task["task_id"] }} </td>
-                    <td>{{ task['task_description'] }}</td>
-                    <td>{{ task['task_points'] }}</td>
-                    <td>{{ task['task_frequency'] }}</td>
-                    <td>
+        <div class="row">
+            {% for task in own_tasks_today %}
+            <div class="col-md-4 mb-4">
+                <div class="card task-card">
+                    <div class="card-header">
+                        <strong>Task to complete:</strong>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ task['task_description'] }}</h4>
+                        <p class="card-text">
+                            Points: {{ task['task_points'] }}<br>
+                            Frequency: {{ task['task_frequency'] }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
                         {% if task['task_complete'] == 1 %}
-                            <span class="badge badge-success">Complete!</span>
+                        <span class="badge badge-success">Complete!</span>
                         {% else %}
-                            <div class="d-flex flex-column">
-                                <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post" class="mb-1">
-                                    <button class="btn btn-success btn-sm" type="submit" name="id" value="{{ task['id'] }}">
-                                        Complete!
-                                        <small class="d-block"><strong>( +{{ (task["task_points"] * 0.25) | floor }}...{{ (task["task_points"] * 0.75) | floor }} points)</strong></small>
-                                    </button>
-                                </form>
-                                <form action="{{ url_for('helpers_bp.reassign_task') }}" method="post" class="mb-1">
-                                    <button class="btn btn-danger btn-sm" type="submit" name="id" value="{{ task['id'] }}">Randomly reassign<br><small><strong>(- {{ power_costs["reassign"] }} points)</strong></small></button>
-                                </form>
-                                <form action="{{ url_for('helpers_bp.skip_task') }}" method="post" class="mb-1">
-                                    <button class="btn btn-danger btn-sm" type="submit" name="id" value="{{ task['id'] }}">Just not do<br><small><strong>(- {{ power_costs["skip"] }} points)</strong></small></button>
-                                </form>
-                                <form action="{{ url_for('helpers_bp.procrastinate_task') }}" method="post">
-                                    <button class="btn btn-info btn-sm" type="submit" name="id" value="{{ task['id'] }}">Leave it for tomorrow<br><small><strong>(- {{ power_costs["procrastinate"] }} points)</strong></small></button>
-                                </form>
-                            </div>
+                        <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post" class="mb-2">
+                            <button class="btn complete-button btn-sm btn-block" type="submit" name="id"
+                                value="{{ task['id'] }}">
+                                Complete!
+                                <small class="d-block"><strong>(
+                                        +{{ (task["task_points"] * 0.25) | floor }}...{{ (task["task_points"] * 0.75) | floor }}
+                                        points)</strong></small>
+                            </button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.reassign_task') }}" method="post" class="mb-2">
+                            <button class="btn btn-danger btn-sm btn-block" type="submit" name="id"
+                                value="{{ task['id'] }}">Randomly reassign<br><small><strong>(-
+                                        {{ power_costs["reassign"] }} points)</strong></small></button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.skip_task') }}" method="post" class="mb-2">
+                            <button class="btn btn-danger btn-sm btn-block" type="submit" name="id"
+                                value="{{ task['id'] }}">Just not do<br><small><strong>(- {{ power_costs["skip"] }}
+                                        points)</strong></small></button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.procrastinate_task') }}" method="post" class="mb-2">
+                            <button class="btn btn-info btn-sm btn-block" type="submit" name="id"
+                                value="{{ task['id'] }}">Leave it for tomorrow<br><small><strong>(-
+                                        {{ power_costs["procrastinate"] }} points)</strong></small></button>
+                        </form>
                         {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+
+
 
 
     <!-- Flatmates' Tasks Today -->
@@ -98,18 +101,18 @@
             <th>Status</th>
         </tr>
         {% for task in flatmates_tasks_today %}
-    <tr>
-        <td>{{ task['task_owner'] }}</td>
-        <td>{{ task['task_description'] }}</td>
-        <td>
-            {% if task['task_complete'] == 1 %}
+        <tr>
+            <td>{{ task['task_owner'] }}</td>
+            <td>{{ task['task_description'] }}</td>
+            <td>
+                {% if task['task_complete'] == 1 %}
                 Complete!
-            {% else %}
+                {% else %}
                 Incomplete!
-            {% endif %}
-        </td>
-    </tr>
-    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
     </table>
 
     <!-- Your Own Tasks for Tomorrow -->
@@ -152,8 +155,8 @@
 
     {% endif %}
 
-
-{% endblock %}
+    {% endif %}
+    {% endblock %}
 
 
 
@@ -166,6 +169,6 @@
         // Define a JavaScript variable that holds the URL
     </script>
 
-    
 
-{% endblock %}
+
+    {% endblock %}
