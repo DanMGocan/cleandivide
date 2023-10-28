@@ -120,7 +120,7 @@ def add_room():
 def add_flatmate():
     if request.method == 'POST':
         user_id = session.get('user_id')
-        flatmate_email = request.form["email"]  
+        flatmate_email = request.form["email"]
 
         conn = get_db_connection()
         try:
@@ -128,6 +128,12 @@ def add_flatmate():
             existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ?', (flatmate_email,)).fetchone()
             if existing_flatmate:
                 flash('Flatmate already exists and cloning is but a distant dream!', 'danger')
+                return redirect(url_for('main'))  # Redirect to user's dashboard
+
+            # Check if the flatmate is already a House Master
+            house_master_check = conn.execute('SELECT table_owner FROM users WHERE user_id = ?', (flatmate_email,)).fetchone()
+            if house_master_check and house_master_check[0] == 1:
+                flash('This person is already a House Master!', 'warning')
                 return redirect(url_for('main'))  # Redirect to user's dashboard
 
             # If not, proceed with adding the flatmate

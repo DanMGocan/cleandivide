@@ -13,13 +13,31 @@ admin_bp = Blueprint('admin_bp', __name__)
 @admin_bp.route("/admin", methods=["GET", "POST"])
 @login_required
 def admin():
+    user_id = session["user_id"]
     if get_table_owner_status()["is_table_owner"] == 1:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
 
+            # Get the total points per user #
+            cursor.execute('''
+                SELECT task_owner, SUM(task_points) AS total_points
+                FROM task_table
+                GROUP BY task_owner
+            ''')
+            flatmate_points_results = cursor.fetchall()
+
+            # Check if a task_table has been created
+            cursor.execute("SELECT COUNT(*) FROM task_table WHERE table_owner = ?", (user_id,))
+            table_exists = cursor.fetchone()[0] > 0
+
+            if not table_exists:
+                flash("No task table has been created yet.", "warning")
+                conn.close()
+                return redirect(url_for("main"))  # User has tasks assigned
+
             # Get a list of all flatmates
-            cursor.execute("SELECT id, email FROM flatmates")
+            cursor.execute("SELECT id, email FROM flatmates WHERE user_id =?", (user_id,))
             flatmates = cursor.fetchall()
 
             completion_rates = {}  # Dictionary to store completion rates for each flatmate
@@ -87,6 +105,6 @@ def admin():
             return redirect(url_for("dashboard_bp.dashboard"))
         
         # Pass the completion rates to the template
-        return render_template("admin.html", completion_rates=completion_rates, today_tasks = today_tasks)
+        return render_template("admin.html", completion_rates=completion_rates, today_tasks = today_tasks, flatmate_points_results=flatmate_points_results)
     else:
         return redirect(url_for("dashboard_bp.dashboard"))

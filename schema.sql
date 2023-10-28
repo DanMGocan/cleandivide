@@ -4,11 +4,13 @@ DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS flatmates;
 DROP TABLE IF EXISTS rooms;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS daily_bonus;
 
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL UNIQUE,
+    first_login DATETIME,
     last_login DATETIME,
     times_logged INTEGER DEFAULT 0,
     default_database INTEGER DEFAULT 0,

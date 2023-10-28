@@ -22,19 +22,21 @@ def add_or_get_user(user_email, function):
     if existing_flatmate:
         return redirect(url_for("dashboard_bp.dashboard"))
 
-
     if function not in ["login", "flatmate_update"]:
         raise ValueError("Invalid function parameter")
 
     if user:
         if function == "login":
             cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email,))
+            # Check if this is the first login
+            if user['times_logged'] == 0:
+                cursor.execute("UPDATE users SET first_login = ? WHERE user_id = ?", (datetime.now(), user_email,))
         elif function == "flatmate_update":
             cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))  # Set table_owner to 0
     
     else:
         # User doesn't exist, add them to 'users' table
-        cursor.execute('INSERT INTO users (user_id) VALUES (?)', (user_email,))
+        cursor.execute('INSERT INTO users (user_id, first_login) VALUES (?, ?)', (user_email, datetime.now()))  # Set first_login at user creation
         
         # Check for table participant and owner status
         cursor.execute("SELECT 1 FROM task_table WHERE task_owner = ?", (user_email,))
@@ -45,12 +47,6 @@ def add_or_get_user(user_email, function):
 
         if table_participant and not table_owner:
             cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))
-    
-    # Add user to 'flatmates' table if not already present
-    cursor.execute('SELECT * FROM flatmates WHERE user_id = ?', (user_email,))
-    flatmate = cursor.fetchone()
-    if not flatmate:
-        cursor.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_email, user_email))
 
     # Update the last login time
     cursor.execute("UPDATE users SET last_login = ? WHERE user_id = ?", (datetime.now(), user_email))
@@ -63,6 +59,7 @@ def add_or_get_user(user_email, function):
     
     conn.close()
     return user
+
 
 def setup_google(app):
     global google

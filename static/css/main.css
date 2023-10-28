@@ -167,55 +167,7 @@ body::after {
   background-color: rgb(0, 119, 181);
 }
 
-#google-button {
-  font-size: 1.2rem;
-  font-weight: 700;
-  border: 3px rgb(15 157 88) solid;
-  border-radius: 8px;
-  color: #0f9d58;
-  /* Initial Google green color */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
 
-
-#google-button:hover {
-  background-color: #0f9d58;
-  /* Google green color on hover */
-  color: white;
-}
-
-#google-button i.fa-google {
-  transition: color 0.3s ease;
-}
-
-#google-button:hover i.fa-google {
-  color: white;
-}
-
-#facebook-button {
-  font-size: 1.2rem;
-  font-weight: 700;
-  border: 3px rgb(66 103 178) solid;
-  border-radius: 8px;
-  color: #4267B2;
-  /* Initial Google green color */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-
-#facebook-button:hover {
-  background-color: #4267B2;
-  /* Google green color on hover */
-  color: white;
-}
-
-#facebook-button i.fa-google {
-  transition: color 0.3s ease;
-}
-
-#facebook-button:hover i.fa-google {
-  color: white;
-}
 
 .default-dashboard-button {
   background-color: var(--charcoal);

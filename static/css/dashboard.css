@@ -56,3 +56,7 @@
 #notasks {
   border: 3px solid var(--charcoal)
 }
+
+.dashboard-borders {
+  border: 3px solid var(--charcoal)
+}

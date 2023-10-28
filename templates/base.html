@@ -6,6 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- It feels just like random sh*t know -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -72,7 +76,7 @@
 
     <div class="container py-0 my-0" id="signedAs">
         {% if current_user.is_authenticated %}
-        <small class="">(Signed in as {{ user_id }}, {{ table_owner_title }}) <a href="/logout">Logout</a></small>
+        <small class="">(Signed in as <strong>{{ user_id }}</strong>, {{ table_owner_title }}) <a href="/logout">Logout</a></small>
         {% else %}
         <small class="">(You are not logged in)</small>
         {% endif %}

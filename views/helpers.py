@@ -130,16 +130,37 @@ def become_house_master():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Fetch the current times_logged value
-    user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
-    times_logged = user_record[0] if user_record else 0
+    try:
+        # Delete the user from the flatmates table if they are there as a flatmate
+        cursor.execute('DELETE FROM flatmates WHERE email = ?', (user_id,))
 
-    # Update the table_owner value to 1 and increment times_logged by 1
-    cursor.execute("UPDATE users SET table_owner = 1, times_logged = ? WHERE user_id = ?", (times_logged + 1, user_id,))
-    conn.commit()
-    conn.close()
+        # Fetch the current times_logged value
+        user_record = cursor.execute("SELECT times_logged FROM users WHERE user_id = ?", (user_id,)).fetchone()
+        times_logged = user_record[0] if user_record else 0
+
+        # Add user to 'flatmates' table if not already present under their own user_id
+        cursor.execute('SELECT * FROM flatmates WHERE user_id = ?', (user_id,))
+        flatmate = cursor.fetchone()
+        if not flatmate:
+            cursor.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, user_id))
+
+        # Update the table_owner value to 1 and increment times_logged by 1
+        cursor.execute("UPDATE users SET table_owner = 1, times_logged = ? WHERE user_id = ?", (times_logged + 1, user_id,))
+
+        # Commit the transaction
+        conn.commit()
+
+    except Exception as e:
+        # If any error occurs, rollback the transaction
+        conn.rollback()
+        flash(f"An error occurred: {e}", "danger")
+
+    finally:
+        # Always close the connection
+        conn.close()
 
     return redirect(url_for('additems_bp.add_items'))
+
 
 
 @helpers_bp.route('/become_house_member', methods=["GET", 'POST'])

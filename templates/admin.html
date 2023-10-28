@@ -47,5 +47,26 @@
     </table>
 </div>
 
+<div class="container mt-5">
+    <h1 class="mb-4"><strong>Points Assigned to Flatmates</strong></h1>
+    <p>Below are the points assigned to each flatmate</p>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Flatmate ID</th>
+                <th scope="col">Total Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flatmate in flatmate_points_results %}
+                <tr>
+                    <td>{{ flatmate.task_owner }}</td>
+                    <td>{{ flatmate.total_points }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 
 {% endblock %}
