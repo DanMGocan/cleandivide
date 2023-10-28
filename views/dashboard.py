@@ -6,13 +6,12 @@ from itertools import groupby
 from views.auth import add_or_get_user
 from sqlite3 import IntegrityError
 from datetime import datetime
-from models import get_db_connection
 import sqlite3
 
 power_costs = {
-    "reassign": 90,
-    "skip": 150,
-    "procrastinate": 120
+    "reassign": 60,
+    "skip": 75,
+    "procrastinate": 35
 }
 
 calendar = {}

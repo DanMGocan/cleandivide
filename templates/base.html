@@ -59,9 +59,9 @@
                 </li>
                 {% endif %}
 
-                {% if current_user.is_authenticated and session["is_admin"] %}
+                {% if current_user.is_authenticated and is_table_owner %}
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin">Admin</a>
+                    <a class="nav-link text-white" href="/admin">House statistics</a>
                 </li>
                 {% endif %}
                 </ul>

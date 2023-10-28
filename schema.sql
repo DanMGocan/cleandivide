@@ -46,6 +46,13 @@ CREATE TABLE flatmates (
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE daily_bonus (
+    user_id INTEGER,
+    date DATE,
+    points_awarded INTEGER,
+    PRIMARY KEY(user_id, date)
+);
+
 -- Junction Table for task_table and tasks
 CREATE TABLE task_table (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

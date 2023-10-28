@@ -18,23 +18,41 @@
     border-radius: 8px;
     border: 3px dashed var(--charcoal);
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Add this line */
-  }
-  
-  .task-card:hover {
+}
+
+.task-card:hover {
     background-color: var(--charcoal);
     color: var(--saffron);
-  }
+}
 
-  .complete-button {
-    background-color:var(--burnt-sienna);
+.task-card:hover .complete-button {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+}
+
+.complete-button {
+    background-color: var(--charcoal);
+    color: var(--saffron);
+    transition: background-color 0.3s, color 0.3s; /* smooth transition */
+    padding: 10px;
+    font-weight: bold;
+    border: 2px double var(--charcoal);
+}
+
+.dashboard-action-button {
+    background-color: var(--saffron);
     color: var(--charcoal);
     transition: background-color 0.3s, color 0.3s; /* smooth transition */
     padding: 10px;
     font-weight: bold;
-    border:2px double var(--charcoal)
-  }
+    border: 2px double var(--charcoal);
+}
 
-  /* .complete-button:hover {
-    background-color: var(--saffron);
-    color: var(--charcoal);
-  } */
+.task-card:hover .dashboard-action-button {
+  background-color: var(--sandy-brown);
+  color: var(--charcoal);
+}
+
+#notasks {
+  border: 3px solid var(--charcoal)
+}

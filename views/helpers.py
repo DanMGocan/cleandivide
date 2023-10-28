@@ -5,6 +5,7 @@ from context_processors import get_table_owner_status
 from flask_mail import Mail
 from random import choice 
 from views.dashboard import power_costs
+from datetime import datetime, timedelta
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
@@ -233,9 +234,123 @@ def reassign_task():
 @helpers_bp.route('/skip_task', methods=["GET", 'POST'])
 @login_required
 def skip_task():
-    pass
+    user_id = session["user_id"]
+    cost = power_costs["skip"]  # Define the cost variable
+    try:
+        task_id = int(request.form.get('id'))  # Cast to int
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Verify the existence of the task
+        cursor.execute("SELECT * FROM task_table WHERE id = ?", (task_id,))
+        task = cursor.fetchone()
+        if not task:
+            flash("No such task", "warning")
+            return redirect(url_for("dashboard_bp.dashboard"))
+        
+        # Delete the task for the day
+        cursor.execute("DELETE FROM task_table WHERE id = ?", (task_id,))
+        
+        # Decrease points from the user for the skip action
+        cursor.execute("UPDATE users SET points = points - ? WHERE user_id = ?", (cost, user_id))
+
+        conn.commit()
+        conn.close()
+
+        if cursor.rowcount:
+            flash(f"Task skipped for the day, {cost} points deducted", "success")
+        else:
+            flash("Failed to skip the task", "warning")
+    except Exception as e:
+        print("An error occurred:", str(e))
+        flash("An error occurred while skipping the task", "error")
+
+    return redirect(url_for("dashboard_bp.dashboard"))
+
+
 
 @helpers_bp.route('/procrastinate_task', methods=["GET", 'POST'])
 @login_required
 def procrastinate_task():
-    pass
+    user_id = session["user_id"]
+    cost = power_costs["procrastinate"]
+    try:
+        task_id = int(request.form.get('id'))  # Cast to int
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Verify the existence of the task and get its current due date
+        cursor.execute("SELECT task_date FROM task_table WHERE id = ?", (task_id,))
+        task = cursor.fetchone()
+        if not task:
+            flash("No such task", "warning")
+            return redirect(url_for("dashboard_bp.dashboard"))
+
+        current_due_date = datetime.strptime(task[0], '%Y-%m-%d')
+        new_due_date = current_due_date + timedelta(days=1)
+        new_due_date_str = new_due_date.strftime('%Y-%m-%d')
+
+        # Update the due date of the task to the following day
+        cursor.execute(
+            "UPDATE task_table SET task_date = ? WHERE id = ?",
+            (new_due_date_str, task_id)
+        )
+
+        # Decrease points from the user for the skip action
+        cursor.execute("UPDATE users SET points = points - ? WHERE user_id = ?", (cost, user_id))
+
+        conn.commit()
+        conn.close()
+
+        if cursor.rowcount:
+            flash(f"Task {task_id} procrastinated to {new_due_date_str}", "success")
+        else:
+            flash("Failed to procrastinate the task", "warning")
+    except Exception as e:
+        print("An error occurred:", str(e))
+        flash("An error occurred while procrastinating the task", "error")
+
+    return redirect(url_for("dashboard_bp.dashboard"))
+
+@helpers_bp.route('/daily_bonus', methods=['POST'])
+@login_required
+def daily_bonus():
+    user_id = session["user_id"]
+    today = datetime.now().date().isoformat()  # Get today's date in YYYY-MM-DD format
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Check if the user has already clicked the button today
+        cursor.execute(
+            "SELECT * FROM daily_bonus WHERE user_id = ? AND date = ?",
+            (user_id, today)
+        )
+        already_clicked = cursor.fetchone()
+
+        if already_clicked:
+            flash("You have already claimed your daily bonus", "warning")
+        else:
+            # Award 5 points to the user
+            cursor.execute(
+                "UPDATE users SET points = points + 5 WHERE user_id = ?",
+                (user_id,)
+            )
+
+            # Log the bonus claim
+            cursor.execute(
+                "INSERT INTO daily_bonus (user_id, date, points_awarded) VALUES (?, ?, 5)",
+                (user_id, today)
+            )
+
+            flash("5 points have been added to your account", "success")
+
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+        print("An error occurred:", str(e))
+        flash("An error occurred while processing your request", "error")
+
+    return redirect(url_for("dashboard_bp.dashboard"))

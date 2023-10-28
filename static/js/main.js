@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const flashMessages = document.querySelectorAll('.flash-message');
     flashMessages.forEach(flashMessage => {
         // Initiate a fade out by transitioning the opacity to 0
-        flashMessage.style.transition = 'opacity 1.5s ease-in-out';
+        flashMessage.style.transition = 'opacity 2.5s ease-in-out';
         flashMessage.style.opacity = '0';
 
         // Once the transition is complete, remove the element from the DOM

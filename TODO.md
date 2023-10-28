@@ -18,6 +18,10 @@
 - clean tasks table as well when a Delete everything button is pressed
 - add hard limits for the number of tasks and flat mates (40, 8)
 - lighthouse score improvement and image loading improvement
+- bookmark this websitte 
+- import data from spreadsheet
+- look at the redirect from the add function if a table is already generated 
+- allow admins to change how many points things cost and how many points per tasks are given 
 
 # Paid features
 - calendar for 60 or 90 days
@@ -27,3 +31,4 @@
 - download CV option
 
 Image by <a href="https://pixabay.com/users/roszie-6000120/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7396138">Rosy / Bad Homburg / Germany</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7396138">Pixabay</a>
+

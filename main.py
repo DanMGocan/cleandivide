@@ -9,6 +9,7 @@ from views.helpers import helpers_bp, mail
 from views.generator import generator_bp
 from views.dashboard import dashboard_bp
 from views.profile import profile_bp
+from views.admin import admin_bp
 from context_processors import get_table_owner_status
 
 from models import get_db_connection
@@ -39,6 +40,8 @@ app.register_blueprint(helpers_bp)
 app.register_blueprint(generator_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(profile_bp)
+app.register_blueprint(admin_bp)
+
 
 # Importing mail object
 mail.init_app(app)

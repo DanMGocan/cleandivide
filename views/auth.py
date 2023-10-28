@@ -16,6 +16,13 @@ def add_or_get_user(user_email, function):
     cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
     user = cursor.fetchone()
 
+    cursor.execute('SELECT * FROM flatmates WHERE email = ?', (user_email,))
+    existing_flatmate = cursor.fetchone()
+
+    if existing_flatmate:
+        return redirect(url_for("dashboard_bp.dashboard"))
+
+
     if function not in ["login", "flatmate_update"]:
         raise ValueError("Invalid function parameter")
 
