@@ -1,0 +1,29 @@
+.task-card {
+    color: var(--charcoal);
+    background-color: var(--saffron);
+    border-radius: 8px;
+    border: 3px dashed var(--charcoal);
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.task-card:hover {
+    background-color: var(--charcoal);
+    color: var(--saffron);
+}
+
+.task-card:hover .profile-card-header {
+    border-bottom: 1px solid var(--saffron);
+}
+
+.task-card:hover .complete-button {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+}
+
+.profile-card-header {
+    border: 3px dashed var(--charcoal);
+    background-color: var(--charcoal);
+    color: var(--saffron);
+}
+
+

@@ -125,7 +125,7 @@ def add_flatmate():
         conn = get_db_connection()
         try:
             # Check if flatmate already exists
-            existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ?', (flatmate_email,)).fetchone()
+            existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ? AND user_id = ?', (flatmate_email, user_id)).fetchone()
             if existing_flatmate:
                 flash('Flatmate already exists and cloning is but a distant dream!', 'danger')
                 return redirect(url_for('main'))  # Redirect to user's dashboard

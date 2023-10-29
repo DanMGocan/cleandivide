@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}CleanDivide{% endblock %}
+{% block title %}CleanDivide | Add {% endblock %}
 {%block custom_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/add.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
@@ -62,15 +62,15 @@
 
             <!-- List of Flatmates -->
             <div class="col-12 mt-4 text-center">
-                <h3>Flatmates added so far:</h3>
-                {% for flatmate in template_data.flatmates %}
+                <h3>Last flatmate added:</h3>
+                {% for flatmate in template_data.flatmates[:1] %}
                 <div class="d-flex justify-content-center align-items-center mb-2">
                     <p class="mb-0 mr-2">{{ flatmate.email }}</p>
                     <form class="delete-form d-inline" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
                         <input type="hidden" name="table_name" value="flatmates">
                         <input type="hidden" name="id" value="{{ flatmate.id }}">
                         <input type="submit" value="(Delete)" class="btn btn-link p-0 border-0"
-                            style="color: red; text-decoration: none;">
+                            style="color: red; text-decoration: none; font-weight: bold;">
                     </form>
                 </div>
                 {% endfor %}
@@ -119,22 +119,21 @@
 
             <!-- List of Tasks -->
             <div class="col-12 mt-4 text-center pt-3 pb-5 mb-5">
-                <h3>Tasks added so far (last 6):</h3>
+                <h3>Last task added:</h3>
                 {% if template_data.tasks|length > 0 %}
-                {% for task in template_data.tasks[:6] %}
+                {% for task in template_data.tasks[:1] %}
                 <div class="d-flex justify-content-center align-items-center mb-2">
                     <p class="mb-0 mr-2">{{ task.description }} ({{ task.points }} pts)</p>
                     <form class="delete-form d-inline" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
                         <input type="hidden" name="table_name" value="tasks">
                         <input type="hidden" name="id" value="{{ task.id }}">
                         <input type="submit" value="(Delete)" class="btn btn-link p-0 border-0"
-                            style="color: red; text-decoration: none;">
+                            style="color: red; text-decoration: none; font-weight: bold;">
                     </form>
                 </div>
                 {% endfor %}
                 {% else %}
-                <p>You have not added any tasks yet! But that's no problem, mold and cockroaches never killed anyone
-                    (allegedly)!</p>
+                <p>You have not added any tasks yet! Why?</p>
                 {% endif %}
             </div>
         </div>

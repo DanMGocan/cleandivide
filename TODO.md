@@ -22,6 +22,7 @@
 - import data from spreadsheet
 - look at the redirect from the add function if a table is already generated 
 - allow admins to change how many points things cost and how many points per tasks are given 
+- optimise images
 
 # Paid features
 - calendar for 60 or 90 days

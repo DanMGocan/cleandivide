@@ -5,11 +5,50 @@
 {% endblock %}
 
 {% block content %}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center flex-wrap">
+        <div class="card task-card my-4 mx-3 col-4 px-0 pt-3">
+            <!-- Set max-width to make card narrower -->
+            <div class="card-header profile-card-header text-center mx-0 px-0">
+                <h4 class="card-title my-auto ">{{ user['username'] }}</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Member since:</strong> {{ (user['first_login']) }}
+                    <hr>
+                    <strong>Points:</strong> {{ user['points'] }}
+                    <hr>
+                    <strong>Times Logged In:</strong> {{ user['times_logged'] }}
+                    <hr>
+                    <strong>Total Tasks:</strong> {{ total_tasks }}
+                    <hr>
+                    <strong>Completed Tasks:</strong> {{ completed_tasks }}
+                </p>
+            </div>
+        </div>
 
-<h5>Name: </h5> {{ user_id }}
-<h1>{{ user.username }}'s Profile</h1>
-<p>Points: {{ user.points }}</p>
-<p>Awards: {{ user.awards }}</p>
+        <div class="card task-card my-4 mx-3 col-4 px-0 pt-3">
+            <div class="card-header profile-card-header text-center mx-0 px-0">
+                <h4 class="card-title my-auto ">Titles and awards</h4>
+            </div>
+            <div class="card-body my-auto d-flex justify-content-center align-items-center">
+                <p class="card-text">
+                    <h4 class="text-center">Titles and awards to be added soon!</h4>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr class="my-5">
+
+    <div class="row col-12 d-flex justify-content-center align-items-center mt-5 profile-quote">
+        <blockquote cite="Human Person" class=" blockquote col-md-6">
+            <p>He who maintains his abode in a state of harmonious order, shall find that the muses of clarity 
+                and wit are his most frequent guests. Whereas he who dwells amidst chaos, shall find naught 
+                but the specter of confusion lurking in every shadow. Keep your house as your browser history.</p>
+            <footer class="blockquote-footer">Confucius the Tidy, 6th century BC</footer>
+        </blockquote>
+    </div>
+</div>
 
 
 {% endblock%}

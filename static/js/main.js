@@ -73,15 +73,12 @@ handleScroll();
 document.addEventListener('DOMContentLoaded', (event) => {
     const flashMessages = document.querySelectorAll('.flash-message');
     flashMessages.forEach(flashMessage => {
-        // Initiate a fade out by transitioning the opacity to 0
-        flashMessage.style.transition = 'opacity 2.5s ease-in-out';
-        flashMessage.style.opacity = '0';
-
-        // Once the transition is complete, remove the element from the DOM
-        flashMessage.addEventListener('transitionend', () => {
+        // Set a timeout to remove the flash message after 3 seconds
+        setTimeout(() => {
             flashMessage.remove();
-        });
+        }, 2000);  // 3000 milliseconds = 3 seconds
     });
 });
+
 
   

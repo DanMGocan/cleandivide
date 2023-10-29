@@ -1,6 +1,8 @@
 * {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
+  box-sizing: border-box;
+
 }
 
 /* body::before {
@@ -52,6 +54,15 @@ body::after {
   background-repeat: no-repeat;
   opacity: 0.08;
   z-index: -1;
+}
+
+.flash-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  
 }
 
 .howitworks {
@@ -141,18 +152,28 @@ body::after {
 /* Font styles */
 .navbar-brand {
   font-weight: bold;
+  font-size: 1.25rem; /* Adjust the size as needed */
   color: var(--charcoal) !important;
 }
 
 .nav-link {
+  font-size: 1.1rem; /* Adjust the size as needed */
+  font-weight: bold;
   color: var(--charcoal) !important;
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  color: var(--persian-green) !important;
-  transform: scale(1.2);
+  border-bottom: 3px solid var(--charcoal);
 }
+
+.navbar-logo {
+  height: 50px; /* Adjust the size as needed */
+  margin-right: 10px;
+}
+
 
 #signedAs {
   color: var(--charcoal)

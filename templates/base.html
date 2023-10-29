@@ -19,7 +19,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Quicksand:wght@500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Quicksand:wght@500;600&family=Raleway:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -29,8 +31,12 @@
 
 <body class="">
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-md fixed-top py-2">
         <div class="container">
+            <!-- Logo Image -->
+            <a href="{{ url_for('main') }}">
+                <img src="../static/media/img/bucket_logo.png" alt="Logo" class="navbar-logo">
+            </a>
             <div class="d-flex flex-column">
                 <a class="navbar-brand font-weight-bold mb-0 pb-0" href="{{ url_for('main') }}">DivideNDust</a>
             </div>
@@ -39,44 +45,43 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto my-auto">
                     <!-- Added ml-auto to right-align the items -->
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url_for('about')}}">About</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('about')}}">About</a>
+                    </li>
 
-                <!-- Conditional to show login or logout, depending if the user is logged in -->
-                {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
-                </li>                
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/viewdata">View and Delete Data</a>
-                </li>
+                    <!-- Conditional to show login or logout, depending if the user is logged in -->
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                            href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
+                    </li>
                     {% if is_table_owner %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url_for("additems_bp.add_items")}}">Add items</a>
+                        <a class="nav-link text-white" href="/viewdata">View and Delete Data</a>
                     </li>
                     {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/dashboard">Dashboard</a>
-                </li>
-                {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/dashboard">Dashboard</a>
+                    </li>
+                    {% endif %}
 
-                {% if current_user.is_authenticated and is_table_owner %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin">House statistics</a>
-                </li>
-                {% endif %}
+                    {% if current_user.is_authenticated and is_table_owner %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin">House statistics</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-    <div style="height: 60px"> </div>
+    <div style="height: 70px"> </div>
 
     <div class="container py-0 my-0" id="signedAs">
         {% if current_user.is_authenticated %}
-        <small class="">(Signed in as <strong>{{ user_id }}</strong>, {{ table_owner_title }}) <a href="/logout">Logout</a></small>
+        <small class="">(Signed in as <strong>{{ user_id }}</strong>, {{ table_owner_title }}) <a
+                href="/logout">Logout</a></small>
         {% else %}
         <small class="">(You are not logged in)</small>
         {% endif %}
@@ -84,8 +89,8 @@
 
 
     <!-- Container for flash message -->
-    <div class="container mt-2 flash-container">
-        <div class="row">
+    <div class="container flash-container col-12 col-lg-6">
+        <div class="row mx-auto">
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
@@ -107,8 +112,8 @@
         <a href="#">Confidentiality and privacy |</a>
         <a href="#">Terms of use</a>
     </footer>
-    
-    
+
+
 
     <!-- Optional JavaScript -->
     {% block scripts %}

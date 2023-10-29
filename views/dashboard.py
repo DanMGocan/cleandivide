@@ -48,7 +48,13 @@ def dashboard():
     row = cursor.fetchone()
     times_logged = row['times_logged']
 
-
+    # Check if daily bonus collected #
+    cursor.execute(
+        "SELECT * FROM daily_bonus WHERE user_id = ? AND date = ?",
+        (user_id, datetime.now().date().isoformat())
+    )
+    already_clicked = cursor.fetchone()
+    print(already_clicked)
 
     # Ensure rows are returned as dictionaries, not tuples
     cursor.row_factory = sqlite3.Row
@@ -67,12 +73,12 @@ def dashboard():
             flatmates_tasks_today=[], 
             own_tasks_tomorrow=[],
             today_date=today_date,
-            times_logged=times_logged    
+            times_logged=times_logged,
+            already_clicked=already_clicked    
             )
 
     if task_table_created == False and table_owner_status == True:
         return redirect(url_for("additems_bp.add_items"))
-
 
     table_owner = table_owner_row['table_owner']
 
@@ -111,7 +117,8 @@ def dashboard():
         flatmates_tasks_today=flatmates_tasks_today, 
         own_tasks_tomorrow=own_tasks_tomorrow,
         power_costs=power_costs,
-        today_date = today_date
+        today_date = today_date,
+        already_clicked=already_clicked
     )
 
 @dashboard_bp.route("/dashboard_monthly", methods=["GET", "POST"])
