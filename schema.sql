@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS flatmates;
 DROP TABLE IF EXISTS rooms;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS daily_bonus;
+DROP TABLE IF EXISTS awards;
 
 
 CREATE TABLE users (
@@ -54,6 +55,29 @@ CREATE TABLE daily_bonus (
     points_awarded INTEGER,
     PRIMARY KEY(user_id, date)
 );
+
+CREATE TABLE awards (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL UNIQUE,
+    logged_in INTEGER DEFAULT 1,
+    five_tasks_day INTEGER DEFAULT 0,
+    ten_tasks_day INTEGER DEFAULT 0,
+    fifteen_tasks_day INTEGER DEFAULT 0,
+    member_30_days INTEGER DEFAULT 0,
+    member_120_days INTEGER DEFAULT 0,
+    member_365_days INTEGER DEFAULT 0,
+    check_500_points INTEGER DEFAULT 0,
+    check_1000_points INTEGER DEFAULT 0,
+    check_2500_points INTEGER DEFAULT 0,
+    completed_100_tasks INTEGER DEFAULT 0,
+    completed_250_tasks INTEGER DEFAULT 0,
+    completed_750_tasks INTEGER DEFAULT 0,
+    completed_1500_tasks INTEGER DEFAULT 0,
+    completed_2500_tasks INTEGER DEFAULT 0,
+
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
 
 -- Junction Table for task_table and tasks
 CREATE TABLE task_table (

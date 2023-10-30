@@ -23,6 +23,8 @@
 - look at the redirect from the add function if a table is already generated 
 - allow admins to change how many points things cost and how many points per tasks are given 
 - optimise images
+- fix times logged in bug
+
 
 # Paid features
 - calendar for 60 or 90 days
@@ -33,3 +35,5 @@
 
 Image by <a href="https://pixabay.com/users/roszie-6000120/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7396138">Rosy / Bad Homburg / Germany</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7396138">Pixabay</a>
 
+# Add a development diary with what needs to be done in the future
+- create proper graphics for the awards 

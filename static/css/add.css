@@ -1,42 +1,101 @@
-.add-flatmate-section {
-    position: relative;
-    color: var(--charcoal);
-    background-color: var(--saffron);
-    border: 2px solid var(--charcoal);
-    border-radius: 10px;
-    z-index: 1;
-    }
-    
 .add-tasks-section {
     position: relative;
     color: var(--charcoal);
-    background-color: var(--saffron);
-    border: 2px solid var(--charcoal);
+    border: 3px dashed var(--charcoal);
     border-radius: 10px;
     z-index: 1;
-    }
-    
+    background: linear-gradient(45deg,
+            hsla(197, 37%, 24%, 0.99) 0%,
+            hsla(197, 37%, 24%, 0.99) 4%,
+            hsla(173, 58%, 39%, 0.99) 4%,
+            hsla(173, 58%, 39%, 0.99) 10%,
+            var(--burnt-sienna) 10%,
+            var(--burnt-sienna) 18%,
+            hsla(43, 74%, 66%, 0.99) 18%,
+            hsla(43, 74%, 66%, 0.99) 100%);
+}
+
+.add-tasks-section::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    /* Diameter of the circle */
+    height: 80px;
+    border-radius: 50%;
+    /* Makes it a circle */
+    background: hsla(197, 37%, 24%, 0.99);
+    pointer-events: none;
+    z-index: -10;
+    /* Ensures interactions pass through to elements below */
+}
+
+.add-tasks-section::before {
+    top: var(--beforeY, 40%);
+    left: var(--beforeX, 80%);
+}
+
+
+.add-flatmate-section {
+    position: relative;
+    color: var(--charcoal);
+    border: 3px dashed var(--charcoal);
+    border-radius: 10px;
+    z-index: 1;
+    background: linear-gradient(135deg,
+            hsla(197, 37%, 24%, 0.99) 0%,
+            hsla(197, 37%, 24%, 0.99) 4%,
+            hsla(173, 58%, 39%, 0.99) 4%,
+            hsla(173, 58%, 39%, 0.99) 10%,
+            var(--burnt-sienna) 10%,
+            var(--burnt-sienna) 18%,
+            hsla(43, 74%, 66%, 0.99) 18%,
+            hsla(43, 74%, 66%, 0.99) 100%);
+}
+
+.add-flatmate-section::before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    /* Diameter of the circle */
+    height: 60px;
+    border-radius: 50%;
+    /* Makes it a circle */
+    background: var(--burnt-sienna);
+    pointer-events: none;
+    z-index: -10;
+    /* Ensures interactions pass through to elements below */
+}
+
+.add-flatmate-section::before {
+    top: var(--beforeY, 36%);
+    left: var(--beforeX, 70%);
+}
+
+
 /* Transition between add tasks and add flatmates */
 #main-container {
-    position: relative; /* Set the position context for absolute positioning */
+    position: relative;
+    /* Set the position context for absolute positioning */
     /* Set a fixed height if needed, or let it adapt to the initially visible section */
     height: 500px;
 }
 
 /* Make both sections occupy the same space within the container */
-#sectionFlatmates, #sectionTasks {
+#sectionFlatmates,
+#sectionTasks {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%; /* Ensure the section takes up the full width of the container */
+    width: 100%;
+    /* Ensure the section takes up the full width of the container */
 }
 
 .custom-fade {
-    opacity: 1; 
+    opacity: 1;
     transition: opacity 0.5s ease;
-    pointer-events: auto; 
+    pointer-events: auto;
 }
 
 .hidden {
@@ -46,3 +105,11 @@
 }
 
 
+/* Base styling for form inputs */
+#taskForm input:not([type="submit"]),
+#taskForm datalist,
+#emailForm input:not([type="submit"]),
+#emailForm datalist {
+    border: 1px solid var(--charcoal); /* Set all borders to transparent initially */
+    margin-bottom: 20px; /* Adjusted to accommodate border */
+}

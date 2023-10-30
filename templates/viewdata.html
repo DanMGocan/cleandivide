@@ -1,72 +1,99 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
+{% block title %}CleanDivide | Data Management{% endblock %}
+{%block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/viewdata.css') }}">
+{% endblock %}
 
 {% block content %}
 
-<div class="row">
-    <div class="col">
-        <form action="/clear_db" method="post">
-            <button type="submit" class="btn btn-danger mt-2">Delete Everything</button>
-        </form>
-    </div>
+<div class="container mt-5">
+    <h1 class="mb-4"><strong>Tasks</strong></h1>
+    <p>Overview of all tasks.</p>
+
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Added by</th>
+                <th scope="col">Description</th>
+                <th scope="col">Points</th>
+                <th scope="col">Room</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.user_id }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.points }}</td>
+                <td>{{ task.room }}</td>
+                <td>{{ task.frequency }}</td>
+                <td>
+                    <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                        <input type="hidden" name="table_name" value="tasks">
+                        <input type="hidden" name="id" value="{{ task.id }}">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
-<h1>Tasks</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>User ID</th>
-        <th>Description</th>
-        <th>Points</th>
-        <th>Room</th>
-        <th>Frequency</th>
-    </tr>
-    {% for task in tasks %}
-    <tr>
-        <td>{{ task.id }}</td>
-        <td>{{ task.user_id }}</td>
-        <td>{{ task.description }}</td>
-        <td>{{ task.points }}</td>
-        <td>{{ task.room }}</td>
-        <td>{{ task.frequency }}</td>
-        <td>
-            <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                <input type="hidden" name="table_name" value="tasks">
-                <input type="hidden" name="id" value="{{ task.id }}">
-                <input type="submit" value="Delete">
-            </form>
-        </td>
+<div class="container mt-5">
+    <h1 class="mb-4"><strong>Flatmates</strong></h1>
+    <p>Overview of all flatmates.</p>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Added by</th>
+                <th scope="col">Email</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flatmate in flatmates %}
+            <tr>
+                <td>{{ flatmate.id }}</td>
+                <td>{{ flatmate.user_id }}</td>
+                <td>{{ flatmate.email }}</td>
+                <td>{{ flatmate.modifier }}</td>
+                <td>
+                    <form class="delete-form" action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
+                        <input type="hidden" name="table_name" value="flatmates">
+                        <input type="hidden" name="id" value="{{ flatmate.id }}">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    </tr>
-    {% endfor %}
-</table>
+<div class="container mt-5">
+    <div class="tooltip-wrapper" data-tooltip="This will delete all tasks and flatmates.">
+        <form action="/clear_db" method="post">
+            <button type="submit" class="btn btn-danger">Delete Everything</button>
+        </form>
+    </div>
+    
+</div>
 
-<h1>Flatmates</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>User ID</th>
-        <th>Email</th>
-        <th>Modifier</th>
-    </tr>
-    {% for flatmate in flatmates %}
-    <tr>
-        <td>{{ flatmate.id }}</td>
-        <td>{{ flatmate.user_id }}</td>
-        <td>{{ flatmate.email }}</td>
-        <td>{{ flatmate.modifier }}</td>
-        <td>
-            <form class="delete-form"  action="{{ url_for('helpers_bp.delete_entry') }}" method="post">
-                <input type="hidden" name="table_name" value="flatmates">
-                <input type="hidden" name="id" value="{{ flatmate.id }}">
-                <input type="submit" value="Delete">
-            </form>
-        </td>
+<hr>
+<h3 class="mt-5">Attention:</h3>
+<p>Use this page to delete any data (or all of it). This will not change any existing cleaning schedule. Once you have deleted any data here, you must generate a new table from your dashboard</p>
 
-    </tr>
-    {% endfor %}
-</table>
+{%block scripts %}
 
-{% block scripts %}
-<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+<!-- JS variables -->
+<script type="text/javascript" src="{{ url_for('static', filename= 'js/viewdata.js') }}"></script>
 {% endblock %}
+
 {% endblock %}

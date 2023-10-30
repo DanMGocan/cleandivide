@@ -10,7 +10,9 @@
 
     {% if table_owner_status == 0 and times_logged < 1 %}
     <div class="col-10 mt-5 p-5 rounded mx-auto dashboard-borders">
-        <h5>This is the first time you are logging in. In this application you can be either a <strong>House
+        <h3 class="text-center"><strong>This is the first time you are logging in <i class="fa-regular fa-face-smile"></i> <br><br></strong></h3>
+        
+        <h5>In this application you can be either a <strong>House
                 Member</strong>
             or a <strong>House Master.</strong> If you plan to organise the cleaning, add the tasks and invite your
             flatmates,
@@ -31,7 +33,7 @@
 
 
 
-    {% if table_owner_status == 1 %}
+    {% if is_table_owner == 1 %}
     <div class="row d-flex justify-content-end col-12">
         <form action="{{ url_for('additems_bp.add_items') }}" method="post" class="mx-auto mt-4">
             <input type="submit" value="Generate new table" class="btn default-dashboard-button w-33 mx-auto d-block" />
@@ -70,6 +72,7 @@
     {% endif %}
 
     {% if own_tasks_today|length > 0 %}
+    
     <!-- Your Own Tasks Today -->
     <div class="container mt-5">
         <h1 class="text-center mb-0">Your Tasks for Today</h1>

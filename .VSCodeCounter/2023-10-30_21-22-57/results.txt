@@ -1,0 +1,86 @@
+Date : 2023-10-30 21:22:57
+Directory : d:\Proiecte\cleandivide
+Total : 46 files,  2738 codes, 240 comments, 617 blanks, all 3595 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Python           |         13 |      1,019 |        135 |        290 |      1,444 |
+| HTML             |         12 |        760 |         37 |        158 |        955 |
+| CSS              |          7 |        475 |         36 |         96 |        607 |
+| JavaScript       |          5 |        169 |         30 |         41 |        240 |
+| Database         |          1 |        100 |          0 |          5 |        105 |
+| SQLite           |          1 |         86 |          2 |         17 |        105 |
+| Log              |          3 |         58 |          0 |          3 |         61 |
+| Markdown         |          2 |         42 |          0 |          6 |         48 |
+| pip requirements |          1 |         25 |          0 |          1 |         26 |
+| XML              |          1 |          4 |          0 |          0 |          4 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                 | files      | code       | comment    | blank      | total      |
++------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                    |         46 |      2,738 |        240 |        617 |      3,595 |
+| . (Files)                                            |         13 |        408 |         21 |         68 |        497 |
+| static                                               |         13 |        648 |         66 |        137 |        851 |
+| static\css                                           |          7 |        475 |         36 |         96 |        607 |
+| static\icons                                         |          1 |          4 |          0 |          0 |          4 |
+| static\js                                            |          5 |        169 |         30 |         41 |        240 |
+| templates                                            |         12 |        760 |         37 |        158 |        955 |
+| views                                                |          8 |        922 |        116 |        254 |      1,292 |
++------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                             | language         | code       | comment    | blank      | total      |
++------------------------------------------------------+------------------+------------+------------+------------+------------+
+| d:\Proiecte\cleandivide\TODO.md                      | Markdown         |         30 |          0 |          6 |         36 |
+| d:\Proiecte\cleandivide\app.log                      | Log              |          1 |          0 |          1 |          2 |
+| d:\Proiecte\cleandivide\awards.md                    | Markdown         |         12 |          0 |          0 |         12 |
+| d:\Proiecte\cleandivide\cleandivide.log              | Log              |         48 |          0 |          1 |         49 |
+| d:\Proiecte\cleandivide\config.py                    | Python           |         12 |          7 |          5 |         24 |
+| d:\Proiecte\cleandivide\context_processors.py        | Python           |         19 |          0 |          8 |         27 |
+| d:\Proiecte\cleandivide\database.db                  | Database         |        100 |          0 |          5 |        105 |
+| d:\Proiecte\cleandivide\init_db.py                   | Python           |          6 |          0 |          2 |          8 |
+| d:\Proiecte\cleandivide\logger.log                   | Log              |          9 |          0 |          1 |         10 |
+| d:\Proiecte\cleandivide\main.py                      | Python           |         51 |         12 |         19 |         82 |
+| d:\Proiecte\cleandivide\models.py                    | Python           |          9 |          0 |          2 |         11 |
+| d:\Proiecte\cleandivide\requirements.txt             | pip requirements |         25 |          0 |          1 |         26 |
+| d:\Proiecte\cleandivide\schema.sql                   | SQLite           |         86 |          2 |         17 |        105 |
+| d:\Proiecte\cleandivide\static\css\add.css           | CSS              |         90 |         12 |         13 |        115 |
+| d:\Proiecte\cleandivide\static\css\dashboard.css     | CSS              |         53 |          0 |         10 |         63 |
+| d:\Proiecte\cleandivide\static\css\housestatus.css   | CSS              |         12 |          0 |          2 |         14 |
+| d:\Proiecte\cleandivide\static\css\index.css         | CSS              |         60 |          4 |         15 |         79 |
+| d:\Proiecte\cleandivide\static\css\main.css          | CSS              |        180 |         20 |         37 |        237 |
+| d:\Proiecte\cleandivide\static\css\profile.css       | CSS              |         65 |          0 |         16 |         81 |
+| d:\Proiecte\cleandivide\static\css\variables.css     | CSS              |         15 |          0 |          3 |         18 |
+| d:\Proiecte\cleandivide\static\icons\house-heart.svg | XML              |          4 |          0 |          0 |          4 |
+| d:\Proiecte\cleandivide\static\js\add.js             | JavaScript       |         55 |         14 |         12 |         81 |
+| d:\Proiecte\cleandivide\static\js\dashboard.js       | JavaScript       |          0 |          0 |          1 |          1 |
+| d:\Proiecte\cleandivide\static\js\index.js           | JavaScript       |         13 |          1 |          3 |         17 |
+| d:\Proiecte\cleandivide\static\js\main.js            | JavaScript       |         61 |          8 |         16 |         85 |
+| d:\Proiecte\cleandivide\static\js\profile.js         | JavaScript       |         40 |          7 |          9 |         56 |
+| d:\Proiecte\cleandivide\templates\about.html         | HTML             |          5 |          0 |          6 |         11 |
+| d:\Proiecte\cleandivide\templates\add.html           | HTML             |        121 |         12 |         20 |        153 |
+| d:\Proiecte\cleandivide\templates\admin.html         | HTML             |         66 |          0 |          8 |         74 |
+| d:\Proiecte\cleandivide\templates\base.html          | HTML             |        103 |         12 |         23 |        138 |
+| d:\Proiecte\cleandivide\templates\dashboard.html     | HTML             |        120 |          3 |         26 |        149 |
+| d:\Proiecte\cleandivide\templates\generator.html     | HTML             |         37 |          0 |          2 |         39 |
+| d:\Proiecte\cleandivide\templates\housestatus.html   | HTML             |         16 |          0 |          9 |         25 |
+| d:\Proiecte\cleandivide\templates\index.html         | HTML             |        116 |          5 |         29 |        150 |
+| d:\Proiecte\cleandivide\templates\monthly.html       | HTML             |         40 |          2 |         13 |         55 |
+| d:\Proiecte\cleandivide\templates\profile.html       | HTML             |         66 |          2 |         11 |         79 |
+| d:\Proiecte\cleandivide\templates\task.html          | HTML             |          6 |          0 |          3 |          9 |
+| d:\Proiecte\cleandivide\templates\viewdata.html      | HTML             |         64 |          1 |          8 |         73 |
+| d:\Proiecte\cleandivide\views\additems.py            | Python           |        112 |         14 |         32 |        158 |
+| d:\Proiecte\cleandivide\views\admin.py               | Python           |         66 |         23 |         22 |        111 |
+| d:\Proiecte\cleandivide\views\auth.py                | Python           |        147 |          8 |         31 |        186 |
+| d:\Proiecte\cleandivide\views\dashboard.py           | Python           |        109 |         15 |         34 |        158 |
+| d:\Proiecte\cleandivide\views\generator.py           | Python           |         99 |         16 |         28 |        143 |
+| d:\Proiecte\cleandivide\views\helpers.py             | Python           |        259 |         33 |         85 |        377 |
+| d:\Proiecte\cleandivide\views\html_helpers.py        | Python           |         61 |          0 |          2 |         63 |
+| d:\Proiecte\cleandivide\views\profile.py             | Python           |         69 |          7 |         20 |         96 |
+| Total                                                |                  |      2,738 |        240 |        617 |      3,595 |
++------------------------------------------------------+------------------+------------+------------+------------+------------+

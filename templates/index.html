@@ -119,10 +119,12 @@
 </div>
 
 <!-- Container for the buttons -->
-<div class="container mt-3 d-flex justify-content-center my-5">
+<div class="container mt-3 d-flex justify-content-center ">
   <!-- GitHub Button -->
-  <a href="https://github.com/DanMGocan" target="_blank" class="btn btn-dark mx-2">
-    <i class="fab fa-github"></i> GitHub
+
+
+  <a href="{{ url_for('static', filename='files/CV_DanGocan.pdf') }}" target="_blank" class="btn btn-info mx-2" download>
+    <i class="fa-solid fa-paperclip"></i> Download my CV
   </a>
 
   <!-- LinkedIn Button -->
@@ -140,9 +142,6 @@
     <i class="fa-solid fa-mug-saucer"></i> Buy me a coffee!
   </a>
 </div>
-
-
-
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>

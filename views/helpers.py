@@ -18,19 +18,32 @@ def clear_db():
     user_id = session.get('user_id') 
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM tasks;")
-    cursor.execute("DELETE FROM rooms;")
-    cursor.execute("DELETE FROM flatmates;")
 
+    # Enable foreign key constraint enforcement
+    cursor.execute("PRAGMA foreign_keys = ON;")
+
+    # Delete data from the tables in the right order
+    cursor.execute("DELETE FROM task_table;")
+    cursor.execute("DELETE FROM daily_bonus;")
+    cursor.execute("DELETE FROM tasks;")
+    cursor.execute("DELETE FROM flatmates;")
+    cursor.execute("DELETE FROM rooms;")
+
+    # Reset auto-increment counters
     cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='tasks'")
-    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
     cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='flatmates'")
+    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
+    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='task_table'")
+
+    # Reset user's default_database column value
     cursor.execute("UPDATE users SET default_database=? WHERE user_id=?", (0, user_id))
+    
     conn.commit()
     conn.close()
 
-    flash('Database cleared successfully :( ', 'success')
+    flash('Database cleared successfully!', 'success')
     return redirect(url_for('main'))
+
 
 
 @helpers_bp.route('/viewdata')
@@ -81,13 +94,70 @@ def delete_entry():
     return_url = request.referrer or url_for("main")
     return redirect(return_url)
 
-@helpers_bp.route('/mark_complete', methods=['POST'])
+@helpers_bp.route('/mark_complete', methods=["GET", "POST"])
 @login_required
 def mark_complete():
     try:
         id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
+        user_id = session["user_id"]
+
+        # Logic to check the awards and assign them as necessary #
+        cursor.execute("SELECT * FROM awards WHERE user_id = ?", (user_id,))
+        user_awards = cursor.fetchone()
+
+        # Tasks per day award #
+        if not user_awards['five_tasks_day'] or not user_awards["ten_tasks_day"] or not user_awards["fifteen_tasks_day"]:
+            cursor.execute("SELECT COUNT(id) FROM task_table WHERE task_owner = ? AND task_date = DATE('now') AND task_complete = 1", (user_id,))
+            completed_tasks_today = cursor.fetchone()[0]
+            if completed_tasks_today >= 5:
+                cursor.execute("UPDATE awards SET five_tasks_day = 1 WHERE user_id = ?", (user_id,))
+            if completed_tasks_today >= 10:
+                cursor.execute("UPDATE awards SET ten_tasks_day = 1 WHERE user_id = ?", (user_id,))
+            if completed_tasks_today >= 15:
+                cursor.execute("UPDATE awards SET fifteen_tasks_day = 1 WHERE user_id = ?", (user_id,))
+
+        # Completed Tasks Award #
+        if not user_awards['completed_100_tasks'] or not user_awards["completed_250_tasks"] or not user_awards["completed_750_tasks"] or not user_awards["completed_1500_tasks"] or not user_awards["completed_2500_tasks"]:
+            cursor.execute("SELECT COUNT(id) FROM task_table WHERE task_owner = ? AND task_complete = 1", (user_id,))
+            total_completed_tasks = cursor.fetchone()[0]
+            if total_completed_tasks >= 100:
+                cursor.execute("UPDATE awards SET completed_100_tasks = 1 WHERE user_id = ?", (user_id,))
+            if total_completed_tasks >= 250:
+                cursor.execute("UPDATE awards SET completed_250_tasks = 1 WHERE user_id = ?", (user_id,))
+            if total_completed_tasks >= 750:
+                cursor.execute("UPDATE awards SET completed_750_tasks = 1 WHERE user_id = ?", (user_id,))
+            if total_completed_tasks >= 1500:
+                cursor.execute("UPDATE awards SET completed_1500_tasks = 1 WHERE user_id = ?", (user_id,))
+            if total_completed_tasks >= 2500:
+                cursor.execute("UPDATE awards SET completed_2500_tasks = 1 WHERE user_id = ?", (user_id,))
+
+        # Membership Days Awards:
+        cursor.execute("SELECT julianday(DATE('now')) - julianday(first_login) FROM users WHERE user_id = ?", (user_id,))
+        membership_days = cursor.fetchone()[0]
+
+        if not user_awards['member_30_days'] and membership_days >= 30:
+            cursor.execute("UPDATE awards SET member_30_days = 1 WHERE user_id = ?", (user_id,))
+
+        if not user_awards['member_120_days'] and membership_days >= 120:
+            cursor.execute("UPDATE awards SET member_120_days = 1 WHERE user_id = ?", (user_id,))
+
+        if not user_awards['member_365_days'] and membership_days >= 365:
+            cursor.execute("UPDATE awards SET member_365_days = 1 WHERE user_id = ?", (user_id,))
+
+        # Points-based Awards:
+        cursor.execute("SELECT points FROM users WHERE user_id = ?", (user_id,))
+        user_points = cursor.fetchone()[0]
+
+        if not user_awards['check_500_points'] and user_points >= 500:
+            cursor.execute("UPDATE awards SET check_500_points = 1 WHERE user_id = ?", (user_id,))
+
+        if not user_awards['check_1000_points'] and user_points >= 1000:
+            cursor.execute("UPDATE awards SET check_1000_points = 1 WHERE user_id = ?", (user_id,))
+
+        if not user_awards['check_2500_points'] and user_points >= 2500:
+            cursor.execute("UPDATE awards SET check_2500_points = 1 WHERE user_id = ?", (user_id,))
 
         # Get the points value of the task
         cursor.execute("SELECT task_points FROM task_table WHERE id = ?", (id,))

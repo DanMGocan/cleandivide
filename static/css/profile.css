@@ -12,7 +12,7 @@
 }
 
 .task-card:hover .profile-card-header {
-    border-bottom: 1px solid var(--saffron);
+    border-bottom: 3px solid var(--saffron);
 }
 
 .task-card:hover .complete-button {
@@ -26,4 +26,55 @@
     color: var(--saffron);
 }
 
+.award-box-active, .award-box-inactive {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.task-card:hover .award-box-active {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+}
+
+
+.award-box-active:hover, .award-box-inactive:hover {
+    background-color: #e0e0e0;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.tooltip.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.award-box-active {
+    background-color: var(--charcoal);
+    color: goldenrod;
+}
+
+.award-active {
+
+}
+
+.award-box-inactive {
+    background-color: gray;
+    color: whitesmoke;
+}
 

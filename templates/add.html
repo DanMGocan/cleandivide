@@ -86,7 +86,7 @@
                 <!-- Form -->
                 <form action="{{ url_for('additems_bp.add_task') }}" method="post" class="mx-auto" id="taskForm">
                     <!-- Inputs -->
-                    <input list="popularTasks" type="text" name="description" maxlength="80"
+                    <input list="popularTasks" type="text" name="description" maxlength="80" 
                         placeholder="Description of the task (max. 80 characters)" class="form-control mb-3" required>
                     <datalist id="popularTasks">
                         {% for task in template_data.popular_tasks %}

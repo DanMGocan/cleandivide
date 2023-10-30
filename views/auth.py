@@ -12,10 +12,7 @@ def add_or_get_user(user_email, function):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Fetch existing user
-    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
-    user = cursor.fetchone()
-
+    # Check if user is an existing flatmate
     cursor.execute('SELECT * FROM flatmates WHERE email = ?', (user_email,))
     existing_flatmate = cursor.fetchone()
 
@@ -25,6 +22,9 @@ def add_or_get_user(user_email, function):
     if function not in ["login", "flatmate_update"]:
         raise ValueError("Invalid function parameter")
 
+    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
+    user = cursor.fetchone()
+
     if user:
         if function == "login":
             cursor.execute("UPDATE users SET times_logged = times_logged + 1 WHERE user_id = ?", (user_email,))
@@ -33,11 +33,16 @@ def add_or_get_user(user_email, function):
                 cursor.execute("UPDATE users SET first_login = ? WHERE user_id = ?", (datetime.now(), user_email,))
         elif function == "flatmate_update":
             cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))  # Set table_owner to 0
-    
     else:
         # User doesn't exist, add them to 'users' table
         cursor.execute('INSERT INTO users (user_id, first_login) VALUES (?, ?)', (user_email, datetime.now()))  # Set first_login at user creation
-        
+        cursor.execute('SELECT 1 FROM awards WHERE user_id = ?', (user_email,))
+        has_awards = cursor.fetchone()
+
+        if not has_awards:
+            # No awards record found for the user, so insert a new record with default values
+            cursor.execute('INSERT INTO awards (user_id) VALUES (?)', (user_email,))
+
         # Check for table participant and owner status
         cursor.execute("SELECT 1 FROM task_table WHERE task_owner = ?", (user_email,))
         table_participant = cursor.fetchone()
@@ -56,10 +61,9 @@ def add_or_get_user(user_email, function):
     # Fetch the updated user
     cursor.execute('SELECT * FROM users WHERE user_id = ?', (user_email,))
     user = cursor.fetchone()
-    
+
     conn.close()
     return user
-
 
 def setup_google(app):
     global google

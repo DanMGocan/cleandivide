@@ -1,0 +1,20 @@
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    top: -30px; /* adjust as needed, positions the tooltip above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    font-size: 0.8em;
+    white-space: nowrap; /* prevents the tooltip text from wrapping */
+    pointer-events: none; /* ensures that the tooltip doesn't interfere with interactions */
+    z-index: 10;
+}
