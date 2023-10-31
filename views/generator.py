@@ -140,4 +140,4 @@ def generate():
     conn.commit()
     conn.close()
         
-    return redirect(url_for("main"))
+    return redirect(url_for("dashboard_bp.dashboard"))

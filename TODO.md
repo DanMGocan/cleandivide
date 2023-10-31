@@ -1,14 +1,13 @@
+# IMPORTANT
+- data persistence if a new table is generated. a lot of data disappears, for the awards and such
+-- just the total tasks need to be stored away in a separate data field 
 
 - download the standard task mater for 2, 3, 4 flatmates in a standard apartment
 - database sanitizing
 - add date to tasks and such, to have them deleted yearly
 - platform for updates
-- Generate function should invite all flatmates to it, increment all tasks by 1, assign tables to users 
-- limit of 1 table per user and every user can be either an owner or a participant
 - add a TOTAL POINTS kind of score for the cleanest cleaning cleaner 
 - privacy statement: we only take the e-mail address and that's it 
-- remove the default values 
-- cannot remove yourself from the DB
 - add caca on towels  
 - check for duplicates in flatmates 
 - limit the amount of flat mates 
@@ -23,8 +22,8 @@
 - allow admins to change how many points things cost and how many points per tasks are given 
 - optimise images
 - fix times logged in bug
-- remove About page (?)
-
+- trying to remove the last task in the view data is not allowed 
+- add shadows to boxes
 
 # Paid features
 - calendar for 60 or 90 days

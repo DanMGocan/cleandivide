@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS rooms;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS daily_bonus;
 DROP TABLE IF EXISTS awards;
-DROP TABLE IF EXISTS powercosts;
+
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,6 +28,8 @@ CREATE TABLE rooms (
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
+CREATE INDEX idx_rooms_user_id ON rooms(user_id);
+
 CREATE TABLE tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT,
@@ -41,6 +43,9 @@ CREATE TABLE tasks (
     FOREIGN KEY(room) REFERENCES rooms(name)
 );
 
+CREATE INDEX idx_tasks_user_id ON tasks(user_id);
+CREATE INDEX idx_tasks_room ON tasks(room);
+
 CREATE TABLE flatmates (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,
@@ -48,6 +53,8 @@ CREATE TABLE flatmates (
 
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+CREATE INDEX idx_flatmates_user_id ON flatmates(user_id);
 
 CREATE TABLE daily_bonus (
     user_id INTEGER,
@@ -78,36 +85,23 @@ CREATE TABLE awards (
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE powercosts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id TEXT NOT NULL UNIQUE,
-    reassign INTEGER DEFAULT 100,
-    skip INTEGER DEFAULT 135,
-    procrastinate INTEGER DEFAULT 75,
-
-    FOREIGN KEY(user_id) REFERENCES users(user_id)
-)
-
 -- Junction Table for task_table and tasks
 CREATE TABLE task_table (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     table_owner TEXT, 
     task_date DATE, 
     task_id INTEGER,
-    task_description TEXT,
-    task_frequency TEXT,
-    task_points INTEGER,
     task_complete INTEGER DEFAULT 0,
     room_id INTEGER,
     task_owner TEXT,
 
     FOREIGN KEY(table_owner) REFERENCES users(user_id),
-    FOREIGN KEY (task_id) REFERENCES tasks(id),
-    FOREIGN KEY (task_description) REFERENCES tasks(description),
-    FOREIGN KEY (task_points) REFERENCES tasks(points),
-    FOREIGN KEY (room_id) REFERENCES rooms(id),
-    FOREIGN KEY (task_owner) REFERENCES flatmates(id),
-    FOREIGN KEY (task_frequency) REFERENCES tasks(frequency)
+    FOREIGN KEY(task_id) REFERENCES tasks(id),
+    FOREIGN KEY(room_id) REFERENCES rooms(id),
+    FOREIGN KEY(task_owner) REFERENCES flatmates(id)
 );
 
-
+CREATE INDEX idx_task_table_table_owner ON task_table(table_owner);
+CREATE INDEX idx_task_table_task_id ON task_table(task_id);
+CREATE INDEX idx_task_table_room_id ON task_table(room_id);
+CREATE INDEX idx_task_table_task_owner ON task_table(task_owner);

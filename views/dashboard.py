@@ -26,8 +26,7 @@ def dashboard():
     cursor = conn.cursor()
     user_id = session.get('user_id')
     today_date = datetime.now().strftime('%d/%m/%Y')
-
-
+    
     # Check if a task table has been created #
     cursor.execute(f"SELECT * FROM task_table WHERE table_owner = ?", (user_id,))
     task_table_created_placeholder = cursor.fetchone()
@@ -63,7 +62,7 @@ def dashboard():
     cursor.execute("SELECT DISTINCT table_owner FROM task_table WHERE table_owner = ? OR task_owner = ?", (user_id, user_id))
     table_owner_row = cursor.fetchone()
 
-    if task_table_created == False and table_owner_status == False:
+    if task_table_created is False and table_owner_status is False:
     # Handle this case appropriately, e.g., by showing an error message or redirecting the user
         return render_template(
             'dashboard.html',
@@ -118,7 +117,8 @@ def dashboard():
         own_tasks_tomorrow=own_tasks_tomorrow,
         power_costs=power_costs,
         today_date = today_date,
-        already_clicked=already_clicked
+        already_clicked=already_clicked,
+        times_logged=times_logged
     )
 
 @dashboard_bp.route("/dashboard_monthly", methods=["GET", "POST"])

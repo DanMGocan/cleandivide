@@ -97,7 +97,7 @@ def add_task():
         finally:
             conn.close()
 
-        return redirect(url_for('main'))  # Redirect to user's dashboard
+        return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
 
 @additems_bp.route("/addroom", methods=("GET", "POST"))
 @login_required
@@ -128,13 +128,13 @@ def add_flatmate():
             existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ? AND user_id = ?', (flatmate_email, user_id)).fetchone()
             if existing_flatmate:
                 flash('Flatmate already exists and cloning is but a distant dream!', 'danger')
-                return redirect(url_for('main'))  # Redirect to user's dashboard
+                return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
 
             # Check if the flatmate is already a House Master
             house_master_check = conn.execute('SELECT table_owner FROM users WHERE user_id = ?', (flatmate_email,)).fetchone()
             if house_master_check and house_master_check[0] == 1:
                 flash('This person is already a House Master!', 'warning')
-                return redirect(url_for('main'))  # Redirect to user's dashboard
+                return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
 
             # If not, proceed with adding the flatmate
             conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
@@ -153,5 +153,5 @@ def add_flatmate():
         finally:
             conn.close()
 
-        return redirect(url_for('main'))  # Redirect to user's dashboard
+        return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
 

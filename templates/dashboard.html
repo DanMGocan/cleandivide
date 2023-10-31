@@ -52,7 +52,25 @@
         </span>
     </form>
 
+    <div class="col-10 mt-5 p-5 rounded mx-auto" id="notasks">
+        <h2 class="text-center">You have no tasks today, go forth and be free!</h2>
+        <p class="d-block text-center mt-5 mx-auto">...but since you logged in, you get some points anyway!
+            Good intentions and all that.</p>
+        <form action="{{ url_for('helpers_bp.daily_bonus') }}" method="post" class="mb-2">
+            {% if already_clicked %}
+            <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit" disabled>Bonus
+                already collected!<br></button>
+            {% else %}
+            <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit">5 free
+                points!<br></button>
+            {% endif %}
+        </form>
+    </div>
 
+    {% endif %}
+
+
+    {% if own_tasks_today|length < 1 and is_table_owner == 1 and times_logged >= 1%}
 
     <div class="col-10 mt-5 p-5 rounded mx-auto" id="notasks">
         <h2 class="text-center">You have no tasks today, go forth and be free!</h2>

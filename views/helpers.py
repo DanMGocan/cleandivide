@@ -3,7 +3,8 @@ from flask_login import login_required
 from models import get_db_connection
 from context_processors import get_table_owner_status
 from flask_mail import Mail
-from random import choice 
+import random
+from random import choice
 from views.dashboard import power_costs
 from datetime import datetime, timedelta
 
@@ -25,8 +26,8 @@ def clear_db():
     # Delete data from the tables in the right order
     cursor.execute("DELETE FROM task_table;")
     cursor.execute("DELETE FROM daily_bonus;")
-    cursor.execute("DELETE FROM tasks;")
     cursor.execute("DELETE FROM flatmates;")
+    cursor.execute("DELETE FROM tasks;")
     cursor.execute("DELETE FROM rooms;")
 
     # Reset auto-increment counters
@@ -77,7 +78,7 @@ def delete_entry():
         return redirect(url_for("main"))
 
     user_id_to_delete = conn.execute("SELECT email FROM flatmates WHERE id=?", (id_to_delete,)).fetchone()
-    if user_id_to_delete and user_id_to_delete[0] == user_id:
+    if user_id_to_delete and table_name == "flatmates" and user_id_to_delete[0] == user_id:
         flash("You cannot delete yourself...", "danger")
         return redirect(url_for("main"))
     
@@ -161,10 +162,12 @@ def mark_complete():
 
         # Get the points value of the task
         cursor.execute("SELECT task_points FROM task_table WHERE id = ?", (id,))
-        task_points = cursor.fetchone()
+        task_points_value = cursor.fetchone()
 
-        if task_points:
-            task_points = task_points[0]  # Extract points from the tuple
+
+        if task_points_value:
+            task_points_value = task_points_value[0]  # Extract points from the tuple
+            task_points = round(random.uniform(task_points_value * 0.25, task_points_value * 0.75))
         else:
             flash("No such task", "warning")
             return redirect(request.referrer or url_for("dashboard"))
@@ -181,7 +184,7 @@ def mark_complete():
         conn.close()
 
         if cursor.rowcount:
-            flash(f"Task {id} successfully marked as complete", "success")
+            flash(f"Task successfully marked as complete and {task_points} points awarded!", "success")
         else:
             flash("No such task", "warning")
     except Exception as e:
@@ -230,8 +233,6 @@ def become_house_master():
         conn.close()
 
     return redirect(url_for('additems_bp.add_items'))
-
-
 
 @helpers_bp.route('/become_house_member', methods=["GET", 'POST'])
 @login_required
