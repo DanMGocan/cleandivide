@@ -7,13 +7,7 @@ from sqlite3 import IntegrityError
 from datetime import datetime
 import sqlite3
 from context_processors import get_table_owner_status
-
-
-power_costs = {
-    "reassign": 60,
-    "skip": 75,
-    "procrastinate": 35
-}
+from views.helpers import get_power_costs
 
 calendar = {}
 dashboard_bp = Blueprint('dashboard_bp', __name__)
@@ -26,6 +20,8 @@ def dashboard():
     cursor = conn.cursor()
     user_id = session.get('user_id')
     today_date = datetime.now().strftime('%d/%m/%Y')
+    lower_threshold = get_power_costs(user_id)["lower_threshold"]
+    higher_threshold = get_power_costs(user_id)["higher_threshold"]
     
     # Check if a task table has been created #
     cursor.execute(f"SELECT * FROM task_table WHERE table_owner = ?", (user_id,))
@@ -73,7 +69,9 @@ def dashboard():
             own_tasks_tomorrow=[],
             today_date=today_date,
             times_logged=times_logged,
-            already_clicked=already_clicked    
+            already_clicked=already_clicked,
+            lower_threshold = lower_threshold,
+            higher_threshold=higher_threshold    
             )
 
     if task_table_created == False and table_owner_status == True:
@@ -101,6 +99,16 @@ def dashboard():
     cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now', '+1 day')", flatmate_ids)
     tasks_tomorrow = cursor.fetchall()
 
+    # Get the power costs 
+    cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,))
+    power_costs_results = cursor.fetchone()
+
+    power_costs = {
+        "reassign": power_costs_results[0],
+        "skip": power_costs_results[1],
+        "procrastinate": power_costs_results[2]
+    }
+
     conn.close()
 
     # Separate the tasks
@@ -118,7 +126,9 @@ def dashboard():
         power_costs=power_costs,
         today_date = today_date,
         already_clicked=already_clicked,
-        times_logged=times_logged
+        times_logged=times_logged,
+        lower_threshold = lower_threshold,
+        higher_threshold=higher_threshold
     )
 
 @dashboard_bp.route("/dashboard_monthly", methods=["GET", "POST"])

@@ -25,6 +25,7 @@
 - trying to remove the last task in the view data is not allowed 
 - add shadows to boxes
 
+
 # Paid features
 - calendar for 60 or 90 days
 - email reminder 

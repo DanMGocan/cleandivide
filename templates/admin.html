@@ -3,8 +3,8 @@
 
 {% block content %}
 
+<div class="mt-5 container">
 
-<div class="container mt-5">
     <h1 class="mb-4"><strong>Total Completion Rates</strong></h1>
     <p>This is an overview of how many of the assigned tasks have been completed, up to today.</p>
 
@@ -17,16 +17,15 @@
         </thead>
         <tbody>
             {% for flatmate_email, completion_rate in completion_rates.items() %}
-                <tr>
-                    <td>{{ flatmate_email }}</td>
-                    <td>{{ completion_rate }}</td>
-                </tr>
+            <tr>
+                <td>{{ flatmate_email }}</td>
+                <td>{{ completion_rate }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
+    <hr>
 
-<div class="container mt-5">
     <h1 class="mb-4"><strong>Today's Tasks</strong></h1>
     <p>The table below shows if the tasks for today have been completed</p>
     <table class="table table-hover table-bordered">
@@ -39,17 +38,16 @@
         </thead>
         <tbody>
             {% for task in today_tasks %}
-                <tr>
-                    <td>{{ task[1] }}</td>
-                    <td>{{ task[2] }}</td>
-                    <td>{{ task[3] }}</td>
-                </tr>
+            <tr>
+                <td>{{ task[1] }}</td>
+                <td>{{ task[2] }}</td>
+                <td>{{ task[3] }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
+    <hr>
 
-<div class="container mt-5">
     <h1 class="mb-4"><strong>Points Assigned to Flatmates</strong></h1>
     <p>Below are the points assigned to each flatmate</p>
     <table class="table table-hover table-bordered">
@@ -61,13 +59,71 @@
         </thead>
         <tbody>
             {% for flatmate in flatmate_points_results %}
-                <tr>
-                    <td>{{ flatmate.task_owner }}</td>
-                    <td>{{ flatmate.total_points }}</td>
-                </tr>
+            <tr>
+                <td>{{ flatmate.task_owner }}</td>
+                <td>{{ flatmate.total_points }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+    <hr>
+
+    <h1 class="mt-5"><strong>Update Power Costs for your home</strong></h1>
+    <p> Every task can be either randomly reassigned, skipped or procrastinated by any user that has
+        gathered the amount of points required. From here you can decide how much these actions cost
+        and also, how much of a task's points is returned to the user.
+    </p>
+
+    <form action="{{ url_for('admin_bp.update_power_costs_post') }}" method="post">
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="reassign">Reassign task to random flatmate:</label>
+                <input type="number" min="20" max="2000" name="reassign" class="form-control"
+                    value="{{ power_costs }}" placeholder="{{ power_costs['reassign'] }} (20 -> 2000)">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="skip">Skip the task entirely:</label>
+                <input type="number" min="20" max="2000" name="skip" class="form-control"
+                    value="{{ power_costs }}" placeholder="{{ power_costs['skip'] }} (20 -> 2000)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="procrastinate">Procrastinate (leave task for tomorrow):</label>
+                <input type="number" min="20" max="2000" name="procrastinate" class="form-control"
+                    value="{{'procrastinate'}}" placeholder="{{ power_costs['procrastinate'] }} (20 -> 2000)">
+            </div>
+            <!-- Placeholder for alignment -->
+            <div class="col-md-6 form-group"></div>
+        </div>
+        <hr>
+
+        <!-- Title for the reward thresholds -->
+        <h2 class="mt-5">Reward Thresholds</h2>
+        <p>Every task has a number of points assigned to it - this is how the algorithm "fairly" divides the work. Once
+            complete, a percentage of those points is returned to user.
+            The amount is a random value between the lower and the higher thresholds. You can change their value from
+            here.
+        </p>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="lower_reward_threshold">Lower Reward Threshold:</label>
+                <input type="number" min="0.1" max="10" step="0.01" name="lower_reward_threshold" class="form-control"
+                    value="{{'lower_reward_threshold'}}" placeholder="x{{ power_costs['lower_reward_threshold'] }} (0.1 -> 10)">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="higher_reward_threshold">Higher Reward Threshold:</label>
+                <input type="number" min="0.25" max="50" step="0.01" name="higher_reward_threshold" class="form-control"
+                    value="{{'higher_reward_threshold'}}" placeholder="x{{ power_costs['higher_reward_threshold'] }} (0.25 -> 50)">
+            </div>
+        </div>
+
+        <button type="submit" class="btn default-dashboard-button">Update</button>
+    </form>
 </div>
 
 

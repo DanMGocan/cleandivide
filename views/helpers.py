@@ -5,13 +5,42 @@ from context_processors import get_table_owner_status
 from flask_mail import Mail
 import random
 from random import choice
-from views.dashboard import power_costs
 from datetime import datetime, timedelta
 
 helpers_bp = Blueprint('helpers_bp', __name__)
 
 # Helper for Mail logic
 mail = Mail()
+
+# Helper functions #
+def get_power_costs(user_id):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold FROM powercosts WHERE user_id = ?', (user_id,))
+    power_costs_results = cursor.fetchone()
+
+    if power_costs_results:
+        power_costs = {
+            "reassign": power_costs_results[0],
+            "skip": power_costs_results[1],
+            "procrastinate": power_costs_results[2],
+            "lower_threshold": power_costs_results[3],
+            "higher_threshold": power_costs_results[4]
+        }
+    else:
+        power_costs = {
+            "reassign": 0,
+            "skip": 0,
+            "procrastinate": 0,
+            "lower_threshold": 0,
+            "higher_threshold": 0
+        }
+
+    return power_costs
+
+print(get_power_costs)
 
 @helpers_bp.route('/clear_db', methods=['POST'])
 @login_required
@@ -35,9 +64,6 @@ def clear_db():
     cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='flatmates'")
     cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
     cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='task_table'")
-
-    # Reset user's default_database column value
-    cursor.execute("UPDATE users SET default_database=? WHERE user_id=?", (0, user_id))
     
     conn.commit()
     conn.close()
@@ -98,6 +124,7 @@ def delete_entry():
 @helpers_bp.route('/mark_complete', methods=["GET", "POST"])
 @login_required
 def mark_complete():
+
     try:
         id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()
@@ -167,7 +194,7 @@ def mark_complete():
 
         if task_points_value:
             task_points_value = task_points_value[0]  # Extract points from the tuple
-            task_points = round(random.uniform(task_points_value * 0.25, task_points_value * 0.75))
+            task_points = round(random.uniform(task_points_value * get_power_costs(user_id)["lower_threshold"], task_points_value * get_power_costs(user_id)["higher_threshold"]))
         else:
             flash("No such task", "warning")
             return redirect(request.referrer or url_for("dashboard"))
@@ -220,6 +247,14 @@ def become_house_master():
         # Update the table_owner value to 1 and increment times_logged by 1
         cursor.execute("UPDATE users SET table_owner = 1, times_logged = ? WHERE user_id = ?", (times_logged + 1, user_id,))
 
+        # Add the default power costs to user #
+        cursor.execute('SELECT 1 FROM powercosts WHERE user_id = ?', (user_id,))
+        power_costs_true = cursor.fetchone()
+
+        if not power_costs_true:
+            # No power costs record found for the user, so insert a new record with default values
+            cursor.execute('INSERT INTO powercosts (user_id) VALUES (?)', (user_id,))
+
         # Commit the transaction
         conn.commit()
 
@@ -257,8 +292,8 @@ def become_house_member():
 @helpers_bp.route('/reassign_task', methods=["GET", 'POST'])
 @login_required
 def reassign_task():
-    cost = power_costs["reassign"]
     user_id = session["user_id"]
+    cost = get_power_costs(user_id)["reassign"]
     try:
         id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()
@@ -327,7 +362,7 @@ def reassign_task():
 @login_required
 def skip_task():
     user_id = session["user_id"]
-    cost = power_costs["skip"]  # Define the cost variable
+    cost = get_power_costs(user_id)["skip"]  # Define the cost variable
     try:
         task_id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()
@@ -365,7 +400,7 @@ def skip_task():
 @login_required
 def procrastinate_task():
     user_id = session["user_id"]
-    cost = power_costs["procrastinate"]
+    cost = get_power_costs(user_id)["procrastinate"]
     try:
         task_id = int(request.form.get('id'))  # Cast to int
         conn = get_db_connection()

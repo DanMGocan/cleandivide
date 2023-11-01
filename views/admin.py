@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, session, render_template, flash
+from flask import Blueprint, redirect, url_for, session, render_template, flash, request
 from flask_login import login_required
 from models import get_db_connection
 from datetime import datetime, timedelta
@@ -16,6 +16,11 @@ def admin():
     conn = get_db_connection()
     cursor = conn.cursor()
     user_id = session["user_id"]
+
+    # Fetch the power costs for the user
+    cursor.execute('SELECT reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold FROM powercosts WHERE user_id = ?', (user_id,))
+    power_costs = cursor.fetchone()
+    
     if get_table_owner_status()["is_table_owner"] == 1:
         
         # Check if a task_table has been created
@@ -31,6 +36,9 @@ def admin():
 
 
             try:
+
+
+
                 # Get the total points per user #
                 cursor.execute('''
                     SELECT task_owner, SUM(task_points) AS total_points
@@ -108,6 +116,37 @@ def admin():
                 return redirect(url_for("dashboard_bp.dashboard"))
             
             # Pass the completion rates to the template
-            return render_template("admin.html", completion_rates=completion_rates, today_tasks = today_tasks, flatmate_points_results=flatmate_points_results)
+            return render_template("admin.html", completion_rates=completion_rates, power_costs=power_costs, today_tasks = today_tasks, flatmate_points_results=flatmate_points_results)
     else:
         return redirect(url_for("dashboard_bp.dashboard"))
+    
+@admin_bp.route("/update_power_costs", methods=["POST"])
+@login_required
+def update_power_costs_post():
+    user_id = request.form.get('user_id')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Step 1: Retrieve current values from the database
+    cursor.execute('SELECT reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold FROM powercosts WHERE user_id = ?', (user_id,))
+    current_values = cursor.fetchone()
+
+    # Step 2: Check for each form value. Use the current value if the form value is not provided.
+    reassign = request.form.get('reassign') or current_values[0]
+    skip = request.form.get('skip') or current_values[1]
+    procrastinate = request.form.get('procrastinate') or current_values[2]
+    lower_reward_threshold = request.form.get('lower_reward_threshold') or current_values[3]
+    higher_reward_threshold = request.form.get('higher_reward_threshold') or current_values[4]
+
+    if lower_reward_threshold > higher_reward_threshold:
+        flash("Lower rewards threshold cannot be higher than the higher reward threshold. Logically.", "warning")
+        return(redirect(url_for('admin_bp.admin')))
+
+    cursor.execute('UPDATE powercosts SET reassign = ?, skip = ?, procrastinate = ?, lower_reward_threshold = ?, higher_reward_threshold = ? WHERE user_id = ?', (reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold, user_id))
+    conn.commit()
+    conn.close()
+
+    flash("Power costs updated successfully!", "success")
+    return redirect(url_for('admin_bp.admin'))
+

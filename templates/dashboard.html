@@ -106,8 +106,8 @@
                     <div class="card task-card">
                         <div class="card-header">
                             <small class="d-block"><strong>This task is worth between
-                                    {{ (task["task_points"] * 0.25) | floor }} and
-                                    {{ (task["task_points"] * 0.75) | floor }} points!</strong></small>
+                                    {{ (task["task_points"] * lower_threshold) | floor }} and
+                                    {{ (task["task_points"] * higher_threshold) | floor }} points!</strong></small>
                         </div>
                         <div class="card-body">
                             <h3 class="card-title"><strong>{{ task['task_description'] }}</strong></h3>

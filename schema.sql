@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS awards;
 DROP TABLE IF EXISTS powercosts;
 
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT NOT NULL UNIQUE,
     first_login DATETIME,
     last_login DATETIME,
@@ -21,7 +21,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE rooms (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT NOT NULL,
     name TEXT NOT NULL,
 
@@ -29,7 +29,7 @@ CREATE TABLE rooms (
 );
 
 CREATE TABLE tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT,
     description TEXT NOT NULL,
     points INTEGER NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE tasks (
 );
 
 CREATE TABLE flatmates (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT NOT NULL,
     email TEXT NOT NULL,
 
@@ -57,7 +57,7 @@ CREATE TABLE daily_bonus (
 );
 
 CREATE TABLE awards (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT NOT NULL UNIQUE,
     logged_in INTEGER DEFAULT 1,
     five_tasks_day INTEGER DEFAULT 0,
@@ -79,18 +79,20 @@ CREATE TABLE awards (
 );
 
 CREATE TABLE powercosts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     user_id TEXT NOT NULL UNIQUE,
     reassign INTEGER DEFAULT 100,
     skip INTEGER DEFAULT 135,
     procrastinate INTEGER DEFAULT 75,
+    lower_reward_threshold FLOAT DEFAULT 0.25,
+    higher_reward_threshold FLOAT DEFAULT 0.75,
 
     FOREIGN KEY(user_id) REFERENCES users(user_id)
-)
+);
 
 -- Junction Table for task_table and tasks
 CREATE TABLE task_table (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     table_owner TEXT, 
     task_date DATE, 
     task_id INTEGER,

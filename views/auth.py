@@ -36,6 +36,8 @@ def add_or_get_user(user_email, function):
     else:
         # User doesn't exist, add them to 'users' table
         cursor.execute('INSERT INTO users (user_id, first_login) VALUES (?, ?)', (user_email, datetime.now()))  # Set first_login at user creation
+
+        # Add the default awards to user #
         cursor.execute('SELECT 1 FROM awards WHERE user_id = ?', (user_email,))
         has_awards = cursor.fetchone()
 
