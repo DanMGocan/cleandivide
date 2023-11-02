@@ -15,120 +15,77 @@ dashboard_bp = Blueprint('dashboard_bp', __name__)
 @dashboard_bp.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-
-    conn = get_db_connection()
-    cursor = conn.cursor()
     user_id = session.get('user_id')
-    today_date = datetime.now().strftime('%d/%m/%Y')
-    lower_threshold = get_power_costs(user_id)["lower_threshold"]
-    higher_threshold = get_power_costs(user_id)["higher_threshold"]
+    today_date = datetime.now().strftime('%Y-%m-%d')
+
+    # Establish the database connection
+    conn = get_db_connection()
+    conn.row_factory = sqlite3.Row  # Fetches the rows as dictionaries
+    cursor = conn.cursor()
+
+    # Fetch power thresholds
+    cursor.execute("SELECT lower_reward_threshold, higher_reward_threshold FROM powercosts WHERE user_id = ?", (user_id,))
+    thresholds = cursor.fetchone()
+    lower_threshold = thresholds['lower_reward_threshold'] if thresholds else 0
+    higher_threshold = thresholds['higher_reward_threshold'] if thresholds else 0
+
+    # Determine if the user is a house master
+    house_master_status = cursor.execute("SELECT table_owner FROM users WHERE user_id = ?", (user_id,)).fetchone()['table_owner']
+
+    # Fetch the number of times the user has logged in
+    times_logged = cursor.execute('SELECT times_logged FROM users WHERE user_id = ?', (user_id,)).fetchone()['times_logged']
+
+    # Check if the daily bonus has been collected
+    already_clicked = cursor.execute(
+        "SELECT 1 FROM daily_bonus WHERE user_id = ? AND date = ?", 
+        (user_id, today_date)
+    ).fetchone() is not None
+
+   # Get power costs
+    power_costs = cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,)).fetchone() or {'reassign': 0, 'skip': 0, 'procrastinate': 0}
+
+    # Logic to get tasks for today and tomorrow
+    # Fetch all tasks from the task table where the user is involved either as a creator or an assigned user
+    tasks_total = cursor.execute("SELECT * FROM task_table WHERE task_owner = ?", (user_id,)).fetchall()
+
+    # First, get the flatmate id for the current user_id
+    flatmate_id_query = "SELECT id FROM flatmates WHERE user_id = ?"
+    flatmate_id = cursor.execute(flatmate_id_query, (user_id,)).fetchone()
+
+    # Ensure that flatmate_id is not None
+    if flatmate_id:
+        flatmate_id = flatmate_id[0]
+
+        # Assuming 'user_id' is the ID of the logged user
+        tasks_today_query = """
+        SELECT tt.*, t.description, t.points, t.frequency FROM task_table AS tt
+        INNER JOIN tasks AS t ON tt.task_id = t.id
+        WHERE tt.task_owner = (SELECT id FROM flatmates WHERE user_id = ?) AND tt.task_date = ?
+        """
+        tasks_today = cursor.execute(tasks_today_query, (user_id, today_date)).fetchall()
+        tasks_today = [dict(task) for task in tasks_today]
+
+
+        # No need to separate tasks anymore as all tasks fetched are owned by the user
+        own_tasks_today = tasks_today  # This now contains all tasks for today where the logged-in user is the owner
+    else:
+        own_tasks_today = []  # No flatmate ID found, so the user has no tasks
+
+        print(own_tasks_today)
+
     
-    # Check if a task table has been created #
-    cursor.execute(f"SELECT * FROM task_table WHERE table_owner = ?", (user_id,))
-    task_table_created_placeholder = cursor.fetchone()
-    if task_table_created_placeholder:
-        task_table_created = True
-    else:
-        task_table_created = False
-
-    # Check if the user is a table owner #
-    table_owner_status_placeholder = get_table_owner_status()["is_table_owner"]
-    if table_owner_status_placeholder:
-        table_owner_status = True
-    else:
-        table_owner_status = False
-        
-    # Check how many times the user logged in #
-    cursor.execute('SELECT times_logged FROM users WHERE user_id = ?', (user_id,))
-    row = cursor.fetchone()
-    times_logged = row['times_logged']
-
-    # Check if daily bonus collected #
-    cursor.execute(
-        "SELECT * FROM daily_bonus WHERE user_id = ? AND date = ?",
-        (user_id, datetime.now().date().isoformat())
-    )
-    already_clicked = cursor.fetchone()
-    print(already_clicked)
-
-    # Ensure rows are returned as dictionaries, not tuples
-    cursor.row_factory = sqlite3.Row
-
-    # Find the table_owner for the current user
-    cursor.execute("SELECT DISTINCT table_owner FROM task_table WHERE table_owner = ? OR task_owner = ?", (user_id, user_id))
-    table_owner_row = cursor.fetchone()
-
-    if task_table_created is False and table_owner_status is False:
-    # Handle this case appropriately, e.g., by showing an error message or redirecting the user
-        return render_template(
-            'dashboard.html',
-            total_tasks=0, 
-            table_owner_status=table_owner_status,
-            own_tasks_today=[], 
-            flatmates_tasks_today=[], 
-            own_tasks_tomorrow=[],
-            today_date=today_date,
-            times_logged=times_logged,
-            already_clicked=already_clicked,
-            lower_threshold = lower_threshold,
-            higher_threshold=higher_threshold    
-            )
-
-    if task_table_created == False and table_owner_status == True:
-        return redirect(url_for("additems_bp.add_items"))
-
-    table_owner = table_owner_row['table_owner']
-
-    # Fetch all the flatmate IDs added by the same table_owner or by themselves
-    cursor.execute("SELECT DISTINCT task_owner FROM task_table WHERE table_owner = ?", (table_owner,))
-    flatmate_ids_row = cursor.fetchall()
-    flatmate_ids = [str(row['task_owner']) for row in flatmate_ids_row]
-
-    # Use placeholders and parameterized query to fetch tasks for today and tomorrow
-    placeholders = ', '.join(['?' for _ in flatmate_ids])
-
-    # Get tasks in total
-    cursor.execute(f"SELECT * FROM task_table WHERE task_owner = ?", (table_owner,))
-    tasks_total = cursor.fetchall()
-
-    # Get tasks for today
-    cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now')", flatmate_ids)
-    tasks_today = cursor.fetchall()
-
-    # Get tasks for tomorrow
-    cursor.execute(f"SELECT * FROM task_table WHERE task_owner IN ({placeholders}) AND task_date = DATE('now', '+1 day')", flatmate_ids)
-    tasks_tomorrow = cursor.fetchall()
-
-    # Get the power costs 
-    cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,))
-    power_costs_results = cursor.fetchone()
-
-    power_costs = {
-        "reassign": power_costs_results[0],
-        "skip": power_costs_results[1],
-        "procrastinate": power_costs_results[2]
-    }
-
-    conn.close()
-
-    # Separate the tasks
-    total_tasks = [task for task in tasks_total]
-    own_tasks_today = [task for task in tasks_today if task['task_owner'] == str(user_id)]
-    own_tasks_tomorrow = [task for task in tasks_tomorrow if task['task_owner'] == str(user_id)]
-    flatmates_tasks_today = [task for task in tasks_today if task['task_owner'] != str(user_id)]
     return render_template(
         'dashboard.html',
-        total_tasks=total_tasks, 
-        table_owner=table_owner,
-        own_tasks_today=own_tasks_today, 
-        flatmates_tasks_today=flatmates_tasks_today, 
-        own_tasks_tomorrow=own_tasks_tomorrow,
-        power_costs=power_costs,
-        today_date = today_date,
-        already_clicked=already_clicked,
+        total_tasks=tasks_total,
+        own_tasks_today=own_tasks_today,
+        today_date=today_date,
         times_logged=times_logged,
-        lower_threshold = lower_threshold,
-        higher_threshold=higher_threshold
+        already_clicked=already_clicked,
+        lower_threshold=lower_threshold,
+        higher_threshold=higher_threshold,
+        power_costs=power_costs,
+        house_master_status=house_master_status
+        # Add any additional context variables needed by your template
     )
 
 @dashboard_bp.route("/dashboard_monthly", methods=["GET", "POST"])

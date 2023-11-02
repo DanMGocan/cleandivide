@@ -20,7 +20,7 @@ def admin():
     # Fetch the power costs for the user
     cursor.execute('SELECT reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold FROM powercosts WHERE user_id = ?', (user_id,))
     power_costs = cursor.fetchone()
-    
+
     if get_table_owner_status()["is_table_owner"] == 1:
         
         # Check if a task_table has been created
@@ -30,25 +30,21 @@ def admin():
         if not table_exists:
             flash("No task table has been created yet.", "warning")
             conn.close()
-            return redirect(url_for("main"))  # User has tasks assigned
-        
+            return redirect(url_for("main"))
+
         else:
-
-
             try:
-
-
-
-                # Get the total points per user #
+                # Get the total points per user (Assuming you have a points column in flatmates or similar)
                 cursor.execute('''
-                    SELECT task_owner, SUM(task_points) AS total_points
-                    FROM task_table
+                    SELECT task_owner, SUM(points) AS total_points
+                    FROM tasks
+                    INNER JOIN task_table ON tasks.id = task_table.task_id
                     GROUP BY task_owner
                 ''')
                 flatmate_points_results = cursor.fetchall()
 
                 # Get a list of all flatmates
-                cursor.execute("SELECT id, email FROM flatmates WHERE user_id =?", (user_id,))
+                cursor.execute("SELECT id, email FROM flatmates WHERE user_id = ?", (user_id,))
                 flatmates = cursor.fetchall()
 
                 completion_rates = {}  # Dictionary to store completion rates for each flatmate
@@ -59,14 +55,14 @@ def admin():
                     # Get the total number of tasks assigned to the flatmate up to today
                     cursor.execute(
                         "SELECT COUNT(*) FROM task_table WHERE task_owner = ? AND task_date <= DATE('now')",
-                        (flatmate_email,)
+                        (flatmate_id,)
                     )
                     total_tasks = cursor.fetchone()[0]
 
                     # Get the total number of completed tasks for the flatmate up to today
                     cursor.execute(
                         "SELECT COUNT(*) FROM task_table WHERE task_owner = ? AND task_complete = 1 AND task_date <= DATE('now')",
-                        (flatmate_email,)
+                        (flatmate_id,)
                     )
                     completed_tasks = cursor.fetchone()[0]
 
@@ -85,7 +81,6 @@ def admin():
                 return redirect(url_for("dashboard_bp.dashboard"))
 
             try:
-
                 # Get today's date in YYYY-MM-DD format
                 today = datetime.now().strftime('%Y-%m-%d')
 
@@ -93,20 +88,21 @@ def admin():
                 cursor.execute("""
                     SELECT 
                         users.user_id,
-                        flatmates.email as flatmate_email,
-                        task_table.task_description,
+                        flatmates.email AS flatmate_email,
+                        tasks.description AS task_description,
                         CASE WHEN task_table.task_complete = 1 THEN 'Complete' ELSE 'Incomplete' END as status
                     FROM 
                         task_table
-                    JOIN 
+                    INNER JOIN 
                         users ON task_table.table_owner = users.user_id
-                    JOIN
-                        flatmates ON task_table.task_owner = flatmates.email
+                    INNER JOIN
+                        flatmates ON task_table.task_owner = flatmates.id
+                    INNER JOIN
+                        tasks ON task_table.task_id = tasks.id
                     WHERE 
                         task_table.task_date = ?
                 """, (today,))
 
-                
                 today_tasks = cursor.fetchall()
                 conn.close()
 
@@ -115,10 +111,11 @@ def admin():
                 flash("An error occurred while fetching today's tasks", "error")
                 return redirect(url_for("dashboard_bp.dashboard"))
             
-            # Pass the completion rates to the template
-            return render_template("admin.html", completion_rates=completion_rates, power_costs=power_costs, today_tasks = today_tasks, flatmate_points_results=flatmate_points_results)
+            # Pass the data to the template
+            return render_template("admin.html", completion_rates=completion_rates, today_tasks=today_tasks, flatmate_points_results=flatmate_points_results, power_costs=power_costs)
     else:
         return redirect(url_for("dashboard_bp.dashboard"))
+
     
 @admin_bp.route("/update_power_costs", methods=["POST"])
 @login_required

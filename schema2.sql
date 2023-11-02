@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS rooms;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS daily_bonus;
 DROP TABLE IF EXISTS awards;
+DROP TABLE IF EXISTS powercosts;
 
 
 CREATE TABLE users (
@@ -14,11 +15,9 @@ CREATE TABLE users (
     first_login DATETIME,
     last_login DATETIME,
     times_logged INTEGER DEFAULT 0,
-    default_database INTEGER DEFAULT 0,
     table_owner INTEGER DEFAULT 0,
-    points INTEGER DEFAULT 0, 
-    awards TEXT
-);
+    points INTEGER DEFAULT 0
+    );
 
 CREATE TABLE rooms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,7 +39,7 @@ CREATE TABLE tasks (
     used_count INTEGER DEFAULT 1,
 
     FOREIGN KEY(user_id) REFERENCES users(user_id),
-    FOREIGN KEY(room) REFERENCES rooms(name)
+    FOREIGN KEY(room) REFERENCES rooms(id)
 );
 
 CREATE INDEX idx_tasks_user_id ON tasks(user_id);
@@ -57,7 +56,7 @@ CREATE TABLE flatmates (
 CREATE INDEX idx_flatmates_user_id ON flatmates(user_id);
 
 CREATE TABLE daily_bonus (
-    user_id INTEGER,
+    user_id TEXT,
     date DATE,
     points_awarded INTEGER,
     PRIMARY KEY(user_id, date)
@@ -81,6 +80,18 @@ CREATE TABLE awards (
     completed_750_tasks INTEGER DEFAULT 0,
     completed_1500_tasks INTEGER DEFAULT 0,
     completed_2500_tasks INTEGER DEFAULT 0,
+
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE powercosts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+    user_id TEXT NOT NULL UNIQUE,
+    reassign INTEGER DEFAULT 100,
+    skip INTEGER DEFAULT 135,
+    procrastinate INTEGER DEFAULT 75,
+    lower_reward_threshold FLOAT DEFAULT 0.25,
+    higher_reward_threshold FLOAT DEFAULT 0.75,
 
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );

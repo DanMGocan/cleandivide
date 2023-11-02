@@ -57,10 +57,10 @@ def user_profile(user_id):
             'id': user_data[0],
             'username': user_data[1],
             'table_owner': user_data[5],
-            'points': user_data[7],
-            'awards': user_data[8],
+            'points': user_data[6],
+            'awards': user_data[7],
             'first_login': formatted_first_login,
-            'times_logged': user_data[4]
+            'times_logged': user_data[3]
         }
 
         # Get the total tasks assigned to the user

@@ -49,27 +49,35 @@ def clear_db():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Enable foreign key constraint enforcement
-    cursor.execute("PRAGMA foreign_keys = ON;")
+    try:
+        # Enable foreign key constraint enforcement
+        cursor.execute("PRAGMA foreign_keys = ON;")
 
-    # Delete data from the tables in the right order
-    cursor.execute("DELETE FROM task_table;")
-    cursor.execute("DELETE FROM daily_bonus;")
-    cursor.execute("DELETE FROM flatmates;")
-    cursor.execute("DELETE FROM tasks;")
-    cursor.execute("DELETE FROM rooms;")
+        # Delete data from the tables in the right order
+        cursor.execute("DELETE FROM task_table;")
+        cursor.execute("DELETE FROM daily_bonus;")
+        # Delete from flatmates but keep the current user's data
+        cursor.execute("DELETE FROM flatmates WHERE user_id != ?", (user_id,))
+        cursor.execute("DELETE FROM tasks;")
+        cursor.execute("DELETE FROM rooms;")
 
-    # Reset auto-increment counters
-    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='tasks'")
-    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='flatmates'")
-    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
-    cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='task_table'")
-    
-    conn.commit()
-    conn.close()
+        # Reset auto-increment counters for tables except flatmates
+        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='task_table'")
+        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='daily_bonus'")
+        # Not resetting auto-increment for flatmates to keep the user_id sequence intact
+        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='tasks'")
+        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
+        
+        conn.commit()
+        flash('Database cleared successfully, except for your data!', 'success')
+    except Exception as e:
+        conn.rollback()
+        flash(f'An error occurred while clearing the database: {e}', 'error')
+    finally:
+        conn.close()
 
-    flash('Database cleared successfully!', 'success')
     return redirect(url_for('main'))
+
 
 
 
@@ -126,7 +134,7 @@ def delete_entry():
 def mark_complete():
 
     try:
-        id = int(request.form.get('id'))  # Cast to int
+        id = int(request.form.get('task_id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
         user_id = session["user_id"]
@@ -187,39 +195,63 @@ def mark_complete():
         if not user_awards['check_2500_points'] and user_points >= 2500:
             cursor.execute("UPDATE awards SET check_2500_points = 1 WHERE user_id = ?", (user_id,))
 
-        # Get the points value of the task
-        cursor.execute("SELECT task_points FROM task_table WHERE id = ?", (id,))
-        task_points_value = cursor.fetchone()
+        # Retrieve the flatmate ID for the current user
+        cursor.execute("SELECT id FROM flatmates WHERE email = ?", (user_id,))
+        flatmate_result = cursor.fetchone()
 
+        if not flatmate_result:
+            flash("No flatmate account found for the current user", "warning")
+            return redirect(request.referrer or url_for("dashboard"))
+
+        flatmate_id = flatmate_result[0]
+
+        # Update the task as complete
+        cursor.execute("""
+            UPDATE task_table 
+            SET task_complete = 1 
+            WHERE id = ? AND task_owner = ?
+            """, (id, flatmate_id))
+        conn.commit()
+
+        # Check if the task was successfully updated
+        cursor.execute("SELECT task_id FROM task_table WHERE id = ? AND task_owner = ?", (id, flatmate_id))
+        task_table_result = cursor.fetchone()
+
+        if not task_table_result:
+            flash("No such task or it's not owned by you", "warning")
+            return redirect(request.referrer or url_for("dashboard"))
+
+        task_id = task_table_result[0]
+
+        # Get the points value of the task
+        task_points_query = "SELECT points FROM tasks WHERE id = ?"
+        cursor.execute(task_points_query, (task_id,))
+        task_points_value = cursor.fetchone()
 
         if task_points_value:
             task_points_value = task_points_value[0]  # Extract points from the tuple
-            task_points = round(random.uniform(task_points_value * get_power_costs(user_id)["lower_threshold"], task_points_value * get_power_costs(user_id)["higher_threshold"]))
-        else:
-            flash("No such task", "warning")
-            return redirect(request.referrer or url_for("dashboard"))
+            power_costs = get_power_costs(user_id)
+            task_points = round(random.uniform(task_points_value * power_costs["lower_threshold"], task_points_value * power_costs["higher_threshold"]))
 
-        # Mark the task as complete in 'task_table'
-        cursor.execute("UPDATE task_table SET task_complete = 1 WHERE id = ?", (id,))
+            # Update the user's points
+            cursor.execute("UPDATE users SET points = points + ? WHERE id = ?", (task_points, user_id))
+            conn.commit()
 
-        # Update the user's points
-        user_id = session.get('user_id')
-        cursor.execute("UPDATE users SET points = points + ? WHERE user_id = ?", (task_points, user_id))
+            # Logic to check the awards and assign them as necessary
+            cursor.execute("SELECT * FROM awards WHERE user_id = ?", (user_id,))
+            user_awards = cursor.fetchone()
 
-
-        conn.commit()
-        conn.close()
-
-        if cursor.rowcount:
             flash(f"Task successfully marked as complete and {task_points} points awarded!", "success")
         else:
-            flash("No such task", "warning")
+            flash("No such task found or it has already been marked as complete", "warning")
+
+        conn.close()
+        
     except Exception as e:
         print("An error occurred:", str(e))
         flash("An error occurred while marking the task as complete", "error")
 
     return redirect(request.referrer or url_for("dashboard"))
-
 
 @helpers_bp.route('/become_house_master', methods=["GET", 'POST'])
 @login_required

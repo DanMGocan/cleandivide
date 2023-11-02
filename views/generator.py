@@ -6,7 +6,6 @@ import random
 from itertools import groupby
 from sqlite3 import IntegrityError
 
-calendar = {}
 generator_bp = Blueprint('generator_bp', __name__)
 
 @generator_bp.route("/generate", methods=["GET", "POST"])
@@ -84,10 +83,15 @@ def generate():
 
     def find_flatmate_with_least_points(points_per_name, exclude=None):
         """Find the flatmate with the least points excluding the provided flatmate."""
-        candidates = {name: points for name, points in points_per_name.items() if name != exclude}
-        min_points = min(candidates.values())
-        suitable_candidates = [name for name, points in candidates.items() if points == min_points]
-        return random.choice(suitable_candidates)
+        if exclude:
+            points_per_name = {name: points for name, points in points_per_name.items() if name != exclude}
+        
+        # This will get the flatmate(s) with the minimum points
+        min_points = min(points_per_name.values())
+        min_point_flatmates = [name for name, points in points_per_name.items() if points == min_points]
+
+        # Randomly select one of the flatmates with the minimum points
+        return random.choice(min_point_flatmates)
 
     # Assigning tasks
     for task_tuple in sorted_tasks:
@@ -119,15 +123,26 @@ def generate():
     # Function to insert tasks into the database
     def insert_tasks(tasks, date_str, user_id, cursor):
         for task in tasks:
+            # Assuming 'task['room']' gives us the room name, we need to convert it to room_id.
+            # To do that, we need to select the id from the rooms table where name matches 'task['room']'.
+            cursor.execute("SELECT id FROM rooms WHERE name = ? AND user_id = ?", (task['room'], user_id))
+            room_id = cursor.fetchone()[0]
+
+            # Assuming 'task['assigned_to']' gives us the flatmate's email, we need to convert it to flatmate_id.
+            # To do that, we need to select the id from the flatmates table where email matches 'task['assigned_to']'.
+            cursor.execute("SELECT id FROM flatmates WHERE email = ? AND user_id = ?", (task['assigned_to'], user_id))
+            flatmate_id = cursor.fetchone()[0]
+
             try:
                 cursor.execute("""
-                    INSERT INTO task_table (table_owner, task_date, task_id, task_description, task_frequency, task_points, room_id, task_owner)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """, (user_id, date_str, task["id"], task['description'], task["frequency"], task["points"], task['room'], task['assigned_to']))
+                    INSERT INTO task_table (table_owner, task_date, task_id, task_complete, room_id, task_owner)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (user_id, date_str, task["id"], 0, room_id, flatmate_id))
             except IntegrityError:
                 conn.rollback()
-                flash(f"Could not insert {task['frequency']} task into task_table", "error")
+                flash(f"Could not insert task scheduled for {date_str} into task_table", "error")
                 continue
+
 
     # Loop over 31 days
     for i in range(31):
@@ -139,5 +154,6 @@ def generate():
 
     conn.commit()
     conn.close()
-        
-    return redirect(url_for("dashboard_bp.dashboard"))
+
+    # Render the template with the calendar data
+    return redirect(url_for("main"))

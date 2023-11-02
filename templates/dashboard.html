@@ -10,8 +10,9 @@
 
     {% if table_owner_status == 0 and times_logged < 1 %}
     <div class="col-10 mt-5 p-5 rounded mx-auto dashboard-borders">
-        <h3 class="text-center"><strong>This is the first time you are logging in <i class="fa-regular fa-face-smile"></i> <br><br></strong></h3>
-        
+        <h3 class="text-center"><strong>This is the first time you are logging in <i
+                    class="fa-regular fa-face-smile"></i> <br><br></strong></h3>
+
         <h5>In this application you can be either a <strong>House
                 Member</strong>
             or a <strong>House Master.</strong> If you plan to organise the cleaning, add the tasks and invite your
@@ -90,7 +91,7 @@
     {% endif %}
 
     {% if own_tasks_today|length > 0 %}
-    
+
     <!-- Your Own Tasks Today -->
     <div class="container mt-5">
         <h1 class="text-center mb-0">Your Tasks for Today</h1>
@@ -99,6 +100,9 @@
                     {{ table_owner }}</strong></small>
         </div>
 
+        <p>
+            {{ own_tasks_today }}
+        </p>
         <div class="mt-5">
             <div class="row">
                 {% for task in own_tasks_today %}
@@ -106,13 +110,13 @@
                     <div class="card task-card">
                         <div class="card-header">
                             <small class="d-block"><strong>This task is worth between
-                                    {{ (task["task_points"] * lower_threshold) | floor }} and
-                                    {{ (task["task_points"] * higher_threshold) | floor }} points!</strong></small>
+                                    {{ (task['points'] * lower_threshold) | floor }} and
+                                    {{ (task['points'] * higher_threshold) | floor }} points!</strong></small>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title"><strong>{{ task['task_description'] }}</strong></h3>
+                            <h3 class="card-title"><strong>{{ task['description'] }}</strong></h3>
                             <p class="card-text">
-                                Frequency: {{ task['task_frequency'] }}
+                                Frequency: {{ task['frequency'] }}
                             </p>
                         </div>
                         <div class="card-footer">
@@ -120,24 +124,28 @@
                             <span class="badge badge-success">Complete!</span>
                             {% else %}
                             <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post" class="mb-2">
-                                <button class="btn complete-button btn-sm btn-block" type="submit" name="id"
-                                    value="{{ task['id'] }}">
-                                    Complete!
+                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                                <button class="btn complete-button btn-sm btn-block" type="submit">
+                                    Complete! ("{{ task['id'] }}")
                                 </button>
                             </form>
                             <form action="{{ url_for('helpers_bp.reassign_task') }}" method="post" class="mb-2">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit" name="id"
-                                    value="{{ task['id'] }}">Randomly reassign (-{{ power_costs['reassign'] }}
-                                    points)<br></button>
+                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                    Randomly reassign (-{{ power_costs['reassign'] }} points)
+                                </button>
                             </form>
                             <form action="{{ url_for('helpers_bp.skip_task') }}" method="post" class="mb-2">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit" name="id"
-                                    value="{{ task['id'] }}">Skip task (-{{ power_costs['skip'] }} points)<br></button>
+                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                    Skip task (-{{ power_costs['skip'] }} points)
+                                </button>
                             </form>
                             <form action="{{ url_for('helpers_bp.procrastinate_task') }}" method="post" class="mb-2">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit" name="id"
-                                    value="{{ task['id'] }}">Leave for tomorrow... (-{{ power_costs['procrastinate'] }}
-                                    points)<br></button>
+                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                    Leave for tomorrow... (-{{ power_costs['procrastinate'] }} points)
+                                </button>
                             </form>
                             {% endif %}
                         </div>
@@ -146,22 +154,25 @@
                 {% endfor %}
             </div>
         </div>
+        
+
     </div>
+</div>
 
-    {% endif %}
+{% endif %}
 
-    {% endblock %}
+{% endblock %}
 
 
 
-    {%block scripts %}
-    <!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
-    <script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
+{%block scripts %}
+<!-- <script src="{{ url_for('static', filename= 'js/datamanipulation.js') }}"></script> -->
+<script src="{{ url_for('static', filename= 'js/dashboard.js') }}"></script>
 
-    <!-- JS variables -->
-    <script type="text/javascript">
-        // Define a JavaScript variable that holds the URL
-    </script>
+<!-- JS variables -->
+<script type="text/javascript">
+    // Define a JavaScript variable that holds the URL
+</script>
 
 
 </div>

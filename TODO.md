@@ -37,3 +37,4 @@ Image by <a href="https://pixabay.com/users/roszie-6000120/?utm_source=link-attr
 
 # Add a development diary with what needs to be done in the future
 - create proper graphics for the awards 
+- update the database engine, maybe even move from SQLite

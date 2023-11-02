@@ -25,18 +25,11 @@ def add_items():
     popular_tasks = conn.execute("SELECT description FROM tasks GROUP BY description ORDER BY COUNT(description) DESC LIMIT 100").fetchall()
     task_table_exists = conn.execute("SELECT 1 FROM task_table WHERE table_owner = ? LIMIT 1", (user_id,)).fetchone() is not None
 
-
-
-    cursor.execute("SELECT default_database FROM users WHERE user_id=?", (user_id, ))
-    row = cursor.fetchone()
-    default_database_bool = row[0]
-
     template_data = {
         "tasks": tasks,
         "rooms": rooms,
         "flatmates": flatmates,
         "user_email": user_id,
-        "default_database_bool": default_database_bool,
         "popular_tasks": popular_tasks,
         "task_table_exists": task_table_exists
     }
