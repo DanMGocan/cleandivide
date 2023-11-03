@@ -50,7 +50,6 @@ email_text = '''
             <p>Happy Cleaning!</p>
             <p><i>Dan, living in filth but hoping other people aren't</i></p>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click here to join!</a>
-            (Lou, sa dai click ca e safe, nu e gluma sau spam)
         </div>
         <div class="footer">
             <p>If cleaning isn't your thing, consider this your opportunity to level up. 😉</p>

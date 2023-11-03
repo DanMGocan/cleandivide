@@ -45,6 +45,14 @@ def add_or_get_user(user_email, function):
             # No awards record found for the user, so insert a new record with default values
             cursor.execute('INSERT INTO awards (user_id) VALUES (?)', (user_email,))
 
+        # Add the default awards to user #
+        cursor.execute('SELECT 1 FROM powercosts WHERE user_id = ?', (user_email,))
+        has_power_costs = cursor.fetchone()
+
+        if not has_power_costs:
+            # No power record found for the user, so insert a new record with default values
+            cursor.execute('INSERT INTO powercosts (user_id) VALUES (?)', (user_email,))
+
         # Check for table participant and owner status
         cursor.execute("SELECT 1 FROM task_table WHERE task_owner = ?", (user_email,))
         table_participant = cursor.fetchone()
