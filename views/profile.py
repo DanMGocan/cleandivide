@@ -58,7 +58,6 @@ def user_profile(user_id):
             'username': user_data[1],
             'table_owner': user_data[5],
             'points': user_data[6],
-            'awards': user_data[7],
             'first_login': formatted_first_login,
             'times_logged': user_data[3]
         }
