@@ -55,6 +55,31 @@ body::after {
   z-index: -1;
 }
 
+/* Apply background and text color to the modal content */
+.modal-content {
+  background-color: var(--charcoal);
+  color: var(--saffron);
+}
+
+/* Strong tag within the modal title for emphasis */
+.modal-title strong {
+  font-weight: bold;
+}
+
+/* Style for the button */
+.btn-secondary {
+  background-color: var(--saffron);
+  border-color: var(--saffron);
+  color: var(--charcoal);
+}
+
+/* Hover effect for the button */
+.btn-secondary:hover {
+  background-color: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--saffron);
+}
+
 .flash-container {
   position: fixed;
   top: 10%;

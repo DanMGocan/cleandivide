@@ -7,6 +7,29 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}">
 
 {% endblock %}
+
+<!-- Place this within your HTML body where you define your page's content -->
+<div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-labelledby="betaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="betaModalLabel">Beta Version Notice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Please note that this application is currently in development and made public only in my resume, for potential recruiters.
+        Most features are fully functional but it is not optimized for mobile yet and design is still 
+        work in progress.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 
   <div class="row col-12 d-flex flex-column justify-content-center align-items-center" id="index-title-section">
@@ -138,7 +161,7 @@
   </a>
 
   <!-- Donations Button -->
-  <a href="https://ko-fi.com/jspleb" target="_blank" class="btn btn-danger mx-2">
+  <a href="https://www.buymeacoffee.com/victoriancodeminer" target="_blank" class="btn btn-danger mx-2">
     <i class="fa-solid fa-mug-saucer"></i> Buy me a coffee!
   </a>
 </div>

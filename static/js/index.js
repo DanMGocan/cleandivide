@@ -15,3 +15,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
   });
   
+
+// Modal
+  window.addEventListener('load', function() {
+    var betaModal = new bootstrap.Modal(document.getElementById('betaModal'), {
+      keyboard: false
+    });
+    betaModal.show();
+  });
+
