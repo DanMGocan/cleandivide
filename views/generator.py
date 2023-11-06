@@ -10,7 +10,7 @@ generator_bp = Blueprint('generator_bp', __name__)
 
 @generator_bp.route("/generate", methods=["GET", "POST"])
 @login_required
-def generate():
+def generate(days):
 
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -125,7 +125,7 @@ def generate():
 
 
     # Loop over 31 days
-    for i in range(31):
+    for i in range(days):
         date = datetime.now() + timedelta(days=i)
         day_str = date.strftime('%Y-%m-%d')
         day_of_month = i + 1  # 1-indexed

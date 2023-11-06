@@ -11,6 +11,9 @@ from views.dashboard import dashboard_bp
 from views.profile import profile_bp
 from views.admin import admin_bp
 from context_processors import get_table_owner_status
+import config
+import stripe
+
 
 from models import get_db_connection
 from math import floor
@@ -47,6 +50,14 @@ app.register_blueprint(admin_bp)
 mail.init_app(app)
 mail = Mail(app)
 
+# Stripe
+stripe_keys = {
+    "secret_key": app.config["STRIPE_SECRET_KEY"],
+    "publishable_key": app.config["STRIPE_PUBLISHABLE_KEY"],
+}
+stripe.api_key = stripe_keys["secret_key"]
+
+
 # At this point only God understands what is happening
 # Custom Jinja2 filter to floor a number
 def floor(value):
@@ -68,6 +79,12 @@ def main():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+#STRIPE
+@app.route("/config")
+def get_publishable_key():
+    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
+    return jsonify(stripe_config)
 
 # To have the user status as a home master or member available #
 @app.context_processor

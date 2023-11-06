@@ -1,3 +1,6 @@
+### IMPORTANT ###
+Add all config.py codes and secrets as env variables! 
+
 # IMPORTANT
 - data persistence if a new table is generated. a lot of data disappears, for the awards and such
 -- just the total tasks need to be stored away in a separate data field 

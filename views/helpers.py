@@ -84,7 +84,6 @@ def clear_db():
 def viewdata():
 
     is_table_owner = get_table_owner_status()
-    print(is_table_owner)
 
     if is_table_owner["is_table_owner"] == 0:
         flash("You are not allowed here", "danger")
@@ -511,3 +510,13 @@ def daily_bonus():
         flash("An error occurred while processing your request", "error")
 
     return redirect(url_for("dashboard_bp.dashboard"))
+
+# Function to assign user premium status #
+@helpers_bp.route("/addpremium", methods=['POST'])
+@login_required
+def add_premium():
+    user_id = session["user_id"]
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET premium_user = ? WHERE user_id = ?", (1, user_id))
+    conn.close()

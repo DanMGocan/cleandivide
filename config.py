@@ -21,3 +21,7 @@ MAIL_USERNAME = 'dividendust@gmail.com'
 MAIL_PASSWORD = 'zhix qbpo nfld vrpu' #Hann!bal202'
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
+
+# Stripe 
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51GtxGZGLjjHLFKTUoCg8D1iwyAaftnINtHsJrwLIBecVm1RXgrZ3LutAWJuI9xz4jJimV8A6tgweunByV3D9rtWK00Y4IpDBzb'
+STRIPE_SECRET_KEY = 'sk_test_51GtxGZGLjjHLFKTUqPFK79wnrvsW0MPhRbjMrcATk2INoUPs6MoCg2VmP5M078BgYiXyjUovoChncpj98ZiSuw2100wmlcbV2d'

@@ -2,6 +2,8 @@
 {% block title %}Profile | {{ user_id }}{% endblock %}
 {%block custom_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/profile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'js/stripe.js') }}">
+
 {% endblock %}
 
 {% block content %}
@@ -24,6 +26,11 @@
                     <hr>
                     <strong>Completed Tasks:</strong> {{ completed_tasks }}
                 </p>
+                <hr>
+                <form action="{{ url_for('helpers_bp.add_premium') }}" method="post" class="mx-auto mt-4">
+                    <input type="submit" value="Become Premium User" class="btn default-dashboard-button w-33 mx-auto d-block" />
+                    <small>No subscriptions, a one time payment of €6.99</small>
+                </form>
             </div>
         </div>
 

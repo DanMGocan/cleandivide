@@ -32,12 +32,33 @@
             <small>({{ template_data.tasks | length }}/40 added)</small></a>
         <a href="#" class="btn default-dashboard-button ml-3 tooltip-button" id="btnInviteFlatmates">Invite Flatmates
             <small>({{ template_data.flatmates | length }}/8 invited)</small></a>
+
+
         {% if template_data.flatmates|length == 0 or template_data.tasks|length < 2 %}
         <span data-bs-toggle="tooltip" data-bs-placement="top" title="Not enough flatmates or tasks added!" class=""><a
                 href="" class="btn default-dashboard-button ml-3 tooltip-button disabled">Cannot generate</a></span>
+
+        <span data-bs-toggle="tooltip" data-bs-placement="top" title="FNot enough flatmates or tasks added!" class=""><a
+            href="" class="btn default-dashboard-button ml-3 tooltip-button disabled">Generate cleaning schedule (90 days)</a></span>
+
         {% else %}
-        <a href="{{ url_for('generator_bp.generate') }}" class="btn default-dashboard-button ml-3 tooltip-button"
+
+            {% if premium_user == 0 %}
+
+            <a href="{{ url_for('generator_bp.generate', days=31) }}" class="btn default-dashboard-button ml-3 tooltip-button"
+                data-tooltip="Let's go!">Generate cleaning schedule</a>
+
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Function available to premium users" class=""><a
+                href="" class="btn default-dashboard-button ml-3 tooltip-button disabled">Generate cleaning schedule (90 days)</a></span>
+
+            {% else %}
+
+            <a href="{{ url_for('generator_bp.generate') }}" class="btn default-dashboard-button ml-3 tooltip-button"
             data-tooltip="Let's go!">Generate cleaning schedule</a>
+
+            <a href="{{ url_for('generator_bp.generate', days=90) }}" class="btn default-dashboard-button ml-3 tooltip-button"
+            data-tooltip="Let's go!">Generate cleaning schedule (90 days)</a>
+            {% endif %}
         {% endif %}
     </div>
 

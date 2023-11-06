@@ -67,6 +67,16 @@ def add_or_get_user(user_email, function):
     conn.close()
     return user
 
+# To be deleted in production, maybe #
+def give_premium(user_email):
+    if user_email == "gocandan@gmail.com":
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE users SET premium_user = ? WHERE user_id = ?", (1, user_email))
+        conn.close()
+    else:
+        pass
+
 def setup_google(app):
     global google
     from flask_oauthlib.client import OAuth
@@ -126,6 +136,7 @@ def authorized():
     login_user(user)
     session["user_id"] = user_email
     add_or_get_user(user_email, "login")
+    give_premium(user_email)
     return redirect(url_for("main"))
 
 def setup_facebook(app):
@@ -185,4 +196,5 @@ def authorized_facebook():
     login_user(user)
     session["user_id"] = user_email
     add_or_get_user(user_email, "login")
+    give_premium(user_email)
     return redirect(url_for("main"))
