@@ -9,6 +9,28 @@
 {% endblock %}
 <div class="container">
 
+  <!-- Modal for beta -->
+  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-labelledby="betaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="betaModalLabel">Beta Version Notice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Please note that this application is currently in development and made public only in my resume, for potential recruiters.
+          Most features are fully functional but it is not optimized for mobile yet and design is still 
+          work in progress.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row col-12 d-flex flex-column justify-content-center align-items-center" id="index-title-section">
     <h1 class="text-center mt-5 mb-0 col-12">Welcome to <strong>DivideNDust</strong></h1>
     <small class="mt-0 pt-0 mb-5">Where chores meet red tape!</small>
