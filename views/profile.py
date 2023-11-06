@@ -17,7 +17,6 @@ def user_profile(user_id):
     # Extract awards from the DB #
     cursor.execute("SELECT * FROM awards WHERE user_id=?", (user_id,))
     awards_data = cursor.fetchone()
-    print(awards_data)
 
     awards_dict = {
         'logged_in!': bool(awards_data["logged_in"]),

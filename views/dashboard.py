@@ -70,9 +70,6 @@ def dashboard():
         own_tasks_today = tasks_today  # This now contains all tasks for today where the logged-in user is the owner
     else:
         own_tasks_today = []  # No flatmate ID found, so the user has no tasks
-
-        print(own_tasks_today)
-
     
     return render_template(
         'dashboard.html',

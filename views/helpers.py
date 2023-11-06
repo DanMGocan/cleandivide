@@ -40,8 +40,6 @@ def get_power_costs(user_id):
 
     return power_costs
 
-print(get_power_costs)
-
 @helpers_bp.route('/clear_db', methods=['POST'])
 @login_required
 def clear_db():

@@ -29,26 +29,6 @@ def generate():
     assigned_tasks = {flatmate["email"]: [] for flatmate in flatmates}
     points_per_name = {flatmate["email"]: 0 for flatmate in flatmates}
 
-    def compute_task_points(task):
-        if task['frequency'] == 'Daily':
-            return task['points'] * 30
-        elif task['frequency'] == 'Twice Weekly':
-            return task['points'] * 8
-        elif task['frequency'] == 'Weekly':
-            return task['points'] * 4
-        elif task['frequency'] == 'Twice Monthly':
-            return task['points'] * 2
-        elif task['frequency'] == 'Monthly':
-            return task['points']
-        else:
-            return 0
-
-    total_task_points = sum(compute_task_points(task) for task in tasks)
-    fair_share = total_task_points / len(flatmates)
-
-    print("Total points: " + str(total_task_points))
-    print("Fair share: " + str(fair_share))
-
     def replicate_tasks_based_on_frequency(task):
         if task['frequency'] == 'Daily':
             return [(task, day) for day in range(1, 31)]
