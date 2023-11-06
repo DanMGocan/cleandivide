@@ -21,3 +21,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
       keyboard: false
     });
     betaModal.show();
+  });
+
