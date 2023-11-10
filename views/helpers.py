@@ -512,11 +512,21 @@ def daily_bonus():
     return redirect(url_for("dashboard_bp.dashboard"))
 
 # Function to assign user premium status #
-@helpers_bp.route("/addpremium", methods=['POST'])
+@helpers_bp.route("/payment-successful", methods=['GET', 'POST'])
 @login_required
-def add_premium():
+def payment_successfull():
     user_id = session["user_id"]
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("UPDATE users SET premium_user = ? WHERE user_id = ?", (1, user_id))
     conn.close()
+    flash("Payment was successful, THANK YOU IMMENSELY for your support!", "success")
+    return redirect(url_for("main"))
+
+# Function to assign user premium status #
+@helpers_bp.route("/payment-unsuccessful", methods=['GET', 'POST'])
+@login_required
+def payment_unsuccessfull():
+    user_id = session["user_id"]
+    flash("Something went wrong, I am sorry", "warning")
+    return redirect(url_for("main"))

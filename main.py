@@ -1,6 +1,6 @@
 #pip install -r requirements.txt
 
-from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session
+from flask import Blueprint, Flask, render_template, request, url_for, flash, redirect, session, jsonify
 from flask_login import login_required, UserMixin, LoginManager, login_user, logout_user, current_user
 from views.auth import auth_bp, setup_google, setup_facebook, add_or_get_user
 from flask_mail import Mail
@@ -80,11 +80,29 @@ def main():
 def about():
     return render_template("about.html")
 
-#STRIPE
-@app.route("/config")
-def get_publishable_key():
-    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
-    return jsonify(stripe_config)
+YOUR_DOMAIN = 'https://3965-37-0-7-2.ngrok-free.app'
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    'price': 'price_1O9W4yGLjjHLFKTU4yf2kqFG',
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=YOUR_DOMAIN + '/payment-successful',
+            cancel_url=YOUR_DOMAIN + '/payment-unsuccessful',
+        )
+    except Exception as e:
+        return str(e)
+
+    return redirect(checkout_session.url, code=303)
+
+
 
 # To have the user status as a home master or member available #
 @app.context_processor
