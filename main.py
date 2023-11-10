@@ -80,10 +80,10 @@ def main():
 def about():
     return render_template("about.html")
 
-YOUR_DOMAIN = request.url_root.rstrip('/')
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    YOUR_DOMAIN = request.url_root.rstrip('/')
     try:
         checkout_session = stripe.checkout.Session.create(
             line_items=[
