@@ -519,6 +519,7 @@ def payment_successfull():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("UPDATE users SET premium_user = ? WHERE user_id = ?", (1, user_id))
+    conn.commit()
     conn.close()
     flash("Payment was successful, THANK YOU IMMENSELY for your support!", "success")
     return redirect(url_for("main"))

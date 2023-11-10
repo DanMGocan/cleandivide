@@ -80,7 +80,7 @@ def main():
 def about():
     return render_template("about.html")
 
-YOUR_DOMAIN = 'https://3965-37-0-7-2.ngrok-free.app'
+YOUR_DOMAIN = request.url_root.rstrip('/')
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():

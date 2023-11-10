@@ -134,10 +134,13 @@ def add_flatmate():
             conn.commit()
 
             # Send an email to the flatmate
-            msg = Message("Welcome to DivideNDust! Stop procrastinating... from tomorrow!", sender=current_app.config['MAIL_USERNAME'], recipients=[flatmate_email])
-            # msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
-            msg.html = email_text
-            mail.send(msg)
+            try:
+                msg = Message("Welcome to DivideNDust! Stop procrastinating... from tomorrow!", sender=current_app.config['MAIL_USERNAME'], recipients=[flatmate_email])
+                # msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
+                msg.html = email_text
+                mail.send(msg)
+            except:
+                flash("Email could not be sent, please ask your flatmate to login as normal", "warning")
 
             flash('Flatmate added successfully!', 'success')
         except Exception as e:
