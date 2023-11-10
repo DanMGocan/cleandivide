@@ -8,7 +8,7 @@
 
 <div class="container">
 
-    {% if table_owner_status == 0 and times_logged == 1%}
+    {% if is_table_owner == 0 and times_logged == 0%}
     <div class="col-10 mt-5 p-5 rounded mx-auto dashboard-borders">
         <h3 class="text-center"><strong>This is the first time you are logging in <i
                     class="fa-regular fa-face-smile"></i> <br><br></strong></h3>
@@ -44,7 +44,6 @@
 
 
     {% if own_tasks_today|length < 1 and is_table_owner == 0 and times_logged > 1%}
-
     <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="mx-auto mt-4 text-center w-100">
         <span data-bs-toggle="tooltip" data-bs-placement="bottom"
             title="Add tasks, invite your house mates and be the leader you were born to be. ATTENTION: This action cannot be reversed!"
@@ -67,12 +66,10 @@
             {% endif %}
         </form>
     </div>
-
     {% endif %}
 
 
     {% if own_tasks_today|length < 1 and is_table_owner == 1 and times_logged >= 1%}
-
     <div class="col-10 mt-5 p-5 rounded mx-auto" id="notasks">
         <h2 class="text-center">You have no tasks today, go forth and be free!</h2>
         <p class="d-block text-center mt-5 mx-auto">...but since you logged in, you get some points anyway!
@@ -87,11 +84,10 @@
             {% endif %}
         </form>
     </div>
-
     {% endif %}
 
-    {% if own_tasks_today|length > 0 %}
 
+    {% if own_tasks_today|length > 0 %}
     <!-- Your Own Tasks Today -->
     <div class="container mt-5">
         <h1 class="text-center mb-0">Your Tasks for Today</h1>
@@ -157,9 +153,11 @@
         
 
     </div>
+    {% endif %}
+
+
 </div>
 
-{% endif %}
 
 {% endblock %}
 
