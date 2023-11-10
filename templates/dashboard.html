@@ -7,6 +7,10 @@
 {% block content %}
 
 <div class="container">
+    <!-- Bug control 
+    <p>Times logged: {{ times_logged }}</p>
+    <p>Table owner: {{ is_table_owner }}</p>
+    <p>Tasks today: {{ own_tasks_today|length }}</p> -->
 
     {% if is_table_owner == 0 and times_logged == 0%}
     <div class="col-10 mt-5 p-5 rounded mx-auto dashboard-borders">
@@ -32,8 +36,6 @@
     </div>
     {% endif %}
 
-
-
     {% if is_table_owner == 1 %}
     <div class="row d-flex justify-content-end col-12">
         <form action="{{ url_for('additems_bp.add_items') }}" method="post" class="mx-auto mt-4">
@@ -43,7 +45,7 @@
     {% endif %}
 
 
-    {% if own_tasks_today|length < 1 and is_table_owner == 0 and times_logged > 1%}
+    {% if own_tasks_today|length < 1 and is_table_owner == 0 and times_logged > 0%}
     <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="mx-auto mt-4 text-center w-100">
         <span data-bs-toggle="tooltip" data-bs-placement="bottom"
             title="Add tasks, invite your house mates and be the leader you were born to be. ATTENTION: This action cannot be reversed!"
