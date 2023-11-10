@@ -31,13 +31,14 @@
                 {% if premium_user == 0 %}
                 <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-auto mt-4">
                     <input type="submit" value="Become Premium User" class="btn default-dashboard-button w-33 mx-auto d-block" id="premiumBtn" />
-                    <small>No subscriptions, a one time payment of €3.99</small>
+                    <small class="text-center">No subscriptions, a one time payment of €3.99</small>
                 </form>
                 {% else %}
                 <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-auto mt-4">
-                    <input type="submit" value="Already a premium user!" class="btn default-dashboard-button w-33 mx-auto d-block disabled" id="premiumBtn" />
+                    <input type="submit" value="Already a premium user!" class="btn default-dashboard-button w-33 mx-auto d-block" id="premiumBtn" disabled />
                 </form>
                 {% endif %}
+                
 
             </div>
         </div>
