@@ -26,6 +26,7 @@ def get_table_owner_status():
             else:
                 table_owner_title = "House Member"
 
+    print(dict(user_id=user_id, is_table_owner=is_table_owner, table_owner_title=table_owner_title, times_logged=times_logged, premium_user=premium_user))
     return dict(user_id=user_id, is_table_owner=is_table_owner, table_owner_title=table_owner_title, times_logged=times_logged, premium_user=premium_user)
 
 
