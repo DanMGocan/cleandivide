@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, session, render_template, flash
+from flask import Blueprint, redirect, url_for, session, render_template, flash, request
 from flask_login import login_required
 from models import get_db_connection
 from datetime import datetime, timedelta
@@ -8,10 +8,9 @@ from sqlite3 import IntegrityError
 
 generator_bp = Blueprint('generator_bp', __name__)
 
-@generator_bp.route("/generate", methods=["GET", "POST"])
+@generator_bp.route("/generate/<int:days>", methods=["GET", "POST"])
 @login_required
 def generate(days):
-
     conn = get_db_connection()
     cursor = conn.cursor()
 

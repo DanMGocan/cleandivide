@@ -27,7 +27,14 @@ Add all config.py codes and secrets as env variables!
 - fix times logged in bug
 - trying to remove the last task in the view data is not allowed 
 - add shadows to boxes
-
+- global tasks global variable
+- fix times logged in from My Profile
+- fix points not added to profile
+- fix bug in reward threshold
+- ABOUT PAGE: features
+- footer too big on small screens covers text 
+- table owner bug
+- flash messages to close to the top on mobile
 
 # Paid features
 - calendar for 60 or 90 days
@@ -41,3 +48,7 @@ Image by <a href="https://pixabay.com/users/roszie-6000120/?utm_source=link-attr
 # Add a development diary with what needs to be done in the future
 - create proper graphics for the awards 
 - update the database engine, maybe even move from SQLite
+
+# Features:
+- profanity filter
+- stripe payments

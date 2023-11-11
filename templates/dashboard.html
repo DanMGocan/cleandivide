@@ -6,55 +6,47 @@
 
 {% block content %}
 
-<div class="container">
-    <!-- Bug control 
-    <p>Times logged: {{ times_logged }}</p>
-    <p>Table owner: {{ is_table_owner }}</p>
-    <p>Tasks today: {{ own_tasks_today|length }}</p> -->
+{% if is_table_owner == 0 and times_logged == 0 %}
+<div class="col-12 col-md-8 col-lg-6 mt-5 p-3 p-md-5 rounded mx-auto dashboard-borders">
+    <h3 class="text-center"><strong>This is the first time you are logging in <i class="fa-regular fa-face-smile"></i>
+            <br><br></strong></h3>
 
-    {% if is_table_owner == 0 and times_logged == 0%}
-    <div class="col-10 mt-5 p-5 rounded mx-auto dashboard-borders">
-        <h3 class="text-center"><strong>This is the first time you are logging in <i
-                    class="fa-regular fa-face-smile"></i> <br><br></strong></h3>
+    <h5 class="text-center text-md-left">In this application you can be either a <strong>House Member</strong> or a
+        <strong>House Master.</strong> If you plan to organise the cleaning, add the tasks and invite your flatmates,
+        please click the button below. Otherwise, wait until someone from your household logs in and becomes a House
+        Master.</h5>
 
-        <h5>In this application you can be either a <strong>House
-                Member</strong>
-            or a <strong>House Master.</strong> If you plan to organise the cleaning, add the tasks and invite your
-            flatmates,
-            please click the button below. Otherwise, wait until someone from your household logs in and becomes a House
-            Master. </h5>
-
-        <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post"
-            class="mx-auto mt-4 text-center w-100">
-            <span data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Add tasks, invite your house mates and be the leader you were born to be. ATTENTION: This action cannot be reversed!"
-                class="d-inline-block" style="width: 33%; margin: auto;">
-                <input type="submit" value="Become a House Master" class="btn default-dashboard-button w-100" />
-            </span>
-        </form>
-
-    </div>
-    {% endif %}
-
-    {% if is_table_owner == 1 %}
-    <div class="row d-flex justify-content-end col-12">
-        <form action="{{ url_for('additems_bp.add_items') }}" method="post" class="mx-auto mt-4">
-            <input type="submit" value="Generate new table" class="btn default-dashboard-button w-33 mx-auto d-block" />
-        </form>
-    </div>
-    {% endif %}
-
-
-    {% if own_tasks_today|length < 1 and is_table_owner == 0 and times_logged > 0%}
-    <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="mx-auto mt-4 text-center w-100">
+    <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="mx-auto mt-4 text-center">
         <span data-bs-toggle="tooltip" data-bs-placement="bottom"
             title="Add tasks, invite your house mates and be the leader you were born to be. ATTENTION: This action cannot be reversed!"
-            class="d-inline-block" style="width: 33%; margin: auto;">
+            class="d-inline-block" style="max-width: 300px; width: 100%; margin: auto;">
             <input type="submit" value="Become a House Master" class="btn default-dashboard-button w-100" />
         </span>
     </form>
+</div>
+{% endif %}
 
-    <div class="col-10 mt-5 p-5 rounded mx-auto" id="notasks">
+
+{% if is_table_owner == 1 %}
+<div class="row justify-content-center">
+    <form action="{{ url_for('additems_bp.add_items') }}" method="post" class="col-12 col-md-6 col-lg-4 mt-4">
+        <input type="submit" value="Generate new table" class="btn default-dashboard-button w-100 mx-auto d-block" />
+    </form>
+</div>
+{% endif %}
+
+
+
+{% if own_tasks_today|length < 1 and is_table_owner == 0 and times_logged > 0%}
+<div class="row justify-content-center align-items-center mt-4">
+    <form action="{{ url_for('helpers_bp.become_house_master') }}" method="post" class="text-center">
+        <button type="submit" class="btn default-dashboard-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add tasks, invite your house mates and be the leader you were born to be. ATTENTION: This action cannot be reversed!">Become a House Master</button>
+    </form>
+</div>
+
+
+<div class="row p-2">
+    <div class="col-12 col-md-8 mt-5 p-5 rounded mx-auto" id="notasks">
         <h2 class="text-center">You have no tasks today, go forth and be free!</h2>
         <p class="d-block text-center mt-5 mx-auto">...but since you logged in, you get some points anyway!
             Good intentions and all that.</p>
@@ -68,97 +60,94 @@
             {% endif %}
         </form>
     </div>
-    {% endif %}
+</div>
+{% endif %}
 
 
-    {% if own_tasks_today|length < 1 and is_table_owner == 1 and times_logged >= 1%}
-    <div class="col-10 mt-5 p-5 rounded mx-auto" id="notasks">
-        <h2 class="text-center">You have no tasks today, go forth and be free!</h2>
-        <p class="d-block text-center mt-5 mx-auto">...but since you logged in, you get some points anyway!
-            Good intentions and all that.</p>
-        <form action="{{ url_for('helpers_bp.daily_bonus') }}" method="post" class="mb-2">
-            {% if already_clicked %}
-            <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit" disabled>Bonus
-                already collected!<br></button>
-            {% else %}
-            <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit">5 free
-                points!<br></button>
-            {% endif %}
-        </form>
+{% if own_tasks_today|length < 1 and is_table_owner == 1 and times_logged >= 1%}
+<div class="col-12 mt-5 p-3 p-md-5 rounded mx-auto" id="notasks">
+    <h2 class="text-center">You have no tasks today, go forth and be free!</h2>
+    <p class="d-block text-center mt-5 mx-auto">...but since you logged in, you get some points anyway!
+        Good intentions and all that.</p>
+    <form action="{{ url_for('helpers_bp.daily_bonus') }}" method="post" class="mb-2">
+        {% if already_clicked %}
+        <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit" disabled>Bonus
+            already collected!<br></button>
+        {% else %}
+        <button class=" mx-auto col-8 btn dashboard-action-button btn-sm btn-block" type="submit">5 free
+            points!<br></button>
+        {% endif %}
+    </form>
+</div>
+{% endif %}
+
+
+{% if own_tasks_today|length > 0 %}
+<!-- Your Own Tasks Today -->
+<div class="mt-5">
+    <h1 class="text-center mb-0">Your Tasks for Today</h1>
+    <div class="text-center">
+        <small class="d-inline-block mx-auto mt-0"><strong>Today is {{ today_date }} and the table owner is
+                {{ table_owner }}</strong></small>
     </div>
-    {% endif %}
 
-
-    {% if own_tasks_today|length > 0 %}
-    <!-- Your Own Tasks Today -->
-    <div class="container mt-5">
-        <h1 class="text-center mb-0">Your Tasks for Today</h1>
-        <div class="text-center">
-            <small class="d-inline-block mx-auto mt-0"><strong>Today is {{ today_date }} and the table owner is
-                    {{ table_owner }}</strong></small>
-        </div>
-
-        <p>
-            {{ own_tasks_today }}
-        </p>
-        <div class="mt-5">
-            <div class="row">
-                {% for task in own_tasks_today %}
-                <div class="col-md-4 mb-4">
-                    <div class="card task-card">
-                        <div class="card-header">
-                            <small class="d-block"><strong>This task is worth between
-                                    {{ (task['points'] * lower_threshold) | floor }} and
-                                    {{ (task['points'] * higher_threshold) | floor }} points!</strong></small>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title"><strong>{{ task['description'] }}</strong></h3>
-                            <p class="card-text">
-                                Frequency: {{ task['frequency'] }}
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            {% if task['task_complete'] == 1 %}
-                            <span class="badge badge-success">Complete!</span>
-                            {% else %}
-                            <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post" class="mb-2">
-                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
-                                <button class="btn complete-button btn-sm btn-block" type="submit">
-                                    Complete! ("{{ task['id'] }}")
-                                </button>
-                            </form>
-                            <form action="{{ url_for('helpers_bp.reassign_task') }}" method="post" class="mb-2">
-                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
-                                    Randomly reassign (-{{ power_costs['reassign'] }} points)
-                                </button>
-                            </form>
-                            <form action="{{ url_for('helpers_bp.skip_task') }}" method="post" class="mb-2">
-                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
-                                    Skip task (-{{ power_costs['skip'] }} points)
-                                </button>
-                            </form>
-                            <form action="{{ url_for('helpers_bp.procrastinate_task') }}" method="post" class="mb-2">
-                                <input type="hidden" name="task_id" value="{{ task['id'] }}">
-                                <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
-                                    Leave for tomorrow... (-{{ power_costs['procrastinate'] }} points)
-                                </button>
-                            </form>
-                            {% endif %}
-                        </div>
+    <div class="mt-5">
+        <div class="row">
+            {% for task in own_tasks_today %}
+            <div class="col-md-4 mb-4">
+                <div class="card task-card">
+                    <div class="card-header">
+                        <small class="d-block"><strong>This task is worth between
+                                {{ (task['points'] * lower_threshold) | floor }} and
+                                {{ (task['points'] * higher_threshold) | floor }} points!</strong></small>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"><strong>{{ task['description'] }}</strong></h3>
+                        <p class="card-text">
+                            Frequency: {{ task['frequency'] }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        {% if task['task_complete'] == 1 %}
+                        <span class="badge badge-success">Complete!</span>
+                        {% else %}
+                        <form action="{{ url_for('helpers_bp.mark_complete') }}" method="post" class="mb-2">
+                            <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                            <button class="btn complete-button btn-sm btn-block" type="submit">
+                                Complete!
+                            </button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.reassign_task') }}" method="post" class="mb-2">
+                            <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                            <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                Randomly reassign (-{{ power_costs['reassign'] }} points)
+                            </button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.skip_task') }}" method="post" class="mb-2">
+                            <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                            <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                Skip task (-{{ power_costs['skip'] }} points)
+                            </button>
+                        </form>
+                        <form action="{{ url_for('helpers_bp.procrastinate_task') }}" method="post" class="mb-2">
+                            <input type="hidden" name="task_id" value="{{ task['id'] }}">
+                            <button class="btn dashboard-action-button btn-sm btn-block" type="submit">
+                                Leave for tomorrow... (-{{ power_costs['procrastinate'] }} points)
+                            </button>
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-        
-
     </div>
-    {% endif %}
 
 
 </div>
+{% endif %}
+
+
 
 
 {% endblock %}

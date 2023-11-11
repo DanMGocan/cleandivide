@@ -17,7 +17,8 @@ CREATE TABLE users (
     times_logged INTEGER DEFAULT 0,
     table_owner INTEGER DEFAULT 0,
     points INTEGER DEFAULT 0,
-    premium_user INTEGER DEFAULT 0
+    premium_user INTEGER DEFAULT 0,
+    total_tasks_completed INTEGER DEFAULT 0
     );
 
 CREATE TABLE rooms (

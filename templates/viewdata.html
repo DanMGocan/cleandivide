@@ -13,7 +13,6 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Added by</th>
                 <th scope="col">Description</th>
                 <th scope="col">Points</th>
@@ -25,7 +24,6 @@
         <tbody>
             {% for task in tasks %}
             <tr>
-                <td>{{ task.id }}</td>
                 <td>{{ task.user_id }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.points }}</td>
@@ -50,7 +48,6 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Added by</th>
                 <th scope="col">Email</th>
                 <th scope="col">Modifier</th>
@@ -60,7 +57,6 @@
         <tbody>
             {% for flatmate in flatmates %}
             <tr>
-                <td>{{ flatmate.id }}</td>
                 <td>{{ flatmate.user_id }}</td>
                 <td>{{ flatmate.email }}</td>
                 <td>{{ flatmate.modifier }}</td>

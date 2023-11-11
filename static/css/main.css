@@ -74,26 +74,7 @@ body::after {
   font-weight: 700;
 }
 
-.custom-box {
-  position: relative;
-  border: 3px var(--charcoal) dashed;
-  border-radius: 10px;
-  height: 200px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
 
-.custom-box img {
-  position: absolute;
-  right: 5%;
-  width: 100px;
-  height: 100px;
-  z-index: 1; /* Ensure image is above the box content but below the number */
-}
 
 .number {
   font-size: 2em;
@@ -178,6 +159,27 @@ body::after {
   margin-right: 10px;
 }
 
+.navbar-toggler i {
+  color: var(--charcoal); /* Applying the charcoal color */
+}
+
+/* Center the nav items in the collapsed menu on small screens */
+@media (max-width: 768px) {
+  .centered-collapse .navbar-nav {
+      text-align: center;
+      width: 100%;
+  }
+
+  .centered-collapse .navbar-nav .nav-item {
+      display: block;
+  }
+
+  .centered-collapse .navbar-nav .nav-link {
+      padding-left: 0;
+      padding-right: 0;
+  }
+}
+
 
 #signedAs {
   color: var(--charcoal)
@@ -232,7 +234,7 @@ body::after {
   bottom: 0;
   width: 100%;
   text-align: center;
-  z-index: 1; /* Ensure the footer sits below the image */
+  z-index: 1000; /* Ensure the footer sits below the image */
 }
 
 .footer a {

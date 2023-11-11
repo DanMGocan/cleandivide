@@ -13,20 +13,19 @@
             var(--burnt-sienna) 18%,
             hsla(43, 74%, 66%, 0.99) 18%,
             hsla(43, 74%, 66%, 0.99) 100%);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
 }
 
 .add-tasks-section::before {
     content: "";
     position: absolute;
-    width: 80px;
-    /* Diameter of the circle */
+    width: 80px; /* Diameter of the circle */
     height: 80px;
-    border-radius: 50%;
-    /* Makes it a circle */
+    border-radius: 50%; /* Makes it a circle */
     background: hsla(197, 37%, 24%, 0.99);
     pointer-events: none;
-    z-index: -10;
-    /* Ensures interactions pass through to elements below */
+    z-index: -10; /* Ensures interactions pass through to elements below */
 }
 
 .add-tasks-section::before {
@@ -34,6 +33,11 @@
     left: var(--beforeX, 80%);
 }
 
+@media (max-width: 600px) {
+    .add-tasks-section::before {
+        content: none; /* Hides the pseudo-element on screens smaller than 600px */
+    }
+}
 
 .add-flatmate-section {
     position: relative;
@@ -50,6 +54,8 @@
             var(--burnt-sienna) 18%,
             hsla(43, 74%, 66%, 0.99) 18%,
             hsla(43, 74%, 66%, 0.99) 100%);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
 }
 
 .add-flatmate-section::before {
@@ -70,6 +76,13 @@
     top: var(--beforeY, 36%);
     left: var(--beforeX, 70%);
 }
+
+@media (max-width: 600px) {
+    .add-flatmate-section::before {
+        content: none; /* Hides the pseudo-element on screens smaller than 600px */
+    }
+}
+
 
 
 /* Transition between add tasks and add flatmates */

@@ -36,11 +36,13 @@ def admin():
             try:
                 # Get the total points per user (Assuming you have a points column in flatmates or similar)
                 cursor.execute('''
-                    SELECT task_owner, SUM(points) AS total_points
+                    SELECT flatmates.email AS flatmate_email, SUM(tasks.points) AS total_points
                     FROM tasks
                     INNER JOIN task_table ON tasks.id = task_table.task_id
-                    GROUP BY task_owner
-                ''')
+                    INNER JOIN flatmates ON task_table.task_owner = flatmates.id
+                    WHERE flatmates.user_id = ?
+                    GROUP BY task_table.task_owner
+                ''', (user_id,))
                 flatmate_points_results = cursor.fetchall()
 
                 # Get a list of all flatmates
@@ -139,11 +141,11 @@ def update_power_costs_post():
     if lower_reward_threshold > higher_reward_threshold:
         flash("Lower rewards threshold cannot be higher than the higher reward threshold. Logically.", "warning")
         return(redirect(url_for('admin_bp.admin')))
-
-    cursor.execute('UPDATE powercosts SET reassign = ?, skip = ?, procrastinate = ?, lower_reward_threshold = ?, higher_reward_threshold = ? WHERE user_id = ?', (reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold, user_id))
-    conn.commit()
-    conn.close()
-
-    flash("Power costs updated successfully!", "success")
-    return redirect(url_for('admin_bp.admin'))
+    
+    else:
+        cursor.execute('UPDATE powercosts SET reassign = ?, skip = ?, procrastinate = ?, lower_reward_threshold = ?, higher_reward_threshold = ? WHERE user_id = ?', (reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold, user_id))
+        conn.commit()
+        conn.close()
+        flash("Power costs updated successfully!", "success")
+        return redirect(url_for('admin_bp.admin'))
 

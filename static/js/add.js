@@ -1,3 +1,5 @@
+console.log("Sanity check!!!")
+
 // Making sure the input for frequency is of the correct type
 document.getElementById('frequency').addEventListener('change', function () {
   var options = document.querySelectorAll('#frequencies option');
@@ -77,4 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-  
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});

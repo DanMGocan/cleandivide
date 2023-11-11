@@ -153,7 +153,7 @@ def mark_complete():
 
         # Completed Tasks Award #
         if not user_awards['completed_100_tasks'] or not user_awards["completed_250_tasks"] or not user_awards["completed_750_tasks"] or not user_awards["completed_1500_tasks"] or not user_awards["completed_2500_tasks"]:
-            cursor.execute("SELECT COUNT(id) FROM task_table WHERE task_owner = ? AND task_complete = 1", (user_id,))
+            cursor.execute("SELECT total_tasks_completed FROM users WHERE user_id = ?", (user_id,))
             total_completed_tasks = cursor.fetchone()[0]
             if total_completed_tasks >= 100:
                 cursor.execute("UPDATE awards SET completed_100_tasks = 1 WHERE user_id = ?", (user_id,))
@@ -201,13 +201,20 @@ def mark_complete():
             return redirect(request.referrer or url_for("dashboard"))
 
         flatmate_id = flatmate_result[0]
-
         # Update the task as complete
         cursor.execute("""
             UPDATE task_table 
             SET task_complete = 1 
             WHERE id = ? AND task_owner = ?
             """, (id, flatmate_id))
+
+        # Increment total_tasks_completed for the user
+        cursor.execute("""
+            UPDATE users 
+            SET total_tasks_completed = total_tasks_completed + 1 
+            WHERE user_id = ?
+            """, (user_id,))
+
         conn.commit()
 
         # Check if the task was successfully updated
@@ -231,14 +238,14 @@ def mark_complete():
             task_points = round(random.uniform(task_points_value * power_costs["lower_threshold"], task_points_value * power_costs["higher_threshold"]))
 
             # Update the user's points
-            cursor.execute("UPDATE users SET points = points + ? WHERE id = ?", (task_points, user_id))
+            cursor.execute("UPDATE users SET points = points + ? WHERE user_id = ?", (task_points, user_id))
             conn.commit()
 
             # Logic to check the awards and assign them as necessary
             cursor.execute("SELECT * FROM awards WHERE user_id = ?", (user_id,))
             user_awards = cursor.fetchone()
 
-            flash(f"Task successfully marked as complete and {task_points} points awarded!", "success")
+            flash(f"Task successfully marked as complete and {task_points} Dust Dollars awarded!", "success")
         else:
             flash("No such task found or it has already been marked as complete", "warning")
 

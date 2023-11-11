@@ -48,19 +48,19 @@
     </table>
     <hr>
 
-    <h1 class="mb-4"><strong>Points Assigned to Flatmates</strong></h1>
-    <p>Below are the points assigned to each flatmate</p>
+    <h1 class="mb-4"><strong>Task points assigned to Flatmates</strong></h1>
+    <p>Below are the task points assigned to each flatmate</p>
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Flatmate ID</th>
+                <th scope="col">Flatmate</th>
                 <th scope="col">Total Points</th>
             </tr>
         </thead>
         <tbody>
             {% for flatmate in flatmate_points_results %}
             <tr>
-                <td>{{ flatmate.task_owner }}</td>
+                <td>{{ flatmate.flatmate_email }}</td>
                 <td>{{ flatmate.total_points }}</td>
             </tr>
             {% endfor %}
@@ -70,8 +70,7 @@
 
     <h1 class="mt-5"><strong>Update Power Costs for your home</strong></h1>
     <p> Every task can be either randomly reassigned, skipped or procrastinated by any user that has
-        gathered the amount of points required. From here you can decide how much these actions cost
-        and also, how much of a task's points is returned to the user.
+        gathered the amount of points required. From here you can decide how much these actions cost.
     </p>
 
     <form action="{{ url_for('admin_bp.update_power_costs_post') }}" method="post">
@@ -81,12 +80,12 @@
             <div class="col-md-6 form-group">
                 <label for="reassign">Reassign task to random flatmate:</label>
                 <input type="number" min="20" max="2000" name="reassign" class="form-control"
-                    value="{{ power_costs }}" placeholder="{{ power_costs['reassign'] }} (20 -> 2000)">
+                    value="{{ power_costs }}" placeholder="{{ power_costs['reassign'] }} (min: 20, max: 2000)">
             </div>
             <div class="col-md-6 form-group">
                 <label for="skip">Skip the task entirely:</label>
                 <input type="number" min="20" max="2000" name="skip" class="form-control"
-                    value="{{ power_costs }}" placeholder="{{ power_costs['skip'] }} (20 -> 2000)">
+                    value="{{ power_costs }}" placeholder="{{ power_costs['skip'] }} (min: 20, max: 2000)">
             </div>
         </div>
 
@@ -94,7 +93,7 @@
             <div class="col-md-6 form-group">
                 <label for="procrastinate">Procrastinate (leave task for tomorrow):</label>
                 <input type="number" min="20" max="2000" name="procrastinate" class="form-control"
-                    value="{{'procrastinate'}}" placeholder="{{ power_costs['procrastinate'] }} (20 -> 2000)">
+                    value="{{'procrastinate'}}" placeholder="{{ power_costs['procrastinate'] }} (min: 20, max: 2000)">
             </div>
             <!-- Placeholder for alignment -->
             <div class="col-md-6 form-group"></div>
@@ -103,22 +102,23 @@
 
         <!-- Title for the reward thresholds -->
         <h2 class="mt-5">Reward Thresholds</h2>
-        <p>Every task has a number of points assigned to it - this is how the algorithm "fairly" divides the work. Once
-            complete, a percentage of those points is returned to user.
-            The amount is a random value between the lower and the higher thresholds. You can change their value from
-            here.
+        <p>Every task is worth a number of points, the difficulty times frequency. A certain amount of points from 
+            this value is returned to the user as <i class="fa-solid fa-money-bill"></i> <strong>DustDollars</strong>. 
+            <br><br>
+            This value is a random value between <br><br>(Lower threshold x Task value) and (Higher threshold x Task value). 
+            <br><br>From here, you can assign these lower and higher threshold.
         </p>
 
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="lower_reward_threshold">Lower Reward Threshold:</label>
-                <input type="number" min="0.1" max="10" step="0.01" name="lower_reward_threshold" class="form-control"
-                    value="{{'lower_reward_threshold'}}" placeholder="x{{ power_costs['lower_reward_threshold'] }} (0.1 -> 10)">
+                <input type="number" min="0.05" max="10" step="0.1" name="lower_reward_threshold" class="form-control"
+                    value="{{'lower_reward_threshold'}}" placeholder="x {{ power_costs['lower_reward_threshold'] }} (min: 0.05, max: 2)">
             </div>
             <div class="col-md-6 form-group">
                 <label for="higher_reward_threshold">Higher Reward Threshold:</label>
-                <input type="number" min="0.25" max="50" step="0.01" name="higher_reward_threshold" class="form-control"
-                    value="{{'higher_reward_threshold'}}" placeholder="x{{ power_costs['higher_reward_threshold'] }} (0.25 -> 50)">
+                <input type="number" min="0.25" max="50" step="0.1" name="higher_reward_threshold" class="form-control"
+                    value="{{'higher_reward_threshold'}}" placeholder="x {{ power_costs['higher_reward_threshold'] }} (min: 0.5, max: 5)">
             </div>
         </div>
 

@@ -7,9 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
     <div class="row d-flex justify-content-center flex-wrap">
-        <div class="card task-card my-4 mx-3 col-4 px-0 pt-3">
+        <div class="card task-card my-4 mx-3 col-12 col-md-6 col-lg-4 px-0 pt-3">
             <!-- Set max-width to make card narrower -->
             <div class="card-header profile-card-header text-center mx-0 px-0">
                 <h4 class="card-title my-auto ">{{ user['username'] }}</h4>
@@ -18,21 +17,24 @@
                 <p class="card-text">
                     <strong>Member since:</strong> {{ (user['first_login']) }}
                     <hr>
-                    <strong>Points:</strong> {{ user['points'] }}
+                    <strong><i class="fa-solid fa-money-bill"></i> Dust Dollars</strong> {{ user['points'] }}
                     <hr>
                     <strong>Times Logged In:</strong> {{ user['times_logged'] }}
                     <hr>
-                    <strong>Total Tasks:</strong> {{ total_tasks }}
+                    <strong>Total Active Tasks:</strong> {{ total_tasks }}
                     <hr>
                     <strong>Completed Tasks:</strong> {{ completed_tasks }}
                 </p>
                 <hr>
                 
                 {% if premium_user == 0 %}
-                <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-auto mt-4">
+                <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-auto mt-4 text-center">
                     <input type="submit" value="Become Premium User" class="btn default-dashboard-button w-33 mx-auto d-block" id="premiumBtn" />
-                    <small class="text-center">No subscriptions, a one time payment of €3.99</small>
+                    <div class="text-center">
+                        <small>No subscriptions, a one-time payment of €3.99</small>
+                    </div>
                 </form>
+            
                 {% else %}
                 <form action="{{ url_for('create_checkout_session') }}" method="post" class="mx-auto mt-4">
                     <input type="submit" value="Already a premium user!" class="btn default-dashboard-button w-33 mx-auto d-block" id="premiumBtn" disabled />
@@ -43,7 +45,7 @@
             </div>
         </div>
 
-        <div class="card task-card my-4 mx-3 col-4 px-0 pt-3">
+        <div class="card task-card my-4 mx-3 col-12 col-md-6 col-lg-4 px-0 pt-3">
             <div class="card-header profile-card-header text-center mx-0 px-0">
                 <h4 class="card-title my-auto">Titles and awards</h4>
                 <small><strong>ATTENTION: These are worthless in real life</strong></small>
@@ -84,7 +86,6 @@
             <footer class="blockquote-footer">Confucius the Tidy, 6th century BC</footer>
         </blockquote>
     </div>
-</div>
 
 {%block scripts %}
 

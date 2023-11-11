@@ -1,9 +1,4 @@
-.square-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.375rem 0.75rem;  /* default bootstrap padding for buttons */
-}
+
 
 #google-button {
   font-size: 1.2rem;
@@ -13,6 +8,8 @@
   color: #0f9d58;
   /* Initial Google green color */
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
 }
 
 
@@ -20,6 +17,7 @@
   background-color: #0f9d58;
   /* Google green color on hover */
   color: white;
+  
 }
 
 #google-button i.fa-google {
@@ -38,6 +36,8 @@
   color: #4267B2;
   /* Initial Google green color */
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
 }
 
 
@@ -62,6 +62,8 @@
   border-radius: 8px;
   color: #DB4437;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
 }
 
 
@@ -101,4 +103,40 @@
   background-color: var(--charcoal);
   border-color: var(--charcoal);
   color: var(--saffron);
+}
+
+.custom-box {
+  position: relative;
+  border: 3px var(--charcoal) dashed;
+  border-radius: 10px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.custom-box img {
+  position: absolute;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  z-index: 1; /* Ensure image is above the box content but below the number */
+}
+
+/* Smaller font size for small devices */
+@media (max-width: 576px) {
+  .custom-box {
+      font-size: 0.8rem;
+  }
+}
+
+/* Larger font size for large devices */
+@media (min-width: 992px) {
+  .custom-box {
+      font-size: 0.9rem;
+  }
 }
