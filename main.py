@@ -102,21 +102,21 @@ def create_checkout_session():
 
     return redirect(checkout_session.url, code=303)
 
-@app.errorhandler(Exception)
-def handle_exception(error):
-    # You can use error.code here if you want to customize based on error type
-    if hasattr(error, 'code'):
-        error_code = error.code
-    else:
-        error_code = 500  # Default to 500 if error code is not set
+# @app.errorhandler(Exception)
+# def handle_exception(error):
+#     # You can use error.code here if you want to customize based on error type
+#     if hasattr(error, 'code'):
+#         error_code = error.code
+#     else:
+#         error_code = 500  # Default to 500 if error code is not set
 
-    print(
-            f'''
-            "Error code: " {error_code}\n,
-            "Error message: " {str(error)}
-        ''')
+#     print(
+#             f'''
+#             "Error code: " {error_code}\n,
+#             "Error message: " {str(error)}
+#         ''')
           
-    return render_template('error.html', error_code=error_code, error_message=str(error)), error_code
+#     return render_template('error.html', error_code=error_code, error_message=str(error)), error_code
 
 
 # To have the user status as a home master or member available #

@@ -24,11 +24,10 @@ def add_or_get_user(user_email, function):
             # Check if this is the first login
             if user['times_logged'] == 0:
                 cursor.execute("UPDATE users SET first_login = ? WHERE user_id = ?", (datetime.now(), user_email,))
-        elif function == "flatmate_update":
-            cursor.execute("UPDATE users SET table_owner = 0 WHERE user_id = ?", (user_email,))  # Set table_owner to 0
+            
     else:
         # User doesn't exist, add them to 'users' table
-        cursor.execute('INSERT INTO users (user_id, first_login) VALUES (?, ?)', (user_email, datetime.now()))  # Set first_login at user creation
+        cursor.execute('INSERT INTO users (user_id, first_login, table_owner) VALUES (?, ?, ?)', (user_email, datetime.now(), 0))  # Set first_login at user creation
 
         # Add the default awards to user #
         cursor.execute('SELECT 1 FROM awards WHERE user_id = ?', (user_email,))

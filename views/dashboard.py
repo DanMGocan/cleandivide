@@ -16,6 +16,7 @@ dashboard_bp = Blueprint('dashboard_bp', __name__)
 @login_required
 def dashboard():
     user_id = session.get('user_id')
+    table_owner = "absent"
     today_date = datetime.now().strftime('%Y-%m-%d')
 
     # Establish the database connection
@@ -76,7 +77,7 @@ def dashboard():
         WHERE tt.task_owner = (SELECT id FROM flatmates WHERE user_id = ?)
         """
         table_owner_info = cursor.execute(table_owner_query, (user_id,)).fetchone()
-        table_owner = table_owner_info['user_id'] if table_owner_info else None
+        table_owner = table_owner_info['user_id'] if table_owner_info else "absent"
     else:
         own_tasks_today = []  # No flatmate ID found, so the user has no tasks
     
