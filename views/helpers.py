@@ -44,7 +44,6 @@ def get_power_costs(user_id):
 @login_required
 def clear_db():
     user_id = session.get('user_id')
-    print(f"User ID from session: {user_id}")  # Debugging print
 
     conn = get_db_connection()
     cursor = conn.cursor()

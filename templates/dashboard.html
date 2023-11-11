@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% if is_table_owner == 0 and times_logged == 0 %}
+{% if is_table_owner == 0 and times_logged == 0 and own_tasks_today|length == 0 %}
 <div class="col-12 col-md-8 col-lg-6 mt-5 p-3 p-md-5 rounded mx-auto dashboard-borders">
     <h3 class="text-center"><strong>This is the first time you are logging in <i class="fa-regular fa-face-smile"></i>
             <br><br></strong></h3>
@@ -98,8 +98,8 @@
                 <div class="card task-card">
                     <div class="card-header">
                         <small class="d-block"><strong>This task is worth between
-                                {{ (task['points'] * lower_threshold) | floor }} and
-                                {{ (task['points'] * higher_threshold) | floor }} points!</strong></small>
+                                {{ (task['points'] * power_costs['lower_reward_threshold']) | floor }} and
+                                {{ (task['points'] * power_costs['higher_reward_threshold']) | floor }} points!</strong></small>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title"><strong>{{ task['description'] }}</strong></h3>

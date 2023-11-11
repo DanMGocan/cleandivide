@@ -124,7 +124,7 @@ def add_flatmate():
         conn = get_db_connection()
         try:
             # Check if flatmate already exists
-            existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ? AND user_id = ?', (flatmate_email, user_id)).fetchone()
+            existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ?', (flatmate_email,)).fetchone()
             flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
 
             if existing_flatmate:
@@ -144,6 +144,7 @@ def add_flatmate():
             
             else:
                 conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
+
                 conn.commit()
 
             # Send an email to the flatmate

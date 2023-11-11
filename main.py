@@ -13,6 +13,7 @@ from views.admin import admin_bp
 from context_processors import get_table_owner_status
 import config
 import stripe
+import traceback
 
 
 from models import get_db_connection
@@ -102,21 +103,31 @@ def create_checkout_session():
 
     return redirect(checkout_session.url, code=303)
 
-# @app.errorhandler(Exception)
-# def handle_exception(error):
-#     # You can use error.code here if you want to customize based on error type
-#     if hasattr(error, 'code'):
-#         error_code = error.code
-#     else:
-#         error_code = 500  # Default to 500 if error code is not set
+@app.errorhandler(Exception)
+def handle_exception(error):
+    # You can use error.code here if you want to customize based on error type
+    if hasattr(error, 'code'):
+        error_code = error.code
+    else:
+        error_code = 500  # Default to 500 if error code is not set
 
-#     print(
-#             f'''
-#             "Error code: " {error_code}\n,
-#             "Error message: " {str(error)}
-#         ''')
-          
-#     return render_template('error.html', error_code=error_code, error_message=str(error)), error_code
+    # Get the full error stack trace
+    error_traceback = traceback.format_exc()
+
+    print(
+        f"Error code: {error_code}\n"
+        f"Error message: {str(error)}\n"
+        f"Traceback: {error_traceback}"
+    )
+
+    # Depending on your preference, you may not want to display the full traceback in the rendered template,
+    # especially in a production environment, as it can expose underlying code structure.
+    return render_template(
+        'error.html', 
+        error_code=error_code, 
+        error_message=str(error), 
+        error_traceback=error_traceback if app.debug else None
+    ), error_code
 
 
 # To have the user status as a home master or member available #

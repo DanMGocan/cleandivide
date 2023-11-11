@@ -18,6 +18,13 @@ def dashboard():
     user_id = session.get('user_id')
     table_owner = "absent"
     today_date = datetime.now().strftime('%Y-%m-%d')
+    power_costs = {
+    'reassign': 100, 
+    'skip': 135, 
+    'procrastinate': 75,
+    'lower_reward_threshold': 0.25,
+    'higher_reward_threshold': 0.75
+}
 
     # Establish the database connection
     conn = get_db_connection()
@@ -43,43 +50,68 @@ def dashboard():
     ).fetchone() is not None
 
    # Get power costs
-    power_costs = cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,)).fetchone() or {'reassign': 0, 'skip': 0, 'procrastinate': 0}
+   # power_costs = cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,)).fetchone() or {'reassign': 0, 'skip': 0, 'procrastinate': 0}
 
     # Logic to get tasks for today and tomorrow
     # Fetch all tasks from the task table where the user is involved either as a creator or an assigned user
-    tasks_total = cursor.execute("SELECT * FROM task_table WHERE task_owner = ?", (user_id,)).fetchall()
+    tasks_total_query = """
+    SELECT tt.* 
+    FROM task_table AS tt 
+    JOIN flatmates AS f ON tt.task_owner = f.id 
+    WHERE f.user_id = ?
+    """
+    tasks_total = cursor.execute(tasks_total_query, (user_id,)).fetchall()
 
-    # First, get the flatmate id for the current user_id
-    flatmate_id_query = "SELECT id FROM flatmates WHERE user_id = ?"
-    flatmate_id = cursor.execute(flatmate_id_query, (user_id,)).fetchone()
+    # Fetch the flatmate ID for the current user_id
+    flatmate_id_query = "SELECT id FROM flatmates WHERE email = ?"
+    flatmate_id_result = cursor.execute(flatmate_id_query, (user_id,)).fetchone()
+    flatmate_id = flatmate_id_result[0] if flatmate_id_result else None
 
-    # Ensure that flatmate_id is not None
+    # Now use flatmate_id directly in the next query
     if flatmate_id:
-        flatmate_id = flatmate_id[0]
-
-        # Assuming 'user_id' is the ID of the logged user
         tasks_today_query = """
         SELECT tt.*, t.description, t.points, t.frequency FROM task_table AS tt
         INNER JOIN tasks AS t ON tt.task_id = t.id
-        WHERE tt.task_owner = (SELECT id FROM flatmates WHERE user_id = ?) AND tt.task_date = ?
+        WHERE tt.task_owner = ? AND tt.task_date = ?
         """
-        tasks_today = cursor.execute(tasks_today_query, (user_id, today_date)).fetchall()
+        tasks_today = cursor.execute(tasks_today_query, (flatmate_id, today_date)).fetchall()
         tasks_today = [dict(task) for task in tasks_today]
+        table_owner = tasks_today[0]["table_owner"] or None
+        # # Query to find the table_owner for a task assigned to the logged-in user
+        # table_owner_query = """
+        # SELECT u.table_owner 
+        # FROM task_table AS tt
+        # JOIN flatmates AS f ON tt.task_owner = f.id
+        # JOIN users AS u ON tt.table_owner = u.user_id
+        # WHERE f.id = ?
+        # LIMIT 1
+        # """
+        # table_owner_result = cursor.execute(table_owner_query, (flatmate_id,)).fetchone()
+        # table_owner = table_owner_result[0] if table_owner_result else None
 
+        if table_owner:
+            # Fetch power costs for the table_owner
+            power_costs_query = """
+            SELECT reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold 
+            FROM powercosts 
+            WHERE user_id = ?
+            """
+            power_costs = cursor.execute(power_costs_query, (table_owner,)).fetchone() or {
+                'reassign': 0, 
+                'skip': 0, 
+                'procrastinate': 0,
+                'lower_reward_threshold': 0.25,
+                'higher_reward_threshold': 0.75
+            }
 
-        # No need to separate tasks anymore as all tasks fetched are owned by the user
-        own_tasks_today = tasks_today  # This now contains all tasks for today where the logged-in user is the owner
-
-        # Fetch the table owner for the current user's tasks
-        table_owner_query = """
-        SELECT u.user_id, u.table_owner FROM users u
-        JOIN task_table tt ON u.user_id = tt.table_owner
-        WHERE tt.task_owner = (SELECT id FROM flatmates WHERE user_id = ?)
-        """
-        table_owner_info = cursor.execute(table_owner_query, (user_id,)).fetchone()
-        table_owner = table_owner_info['user_id'] if table_owner_info else "absent"
     else:
-        own_tasks_today = []  # No flatmate ID found, so the user has no tasks
+        tasks_today = []  # No flatmate ID found, so the user has no tasks
+
+    # No need to separate tasks anymore as all tasks fetched are owned by the user
+    own_tasks_today = tasks_today  # This now contains all tasks for today where the logged-in user is the owner
+
+    # Fetch the table owner for the current user's tasks
+    
     
     return render_template(
         'dashboard.html',
