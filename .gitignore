@@ -3,3 +3,5 @@ __pycache__/
 venv/
 .VSCodeCounter/
 VSCodeCounter/
+database.db 
+logger.log 

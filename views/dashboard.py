@@ -18,6 +18,7 @@ def dashboard():
     user_id = session.get('user_id')
     table_owner = "absent"
     today_date = datetime.now().strftime('%Y-%m-%d')
+
     power_costs = {
     'reassign': 100, 
     'skip': 135, 
@@ -61,6 +62,7 @@ def dashboard():
     WHERE f.user_id = ?
     """
     tasks_total = cursor.execute(tasks_total_query, (user_id,)).fetchall()
+    table_owner = tasks_today[0]["table_owner"] or None
 
     # Fetch the flatmate ID for the current user_id
     flatmate_id_query = "SELECT id FROM flatmates WHERE email = ?"
@@ -76,7 +78,6 @@ def dashboard():
         """
         tasks_today = cursor.execute(tasks_today_query, (flatmate_id, today_date)).fetchall()
         tasks_today = [dict(task) for task in tasks_today]
-        table_owner = tasks_today[0]["table_owner"] or None
         # # Query to find the table_owner for a task assigned to the logged-in user
         # table_owner_query = """
         # SELECT u.table_owner 
