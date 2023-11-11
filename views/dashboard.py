@@ -62,7 +62,6 @@ def dashboard():
     WHERE f.user_id = ?
     """
     tasks_total = cursor.execute(tasks_total_query, (user_id,)).fetchall()
-    table_owner = tasks_today[0]["table_owner"] or None
 
     # Fetch the flatmate ID for the current user_id
     flatmate_id_query = "SELECT id FROM flatmates WHERE email = ?"
@@ -89,6 +88,10 @@ def dashboard():
         # """
         # table_owner_result = cursor.execute(table_owner_query, (flatmate_id,)).fetchone()
         # table_owner = table_owner_result[0] if table_owner_result else None
+        try:
+            table_owner = tasks_today[0]["table_owner"] or None
+        except:
+            table_owner = 0
 
         if table_owner:
             # Fetch power costs for the table_owner
