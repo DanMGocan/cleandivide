@@ -68,6 +68,15 @@ def dashboard():
 
         # No need to separate tasks anymore as all tasks fetched are owned by the user
         own_tasks_today = tasks_today  # This now contains all tasks for today where the logged-in user is the owner
+
+        # Fetch the table owner for the current user's tasks
+        table_owner_query = """
+        SELECT u.user_id, u.table_owner FROM users u
+        JOIN task_table tt ON u.user_id = tt.table_owner
+        WHERE tt.task_owner = (SELECT id FROM flatmates WHERE user_id = ?)
+        """
+        table_owner_info = cursor.execute(table_owner_query, (user_id,)).fetchone()
+        table_owner = table_owner_info['user_id'] if table_owner_info else None
     else:
         own_tasks_today = []  # No flatmate ID found, so the user has no tasks
     
@@ -75,13 +84,14 @@ def dashboard():
         'dashboard.html',
         total_tasks=tasks_total,
         own_tasks_today=own_tasks_today,
-        today_date=today_date,
+        today_date=(datetime.strptime(today_date, '%Y-%m-%d')).strftime('%A, %d/%m/%Y'),
         times_logged=times_logged,
         already_clicked=already_clicked,
         lower_threshold=lower_threshold,
         higher_threshold=higher_threshold,
         power_costs=power_costs,
-        house_master_status=house_master_status
+        house_master_status=house_master_status,
+        table_owner=table_owner
         # Add any additional context variables needed by your template
     )
 

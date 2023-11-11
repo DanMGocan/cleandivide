@@ -1,0 +1,19 @@
+.default-dashboard-button {
+    background-color: var(--charcoal);
+    color: var(--saffron);
+    transition: background-color 0.3s, color 0.3s; /* smooth transition */
+    padding: 10px;
+    font-weight: bold;
+    border:2px dashed var(--charcoal)
+  }
+  
+  .default-dashboard-button:hover {
+    background-color: var(--saffron);
+    color: var(--charcoal);
+  }
+  
+
+  .responsive-img {
+    width: 200px; /* Full width on small screens */
+}
+

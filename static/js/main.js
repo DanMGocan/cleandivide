@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Set a timeout to remove the flash message after 3 seconds
         setTimeout(() => {
             flashMessage.remove();
-        }, 2600);  // 3000 milliseconds = 3 seconds
+        }, 3600);  // 3000 milliseconds = 3 seconds
     });
 });
 

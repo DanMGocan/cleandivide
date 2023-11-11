@@ -63,6 +63,13 @@ body::after {
   z-index: 1000;  
 }
 
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) { /* Adjust 600px to the breakpoint you need */
+  .flash-container {
+    top: 18%;
+  }
+}
+
 .flash-message {
   border: 3px solid var(--charcoal);
 
@@ -177,6 +184,27 @@ body::after {
   .centered-collapse .navbar-nav .nav-link {
       padding-left: 0;
       padding-right: 0;
+  }
+}
+
+/* Custom.css */
+
+/* Override Bootstrap's default behavior for the navbar-expand-md class */
+@media (max-width: 991.98px) {
+  .navbar-expand-md .navbar-toggler {
+      display: block;
+  }
+  .navbar-expand-md .navbar-collapse {
+      display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-md .navbar-toggler {
+      display: none;
+  }
+  .navbar-expand-md .navbar-collapse {
+      display: flex !important;
   }
 }
 

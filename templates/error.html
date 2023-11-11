@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/error.css') }}">
+
+
+{% block content %}
+        <div class="row col-12 col-md-10 col-lg-8 d-flex justify-content-center align-items-center mt-5 mx-auto">
+            <blockquote cite="Human Person" class=" blockquote">
+                <h3>"Not all those who wander are lost"</h3>
+                <footer class="blockquote-footer">John Ronald Reuel Tolkien</footer>
+            </blockquote>
+        </div>
+
+        <h3 class="text-center">You, however, are. Very lost. I have no idea why, this is my first project.</h3>
+        <div class="row justify-content-center mt-4">
+            <img src="{{ url_for('static', filename='media/img/error.png') }}" alt="Error Image" class="col-12 col-md-4 w-auto">
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <a href="{{ url_for('main')}}" class="btn default-dashboard-button">
+                Back to Hobbiton
+            </a>
+        </div>
+
+{% endblock %}

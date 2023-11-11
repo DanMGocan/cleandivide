@@ -104,8 +104,10 @@
 
         <!-- Container for flash message -->
         <div class="container flash-container col-12 col-lg-6">
+
             <div class="row mx-auto">
                 {% with messages = get_flashed_messages(with_categories=true) %}
+
                 {% if messages %}
                 {% for category, message in messages %}
                 <div class="container flash-message alert alert-{{ category }}">{{ message }}</div>
@@ -141,8 +143,7 @@
                 </div>
 
                 <!-- Right Side - Social Media Links -->
-                <div
-                    class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-end mt-2 mt-md-auto">
+                <div class="col-12 col-md-6 d-flex my-auto align-items-center justify-content-center justify-content-md-end mt-2 mt-md-auto">
                     <div class="social-links">
                         <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" class="mx-2">
                             <i class="fab fa-linkedin"></i>

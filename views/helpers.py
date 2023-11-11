@@ -43,38 +43,38 @@ def get_power_costs(user_id):
 @helpers_bp.route('/clear_db', methods=['POST'])
 @login_required
 def clear_db():
-    user_id = session.get('user_id') 
+    user_id = session.get('user_id')
+    print(f"User ID from session: {user_id}")  # Debugging print
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
     try:
-        # Enable foreign key constraint enforcement
         cursor.execute("PRAGMA foreign_keys = ON;")
 
-        # Delete data from the tables in the right order
+        # Delete data from other tables first
         cursor.execute("DELETE FROM task_table;")
         cursor.execute("DELETE FROM daily_bonus;")
-        # Delete from flatmates but keep the current user's data
-        cursor.execute("DELETE FROM flatmates WHERE user_id != ?", (user_id,))
         cursor.execute("DELETE FROM tasks;")
         cursor.execute("DELETE FROM rooms;")
 
-        # Reset auto-increment counters for tables except flatmates
-        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='task_table'")
-        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='daily_bonus'")
-        # Not resetting auto-increment for flatmates to keep the user_id sequence intact
-        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='tasks'")
-        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name='rooms'")
-        
+        # Now, delete from flatmates but keep the current user's data
+        cursor.execute("DELETE FROM flatmates WHERE email != ?", (user_id,))
+
+        # Reset auto-increment counters
+        cursor.execute("DELETE FROM SQLITE_SEQUENCE WHERE name != 'flatmates'")
+
         conn.commit()
         flash('Database cleared successfully, except for your data!', 'success')
     except Exception as e:
+        print(f"Error occurred: {e}")  # Additional error logging
         conn.rollback()
         flash(f'An error occurred while clearing the database: {e}', 'error')
     finally:
         conn.close()
 
     return redirect(url_for('main'))
+
 
 
 
@@ -331,9 +331,20 @@ def reassign_task():
     user_id = session["user_id"]
     cost = get_power_costs(user_id)["reassign"]
     try:
-        id = int(request.form.get('id'))  # Cast to int
+        id = int(request.form.get('task_id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT t.description 
+            FROM tasks t
+            JOIN task_table tt ON t.id = tt.task_id
+            WHERE tt.id = ?
+        """, (id,))
+        task_description_row = cursor.fetchone()
+        task_description = task_description_row[0] if task_description_row else "Unknown Task"
+
+
 
         # Get number of points of the user 
         cursor.execute("SELECT points FROM users WHERE user_id = ?", (user_id,))
@@ -357,40 +368,55 @@ def reassign_task():
             return redirect(url_for("dashboard_bp.dashboard"))
         table_owner = table_owner[0]
 
-        # Retrieve all flatmates associated with the table_owner
+        # Get the flatmate ID of the logged-in user
+        cursor.execute("SELECT id FROM flatmates WHERE user_id = ?", (user_id,))
+        current_user_flatmate_id = cursor.fetchone()
+        current_user_flatmate_id = current_user_flatmate_id[0] if current_user_flatmate_id else None
+
+        # Fetch all flatmates associated with the table_owner except the logged-in user
         cursor.execute("SELECT id, email FROM flatmates WHERE user_id = ?", (table_owner,))
         flatmates = cursor.fetchall()
+        flatmates = [flatmate for flatmate in flatmates if flatmate[0] != current_user_flatmate_id]
 
-        if not flatmates or len(flatmates) <= 1:  # No other flatmates to reassign to
+        if not flatmates or len(flatmates) < 1:  # No other flatmates to reassign to
             flash("No other flatmates available for reassignment", "warning")
             return redirect(url_for("dashboard_bp.dashboard"))
 
         # Remove current task_owner from potential reassignment list
         cursor.execute("SELECT task_owner FROM task_table WHERE id = ?", (id,))
         current_task_owner = cursor.fetchone()[0]
+
         flatmates = [flatmate for flatmate in flatmates if flatmate[0] != current_task_owner]
 
         # Randomly select a flatmate
-        flatmate_id, flatmate_email = choice(flatmates)
+        flatmate_id, _ = choice(flatmates)
 
         # Reassign task to the new flatmate
-        cursor.execute("UPDATE task_table SET task_owner = ? WHERE id = ?", (flatmate_email, id))
+        cursor.execute("UPDATE task_table SET task_owner = ? WHERE id = ?", (flatmate_id, id))
 
         # Decrease points from the user for the reassign action
         cursor.execute("UPDATE users SET points = points - ? WHERE user_id = ?", (cost, table_owner))
 
 
         conn.commit()
-        conn.close()
 
+        # Check if the reassignment was successful
         if cursor.rowcount:
-            flash(f"Task {id} successfully reassigned to {flatmate_email}", "success")
+        # Fetch the email of the flatmate to whom the task was reassigned
+            cursor.execute("SELECT email FROM flatmates WHERE id = ?", (flatmate_id,))
+            flatmate_row = cursor.fetchone()
+            reassigned_flatmate_email = flatmate_row[0] if flatmate_row else "Unknown Email"
+
+            flash(f"Task '{task_description}' successfully reassigned to {reassigned_flatmate_email}", "success")
         else:
             flash("Reassignment failed", "warning")
+
+
     except Exception as e:
         print("An error occurred:", str(e))
         flash("An error occurred while reassigning the task", "error")
 
+    conn.close()
     return redirect(url_for("dashboard_bp.dashboard"))
 
 
@@ -400,7 +426,7 @@ def skip_task():
     user_id = session["user_id"]
     cost = get_power_costs(user_id)["skip"]  # Define the cost variable
     try:
-        task_id = int(request.form.get('id'))  # Cast to int
+        task_id = int(request.form.get('task_id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
 
@@ -438,7 +464,7 @@ def procrastinate_task():
     user_id = session["user_id"]
     cost = get_power_costs(user_id)["procrastinate"]
     try:
-        task_id = int(request.form.get('id'))  # Cast to int
+        task_id = int(request.form.get('task_id'))  # Cast to int
         conn = get_db_connection()
         cursor = conn.cursor()
 

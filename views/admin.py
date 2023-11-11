@@ -137,12 +137,23 @@ def update_power_costs_post():
     procrastinate = request.form.get('procrastinate') or current_values[2]
     lower_reward_threshold = request.form.get('lower_reward_threshold') or current_values[3]
     higher_reward_threshold = request.form.get('higher_reward_threshold') or current_values[4]
+    lower_reward_threshold_new_value = request.form.get('lower_reward_threshold')
+    higher_reward_threshold_new_value = request.form.get('higher_reward_threshold')
 
-    if lower_reward_threshold > higher_reward_threshold:
+    
+    if float(lower_reward_threshold) > float(higher_reward_threshold):
         flash("Lower rewards threshold cannot be higher than the higher reward threshold. Logically.", "warning")
         return(redirect(url_for('admin_bp.admin')))
     
     else:
+    # if lower_reward_threshold_new_value < 0.05 or lower_reward_threshold_new_value > 2:
+    #     flash("Lower reward threshold must be between 0.05 and 2!", "warning")
+    #     return(redirect(url_for('admin_bp.admin')))
+    
+    # if higher_reward_threshold_new_value < 0.5 and higher_reward_threshold_new_value > 5:
+    #     flash("Higher reward threshold must be between 0.5 and 5!", "warning")
+    #     return(redirect(url_for('admin_bp.admin')))
+
         cursor.execute('UPDATE powercosts SET reassign = ?, skip = ?, procrastinate = ?, lower_reward_threshold = ?, higher_reward_threshold = ? WHERE user_id = ?', (reassign, skip, procrastinate, lower_reward_threshold, higher_reward_threshold, user_id))
         conn.commit()
         conn.close()

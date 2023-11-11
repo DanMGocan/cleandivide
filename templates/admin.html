@@ -104,20 +104,19 @@
         <h2 class="mt-5">Reward Thresholds</h2>
         <p>Every task is worth a number of points, the difficulty times frequency. A certain amount of points from 
             this value is returned to the user as <i class="fa-solid fa-money-bill"></i> <strong>DustDollars</strong>. 
-            <br><br>
-            This value is a random value between <br><br>(Lower threshold x Task value) and (Higher threshold x Task value). 
-            <br><br>From here, you can assign these lower and higher threshold.
+            This value is a random value between <strong>(Lower threshold x Task value) and (Higher threshold x Task value)</strong>. 
+            From here, you can assign these lower and higher threshold.
         </p>
 
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="lower_reward_threshold">Lower Reward Threshold:</label>
-                <input type="number" min="0.05" max="10" step="0.1" name="lower_reward_threshold" class="form-control"
+                <input type="number" min="0.05" max="2" step="0.01" name="lower_reward_threshold" class="form-control"
                     value="{{'lower_reward_threshold'}}" placeholder="x {{ power_costs['lower_reward_threshold'] }} (min: 0.05, max: 2)">
             </div>
             <div class="col-md-6 form-group">
                 <label for="higher_reward_threshold">Higher Reward Threshold:</label>
-                <input type="number" min="0.25" max="50" step="0.1" name="higher_reward_threshold" class="form-control"
+                <input type="number" min="0.5" max="5" step="0.01" name="higher_reward_threshold" class="form-control"
                     value="{{'higher_reward_threshold'}}" placeholder="x {{ power_costs['higher_reward_threshold'] }} (min: 0.5, max: 5)">
             </div>
         </div>

@@ -19,7 +19,6 @@ def add_items():
 
     user_id = session.get('user_id') 
     conn = get_db_connection()
-    cursor = conn.cursor()
     tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC", (user_id, )).fetchall()
     rooms = conn.execute("SELECT * FROM rooms WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
     flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
@@ -64,6 +63,7 @@ def add_task():
             cursor = conn.cursor()
             cursor.execute('SELECT id FROM rooms WHERE user_id = ? AND name = ?', (user_id, room))
             room_exists = cursor.fetchone()
+            tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC", (user_id, )).fetchall()
 
             if not room_exists:
                 # Insert new room
@@ -77,9 +77,15 @@ def add_task():
                 # Increment the used_count for the task
                 conn.execute('UPDATE tasks SET used_count = used_count + 1 WHERE id = ?', (task_exists[0],))
             else:
-                # Insert new task
-                conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', 
-                             (user_id, description, points, room, frequency))
+
+                if len(tasks) > 39:
+                    flash("Maximum amount of tasks added. Please delete a few if you need more space!", "warning")
+                    return(redirect(url_for('main')))
+                
+                else:
+                    # Insert new task
+                    conn.execute('INSERT INTO tasks (user_id, description, points, room, frequency) VALUES (?, ?, ?, ?, ?)', 
+                                (user_id, description, points, room, frequency))
 
             conn.commit()
 
@@ -119,6 +125,8 @@ def add_flatmate():
         try:
             # Check if flatmate already exists
             existing_flatmate = conn.execute('SELECT email FROM flatmates WHERE email = ? AND user_id = ?', (flatmate_email, user_id)).fetchone()
+            flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC LIMIT 10 ", (user_id, )).fetchall()
+
             if existing_flatmate:
                 flash('Flatmate already exists and cloning is but a distant dream!', 'danger')
                 return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
@@ -130,19 +138,24 @@ def add_flatmate():
                 return redirect(url_for('additems_bp.add_items'))  # Redirect to user's dashboard
 
             # If not, proceed with adding the flatmate
-            conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
-            conn.commit()
+            if len(flatmates) > 7:
+                flash("Maximum amount of flatmates added! Please remove a few if you need more space.", "warning")
+                return redirect(url_for('main'))
+            
+            else:
+                conn.execute('INSERT INTO flatmates (user_id, email) VALUES (?, ?)', (user_id, flatmate_email))
+                conn.commit()
 
             # Send an email to the flatmate
             try:
-                msg = Message("Welcome to DivideNDust! Stop procrastinating... from tomorrow!", sender=current_app.config['MAIL_USERNAME'], recipients=[flatmate_email])
+                msg = Message("DivideNDust invitation! Stop procrastinating... from tomorrow!", sender=current_app.config['MAIL_USERNAME'], recipients=[flatmate_email])
                 # msg.body = 'You have been added as a flatmate in our app. Welcome aboard!'
                 msg.html = email_text
                 mail.send(msg)
             except:
                 flash("Email could not be sent, please ask your flatmate to login as normal", "warning")
 
-            flash('Flatmate added successfully!', 'success')
+            flash('Flatmate invited successfully!', 'success')
         except Exception as e:
             current_app.logger.error(f"Failed to add flatmate due to {e}")
             flash('An error occurred. I am very bad at this, errors are very common!', 'danger')
