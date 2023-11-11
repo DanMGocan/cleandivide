@@ -82,7 +82,7 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/create-checkout-session', methods=['POST'])
+@app.route('/create-checkout-session', methods=['GET', 'POST'])
 def create_checkout_session():
     YOUR_DOMAIN = request.url_root.rstrip('/')
     try:
@@ -90,7 +90,7 @@ def create_checkout_session():
             line_items=[
                 {
                     # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                    'price': 'price_1O9W4yGLjjHLFKTU4yf2kqFG',
+                    'price': 'price_1OBQQKGLjjHLFKTU9djOBTrG',
                     'quantity': 1,
                 },
             ],

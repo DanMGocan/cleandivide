@@ -60,11 +60,6 @@
 
                 <div class="collapse navbar-collapse centered-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto my-auto">
-                        <!-- Added ml-auto to right-align the items -->
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ url_for('about')}}">About</a>
-                        </li>
-
                         <!-- Conditional to show login or logout, depending if the user is logged in -->
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
