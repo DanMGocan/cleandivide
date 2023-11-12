@@ -35,28 +35,28 @@ email_text = '''
 <body>
     <div class="container">
         <div class="header">
-            <h2>Welcome to the Cleaning Games!</h2>
-            <img src="YOUR_APP_LOGO_URL_HERE" alt="Logo to be created by my wife, it is not ready yet" width="100">
+            <h2>Welcome to DivideNDust!</h2>
+            <small>Space for logo, but no money for one...</small>
         </div>
         <div class="content">
             <p>Hey there,</p>
-            <p>We've got some "good" news for you! You've been chosen, not for a trip to an exotic destination, but for an exciting journey filled with... cleaning tasks! 🧹✨</p>
-            <p>That's right! Your presence has been demanded in the domestic arena. Prepare your mop, unleash your inner cleaning ninja, and show that dust who's boss. 
-            If you ever dreamt of being a hero, now's your chance... one sparkle at a time.</p>
-            <p>As a house member, you'll be graced with the esteemed responsibility of maintaining the abode's cleanliness and, dare we say, its honor. 
-            Log in to our platform and see what needs to be done. Do that everyday to get all the points and earn... well a clean house, we are not a charity</p>
-            <p>Don't worry, it's all in good fun. And who knows? You might just find joy in those little bubbles from the dish soap or the gentle hum of the vacuum.</p>
-            <p>Ready to dive into this thrilling adventure? Let’s sweep the floor with style!</p>
+            <p>You've been officially invited to join DivideNDust.com! Your mission, should you choose to accept it, involves the noble art of household cleaning. 🧹✨</p>
+            <p>DivideNDust is a unique platform that uses an innovative (well, not really...) algorithm to divide household cleaning tasks equally and fairly among all members. 
+            This way, everyone contributes their fair share, making your home a cleaner, happier place.</p>
+            <p>All you need to do is visit <a href="https://www.dividendust.com">dividendust.com</a> and log in. Make sure to check in daily to see your tasks for the day. 
+            By keeping up with your chores, you'll help maintain balance and harmony in your household.</p>
+            <p>Whether you're a mop master or a dusting dynamo, your contributions will make a world of difference. So, grab your cleaning gear, and let's make those chores fun and fair!</p>
+            <p>I look forward to having you as a user of DivideNDust. Together, we'll tackle those tasks one sparkle at a time.</p>
             <p>Happy Cleaning!</p>
-            <p><i>Dan, living in filth but hoping other people aren't</i></p>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click here to join!</a>
-            (Lou, sa dai click ca e safe, nu e gluma sau spam)
+            <p><i>Dan, striving for a cleaner world. For some reason... </i></p>
+            <a href="https://www.dividendust.com">Join DivideNDust Now!</a>
         </div>
         <div class="footer">
-            <p>If cleaning isn't your thing, consider this your opportunity to level up. 😉</p>
+            <p>Remember, cleanliness is next to godliness. See you at DivideNDust!</p>
         </div>
     </div>
 </body>
 </html>
+
 '''
 

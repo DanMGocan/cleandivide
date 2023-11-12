@@ -81,7 +81,7 @@ def clear_db():
 @helpers_bp.route('/viewdata')
 @login_required
 def viewdata():
-
+    user_id = session["user_id"]
     is_table_owner = get_table_owner_status()
 
     if is_table_owner["is_table_owner"] == 0:
@@ -89,9 +89,9 @@ def viewdata():
         return redirect(url_for("dashboard_bp.dashboard"))
     
     conn = get_db_connection()
-    tasks = conn.execute("SELECT * FROM tasks ORDER BY id DESC ;").fetchall()
+    tasks = conn.execute("SELECT * FROM tasks WHERE user_id = ? ORDER BY id DESC ;", (user_id, )).fetchall()
     rooms = conn.execute("SELECT * FROM rooms ORDER BY id DESC ;").fetchall()
-    flatmates = conn.execute("SELECT * FROM flatmates ORDER BY id DESC ").fetchall()
+    flatmates = conn.execute("SELECT * FROM flatmates WHERE user_id = ? ORDER BY id DESC ", (user_id,)).fetchall()
     return render_template('viewdata.html', rooms=rooms, tasks=tasks, flatmates=flatmates)
 
 @helpers_bp.route('/delete', methods=['POST'])

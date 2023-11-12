@@ -6,15 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- It feels just like random sh*t know -->
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- It feels just like random sh*t know -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/variables.css') }}">
+
+
+
     {% block custom_css %} {% endblock %}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,19 +27,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://js.stripe.com/v3/"></script> 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-</script>
-
-
+    <script src="https://js.stripe.com/v3/"></script>
 
     <!-- Will look inside the static folder, for the static file -->
     <title>{% block title %} {% endblock %}</title>
@@ -53,6 +45,7 @@
                 <div class="d-flex flex-column">
                     <a class="navbar-brand font-weight-bold mb-0 pb-0" href="{{ url_for('main') }}">DivideNDust</a>
                 </div>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars"></i>
@@ -63,28 +56,24 @@
                         <!-- Conditional to show login or logout, depending if the user is logged in -->
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link text-white"
-                                href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My Profile</a>
+                            <a class="nav-link" href="{{ url_for('profile_bp.user_profile', user_id=user_id) }}">My
+                                Profile</a>
                         </li>
                         {% if is_table_owner %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/viewdata">View and Delete Data</a>
+                            <a class="nav-link " href="/viewdata">View and Delete Data</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/dashboard">Dashboard</a>
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
                         {% endif %}
 
-                        {% if current_user.is_authenticated and is_table_owner %}
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/admin">House Administration</a>
-                        </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
+        
         <div style="height: 70px"> </div>
 
         <div class="container py-0 my-0" id="signedAs">
@@ -94,6 +83,18 @@
             {% else %}
             <small class="">(You are not logged in)</small>
             {% endif %}
+        </div>
+
+
+        <div class="container py-0 my-0" id="signedAs">
+            <small class="">Bugs? Issues? Please let me know:<br>
+                <a href="https://wa.me/353861678028" target="_blank" class="contact-icon"><i
+                        class="fa-brands fa-square-whatsapp"></i></a> |
+                <a href="mailto:admin@dividendust.com" target="_blank" class="contact-icon"><i
+                        class="fa-solid fa-envelope"></i></a> |
+                <a href="https://www.facebook.com/dividendust/" target="_blank" class="contact-icon"><i
+                        class="fa-brands fa-square-facebook"></i></a>
+            </small>
         </div>
 
 
@@ -138,15 +139,18 @@
                 </div>
 
                 <!-- Right Side - Social Media Links -->
-                <div class="col-12 col-md-6 d-flex my-auto align-items-center justify-content-center justify-content-md-end mt-2 mt-md-auto">
+                <div
+                    class="col-12 col-md-6 d-flex my-auto align-items-center justify-content-center justify-content-md-end mt-2 mt-md-auto">
                     <div class="social-links">
-                        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <a href="https://www.linkedin.com/in/dangocan/" target="_blank" rel="noopener noreferrer"
+                            class="mx-2">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="YOUR_FACEBOOK_URL" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <a href="https://www.facebook.com/dividendust/" target="_blank" rel="noopener noreferrer"
+                            class="mx-2">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="YOUR_TWITTER_URL" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <a href="https://twitter.com/gocan_dan" target="_blank" rel="noopener noreferrer" class="mx-2">
                             <i class="fab fa-twitter"></i>
                         </a>
                         <a href="https://github.com/DanMGocan" target="_blank" rel="noopener noreferrer" class="mx-2">
@@ -163,6 +167,16 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 
     <!-- Custom JS script -->
     <script src="{{ url_for('static', filename= 'js/main.js') }}"></script>

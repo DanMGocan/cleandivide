@@ -55,6 +55,16 @@ body::after {
   z-index: -1;
 }
 
+.contact-icon {
+  color: var(--charcoal);
+  text-decoration: none;
+  font-size: 1.7em; /* Adjust size as needed */
+}
+
+.contact-icon i {
+  vertical-align: middle;
+}
+
 .flash-container {
   position: fixed;
   top: 10%;
@@ -138,6 +148,7 @@ body::after {
 .navbar {
   background-color: var(--burnt-sienna) !important;
   border-bottom: 4px dashed var(--burnt-sienna);
+  z-index: 10000;
 }
 
 /* Font styles */
@@ -170,7 +181,7 @@ body::after {
   color: var(--charcoal); /* Applying the charcoal color */
 }
 
-/* Center the nav items in the collapsed menu on small screens */
+/* Center the nav items in the collapsed menu on small screens*/
 @media (max-width: 768px) {
   .centered-collapse .navbar-nav {
       text-align: center;
@@ -186,28 +197,6 @@ body::after {
       padding-right: 0;
   }
 }
-
-/* Custom.css */
-
-/* Override Bootstrap's default behavior for the navbar-expand-md class */
-@media (max-width: 991.98px) {
-  .navbar-expand-md .navbar-toggler {
-      display: block;
-  }
-  .navbar-expand-md .navbar-collapse {
-      display: none !important;
-  }
-}
-
-@media (min-width: 992px) {
-  .navbar-expand-md .navbar-toggler {
-      display: none;
-  }
-  .navbar-expand-md .navbar-collapse {
-      display: flex !important;
-  }
-}
-
 
 #signedAs {
   color: var(--charcoal)

@@ -22,10 +22,6 @@ MAIL_PASSWORD = 'zhix qbpo nfld vrpu' #Hann!bal202'
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 
-# Stripe 
-STRIPE_PUBLISHABLE_KEY = 'pk_live_amPG5WtJETcsulULlQ3nPksJ00pb8GHTRL'
-STRIPE_SECRET_KEY = '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'
-
 # MAIL_SERVER ='sandbox.smtp.mailtrap.io'
 # MAIL_PORT = 2525
 # MAIL_USERNAME = 'd8a9b3a337b001'

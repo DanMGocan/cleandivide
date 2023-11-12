@@ -12,6 +12,7 @@
 # TECHNICAL ###########################
 #TODO: Upgrade from SQLite if needed 
 #TODO: Move all environment variables to environment
+#!TODO: Code refactoring and cleaningup
 
 #######################################
 # LEGAL AND SOCIAL ####################

@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Activating the tooltips
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+// // Activating the tooltips
+// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new bootstrap.Tooltip(tooltipTriggerEl)
+// })
 
 // Script the remove the #_=_ from the redirect URL 
 if (window.location.hash && window.location.hash == '#_=_') {
@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 3600);  // 3000 milliseconds = 3 seconds
     });
 });
+
+
 
 
   

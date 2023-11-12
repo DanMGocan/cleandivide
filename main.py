@@ -14,6 +14,7 @@ from context_processors import get_table_owner_status
 import config
 import stripe
 import traceback
+import os
 
 
 from models import get_db_connection
@@ -53,8 +54,8 @@ mail = Mail(app)
 
 # Stripe
 stripe_keys = {
-    "secret_key": app.config["STRIPE_SECRET_KEY"],
-    "publishable_key": app.config["STRIPE_PUBLISHABLE_KEY"],
+    "secret_key": os.environ.get("STRIPE_SECRET_KEY"),
+    "publishable_key": os.environ.get("STRIPE_PUBLISHABLE_KEY"),
 }
 stripe.api_key = stripe_keys["secret_key"]
 
