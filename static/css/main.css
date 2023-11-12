@@ -148,7 +148,6 @@ body::after {
 .navbar {
   background-color: var(--burnt-sienna) !important;
   border-bottom: 4px dashed var(--burnt-sienna);
-  z-index: 10000;
 }
 
 /* Font styles */

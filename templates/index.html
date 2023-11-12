@@ -9,30 +9,37 @@
 {% endblock %}
 
 <!-- Modal for beta -->
-<div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-labelledby="betaModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="betaModalLabel">Welcome to DivideNDust!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Before you continue, I want to share some important information about your privacy and data:</p>
-        <ol>
-            <li><strong>Essential Cookies Only:</strong> The website use only vital cookies necessary for the website to function properly. No optional cookies are implemented, your activities are not tracked beyond what is essential for the site's operation.</li>
-            <li><strong>Your Email Address:</strong> For users signing in with Google or Facebook, we only use your email address for authentication purposes. I do not access or store any other personal information from these platforms.</li>
-            <li><strong>Safety Reminder:</strong> While the site is secure, I advise against sharing sensitive or vital personal information through the platform. Always be mindful of the information you share online.</li>
-            <li><strong>Your Consent:</strong> By using the site, you agree to the use of essential cookies and adhere to the site policies. If that is not the case, please close this page now.</li>
-        </ol>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Agree and continue</button>
+  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-labelledby="betaModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="betaModalLabel">Welcome to DivideNDust!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Before you continue, I want to share some important information about your privacy and data:</p>
+          <ol>
+            <li><strong>Essential Cookies Only:</strong> The website use only vital cookies necessary for the website to
+              function properly. No optional cookies are implemented, your activities are not tracked beyond what is
+              essential for the site's operation.</li>
+            <li><strong>Your Email Address:</strong> For users signing in with Google or Facebook, we only use your
+              email address for authentication purposes. I do not access or store any other personal information from
+              these platforms.</li>
+            <li><strong>Safety Reminder:</strong> While the site is secure, I advise against sharing sensitive or vital
+              personal information through the platform. Always be mindful of the information you share online.</li>
+            <li><strong>Your Consent:</strong> By using the site, you agree to the use of essential cookies and adhere
+              to the site policies. If that is not the case, please close this page now.</li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Agree and continue</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <div class="col-12 d-flex flex-column justify-content-center align-items-center p-0 p-md-3" id="index-title-section">
   <h1 class="text-center mt-5 mb-0 col-12">Welcome to <strong>DivideNDust</strong></h1>
@@ -147,19 +154,20 @@
 <!-- Container for the buttons -->
 <div class="container mt-3 d-flex justify-content-center ">
 
-  <a href="{{ url_for('static', filename='files/CV_DanGocan.pdf') }}" target="_blank" class="btn btn-info mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto"
-    download>
+  <a href="{{ url_for('static', filename='files/CV_DanGocan.pdf') }}" target="_blank"
+    class="btn btn-info mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto" download>
     <i class="fa-solid fa-paperclip"></i> My resume
   </a>
 
   <!-- LinkedIn Button -->
-  <a href="https://www.linkedin.com/in/dangocan/" target="_blank" class="btn btn-primary mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto"
-    id="linkedin-button">
+  <a href="https://www.linkedin.com/in/dangocan/" target="_blank"
+    class="btn btn-primary mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto" id="linkedin-button">
     <i class="fab fa-linkedin"></i> LinkedIn
   </a>
 
   <!-- Email Button -->
-  <a href="mailto:admin@dividendust.com" class="btn btn-success mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto">
+  <a href="mailto:admin@dividendust.com"
+    class="btn btn-success mx-2 rounded align-items-center justify-content-center p-2 m-0 my-auto">
     <i class="fa-solid fa-square-envelope"></i> Email
   </a>
 
