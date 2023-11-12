@@ -46,10 +46,12 @@
                     <a class="navbar-brand font-weight-bold mb-0 pb-0" href="{{ url_for('main') }}">DivideNDust</a>
                 </div>
 
+                {% if current_user.is_authenticated %}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars"></i>
                 </button>
+                {% endif %}
 
                 <div class="collapse navbar-collapse centered-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto my-auto">
@@ -87,7 +89,7 @@
 
 
         <div class="container py-0 my-0" id="signedAs">
-            <small class="">Bugs? Issues? Please let me know:<br>
+            <small class="">Bugs? Issues? Suggestions? Let me know:<br>
                 <a href="https://wa.me/353861678028" target="_blank" class="contact-icon"><i
                         class="fa-brands fa-square-whatsapp"></i></a> |
                 <a href="mailto:admin@dividendust.com" target="_blank" class="contact-icon"><i
