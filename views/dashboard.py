@@ -50,9 +50,6 @@ def dashboard():
         (user_id, today_date)
     ).fetchone() is not None
 
-   # Get power costs
-   # power_costs = cursor.execute('SELECT reassign, skip, procrastinate FROM powercosts WHERE user_id = ?', (user_id,)).fetchone() or {'reassign': 0, 'skip': 0, 'procrastinate': 0}
-
     # Logic to get tasks for today and tomorrow
     # Fetch all tasks from the task table where the user is involved either as a creator or an assigned user
     tasks_total_query = """
@@ -77,17 +74,7 @@ def dashboard():
         """
         tasks_today = cursor.execute(tasks_today_query, (flatmate_id, today_date)).fetchall()
         tasks_today = [dict(task) for task in tasks_today]
-        # # Query to find the table_owner for a task assigned to the logged-in user
-        # table_owner_query = """
-        # SELECT u.table_owner 
-        # FROM task_table AS tt
-        # JOIN flatmates AS f ON tt.task_owner = f.id
-        # JOIN users AS u ON tt.table_owner = u.user_id
-        # WHERE f.id = ?
-        # LIMIT 1
-        # """
-        # table_owner_result = cursor.execute(table_owner_query, (flatmate_id,)).fetchone()
-        # table_owner = table_owner_result[0] if table_owner_result else None
+
         try:
             table_owner = tasks_today[0]["table_owner"] or None
         except:

@@ -108,7 +108,6 @@ def login():
 def logout():
     logout_user()  
     return redirect(url_for('main', _external=True))
-    # return redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=' + url_for('main', _external=True))
 
 @auth_bp.route('/login/callback')
 def authorized():

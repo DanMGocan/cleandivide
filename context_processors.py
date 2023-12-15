@@ -11,7 +11,6 @@ def get_table_owner_status():
     if user_id:
         conn = get_db_connection()
         cursor = conn.cursor()
-        # Assuming 'times_logged_in' is a column in your 'users' table.
         cursor.execute("SELECT table_owner, times_logged, premium_user FROM users WHERE user_id = ?", (user_id,))
         row = cursor.fetchone()
         conn.close()

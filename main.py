@@ -47,7 +47,6 @@ app.register_blueprint(dashboard_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(admin_bp)
 
-
 # Importing mail object
 mail.init_app(app)
 mail = Mail(app)
@@ -106,7 +105,6 @@ def create_checkout_session():
 
 @app.errorhandler(Exception)
 def handle_exception(error):
-    # You can use error.code here if you want to customize based on error type
     if hasattr(error, 'code'):
         error_code = error.code
     else:
@@ -121,8 +119,6 @@ def handle_exception(error):
         f"Traceback: {error_traceback}"
     )
 
-    # Depending on your preference, you may not want to display the full traceback in the rendered template,
-    # especially in a production environment, as it can expose underlying code structure.
     return render_template(
         'error.html', 
         error_code=error_code, 

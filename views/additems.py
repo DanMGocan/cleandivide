@@ -3,7 +3,6 @@ from flask_login import login_required, UserMixin, LoginManager, login_user, log
 from flask_oauthlib.client import OAuth
 from flask_mail import Message
 
-
 from models import User, get_db_connection
 from views.auth import add_or_get_user
 from views.helpers import mail
